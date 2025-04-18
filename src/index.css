@@ -1,0 +1,52 @@
+:root {
+  --yellow: #ffb627;
+	--icon-violet: #734aef;
+	--white: #fbfbfb;
+	--white-400: rgba(255, 255, 255, 0.4);
+	--white-600: rgba(255, 255, 255, 0.6);
+	--text-button: #623f8b;
+	--dashboard-text: #ff868d;
+	--form-color: rgba(255, 255, 255, 0.1);
+  --font: "Poppins", sans-serif;
+  --transform: ease-in-out;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../src/assets/fonts/Poppins-Regular.woff2") format("woff2"),
+    url("../src/assets/fonts/Poppins-Regular.woff") format("woff"),
+    url("../src/assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../src/assets/fonts/Poppins-Medium.woff2") format("woff2"),
+    url("../src/assets/fonts/Poppins-Medium.woff") format("woff"),
+    url("../src/assets/fonts/Poppins-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../src/assets/fonts/Poppins-SemiBold.woff2") format("woff2"),
+    url("../src/assets/fonts/Poppins-SemiBold.woff") format("woff"),
+    url("../src/assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../src/assets/fonts/Poppins-Bold.woff2") format("woff2"),
+    url("../src/assets/fonts/Poppins-Bold.woff") format("woff"),
+    url("../src/assets/fonts/Poppins-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+}
