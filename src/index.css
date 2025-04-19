@@ -1,14 +1,44 @@
 :root {
-  --yellow: #ffb627;
-	--icon-violet: #734aef;
-	--white: #fbfbfb;
-	--white-400: rgba(255, 255, 255, 0.4);
-	--white-600: rgba(255, 255, 255, 0.6);
-	--text-button: #623f8b;
-	--dashboard-text: #ff868d;
-	--form-color: rgba(255, 255, 255, 0.1);
-  --font: "Poppins", sans-serif;
+  /* main background */
+  --main-bg: linear-gradient(
+    135deg,
+    #1e054b 0%,
+    #2f1557 35%,
+    #451e65 70%,
+    #7b2fa1 100%
+  );
+  --bg-currency: rgba(255, 255, 255, 0.2);
+  --bg-balance: rgba(82, 59, 126, 0.6);
+  --bg-transaction: rgba(82, 59, 126, 0.6);
+  /* background for modal*/
+  --bg-modal: rgba(255, 255, 255, 0.1);
+  /* background under modal*/
+  --bg-blur: rgba(34, 13, 91, 0.23);
+  /* main color by text */
+  --main-color: #fbfbfb;
+  /* color info user: name + exit/icon */
+  --user-color: rgba(255, 255, 255, 0.6);
+  /* placeholder + icon for input */
+  --form-color: rgba(255, 255, 255, 0.6);
+  /* color for light button */
+  --dark-color: #623f8b;
+  /* gradient all orange button */
+  --main-btn-gradient: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+  /* shadow for all button */
+  --btn-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  /* shadow for all modal (example Register, AddTransaction etc.) */
+  --modal-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+
+  --main-font: "Poppins", sans-serif;
   --transform: ease-in-out;
+  /* color for icon (mobile navigation, calendar */
+  --icon-violet: #734aef;
+  --icon-hover: rgba(255, 255, 255, 0.4);
 }
 
 @font-face {
@@ -49,4 +79,49 @@
   font-style: normal;
   font-display: swap;
   font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  font-family: var(--main-font);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+textarea {
+  outline: none;
+  font-family: var(--main-font);
+}
+
+body {
+  font-family: var(--main-font);
+  color: var(--main-color);
+  background: var(--main-bg);
 }
