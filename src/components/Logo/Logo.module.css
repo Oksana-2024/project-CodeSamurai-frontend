@@ -1,0 +1,37 @@
+.icon {
+  width: 25px;
+  height: 25px;
+}
+
+.iconHeader {
+  width: 18px;
+  height: 18px;
+}
+
+.logo {
+  font-size: 19px;
+}
+
+.logoHeader {
+  font-size: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .iconHeader {
+    width: 25px;
+    height: 23px;
+  }
+
+  .logo {
+    font-size: 26px;
+  }
+
+  .logoHeader {
+    font-size: 17px;
+  }
+}

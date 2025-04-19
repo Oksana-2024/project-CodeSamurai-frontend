@@ -1,0 +1,5 @@
+.baseStyle {
+  background: var(--main-btn-gradient);
+  border-radius: 20px;
+  box-shadow: var(--btn-shadow);
+}
