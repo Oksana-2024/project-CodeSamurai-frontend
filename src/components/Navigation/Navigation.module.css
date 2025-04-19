@@ -1,0 +1,92 @@
+.link {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--main-color);
+  transition: font-weight 500ms var(--transform);
+}
+
+.navSection {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.active {
+  composes: link;
+  font-weight: 700;
+}
+
+.icon {
+  fill: #452987;
+}
+
+.iconActive {
+  color: var(--main-color);
+}
+
+.iconBorder {
+  background-color: var(--icon-hover);
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 500ms var(--transform);
+}
+
+.activeBorder {
+  composes: iconBorder;
+  background-color: var(--icon-violet);
+}
+
+.navList {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .navList {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .box {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--icon-hover);
+    transition: background-color 500ms var(--transform);
+  }
+
+  .activeBox {
+    composes: box;
+    background-color: var(--icon-violet);
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .navContainer {
+    max-width: 352px;
+  }
+
+  .navSection {
+    padding-top: 40px;
+    padding-bottom: 28px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+    .navSection {
+        padding-top: 40px;
+        padding-bottom: 28px;
+      }
+}
