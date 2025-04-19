@@ -1,7 +1,7 @@
-const ProgressBar = () => {
-  return (
-    <div>ProgressBar</div>
-  )
-}
+import PasswordStrengthBar from "react-password-strength-bar";
 
-export default ProgressBar
+const ProgressBar = ({ password }) => {
+  <PasswordStrengthBar password={password} />;
+};
+
+export default ProgressBar;
