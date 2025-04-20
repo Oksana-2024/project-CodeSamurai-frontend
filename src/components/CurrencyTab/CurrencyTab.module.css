@@ -1,0 +1,30 @@
+.wrapper {
+  max-width: 480px;
+  display: block;
+  /* margin: 0 auto; */
+}
+
+.table {
+  display: block;
+}
+
+.tbody,
+.thead {
+  display: block;
+  text-align: center;
+}
+
+.thead {
+  background: var(--bg-currency);
+  margin-bottom: 24px;
+}
+
+.tr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 24px;
+}
+
+.th {
+  padding: 16px;
+}
