@@ -1,10 +1,10 @@
 import { useMediaQuery } from "react-responsive";
 import Header from "../../components/Header/Header";
-import CurrencyTab from "../../components/CurrencyTab/CurrencyTab";
-import HomeTab from "../../components/HomeTab/HomeTab";
-import StatisticsTab from "../../components/StatisticsTab/StatisticsTab";
-import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard";
+import CurrencyTab from "./CurrencyTab/CurrencyTab";
+import HomeTab from "./HomeTab/HomeTab";
+import StatisticsTab from "./StatisticsTab/StatisticsTab";
 import Navigation from "../../components/Navigation/Navigation";
+import Currency from "../../components/Currency/Currency";
 
 const DashboardPage = () => {
   const isBigScreen = useMediaQuery({ query: "(min-width: 1280px)" });
@@ -23,7 +23,7 @@ const DashboardPage = () => {
             <Navigation />
             <HomeTab />
             <StatisticsTab />
-            <CurrencyTab />
+            <Currency />
           </>
         )}
         {isMiddleScreen && (
@@ -31,7 +31,7 @@ const DashboardPage = () => {
             <Navigation />
             <HomeTab />
             <StatisticsTab />
-            <CurrencyTab />
+            <Currency />
           </>
         )}
         {isSmallScreen && (
@@ -39,7 +39,7 @@ const DashboardPage = () => {
             <Navigation />
             <HomeTab />
             <CurrencyTab />
-            <StatisticsDashboard />
+            <StatisticsTab />
           </>
         )}
       </main>
