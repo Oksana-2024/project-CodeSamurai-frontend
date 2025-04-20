@@ -1,5 +1,10 @@
 import { useMediaQuery } from "react-responsive";
 import Header from "../../components/Header/Header";
+import CurrencyTab from "../../components/CurrencyTab/CurrencyTab";
+import HomeTab from "../../components/HomeTab/HomeTab";
+import StatisticsTab from "../../components/StatisticsTab/StatisticsTab";
+import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard";
+import Navigation from "../../components/Navigation/Navigation";
 
 const DashboardPage = () => {
   const isBigScreen = useMediaQuery({ query: "(min-width: 1280px)" });
@@ -12,9 +17,32 @@ const DashboardPage = () => {
       <header>
         <Header />
       </header>
-      {isBigScreen && (<>components</>)}
-      {isMiddleScreen && (<>components</>)}
-      {isSmallScreen && <>components</>}
+      <main>
+        {isBigScreen && (
+          <>
+            <Navigation />
+            <HomeTab />
+            <StatisticsTab />
+            <CurrencyTab />
+          </>
+        )}
+        {isMiddleScreen && (
+          <>
+            <Navigation />
+            <HomeTab />
+            <StatisticsTab />
+            <CurrencyTab />
+          </>
+        )}
+        {isSmallScreen && (
+          <>
+            <Navigation />
+            <HomeTab />
+            <CurrencyTab />
+            <StatisticsDashboard />
+          </>
+        )}
+      </main>
     </>
   );
 };

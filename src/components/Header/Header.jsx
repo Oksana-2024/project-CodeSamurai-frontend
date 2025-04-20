@@ -3,7 +3,7 @@ import Container from "../Container/Container";
 const Header = () => {
   return (
     <header>
-      <Container></Container>
+      <Container>Header</Container>
     </header>
   );
 };
