@@ -1,7 +1,7 @@
-const RestrictedRoute = () => {
-  return (
-    <div>RestrictedRoute</div>
-  )
-}
+const RestrictedRoute = ({ component: Component, redirectTo = "/" }) => {
+  const { isLoggedIn } = useAuth();
 
-export default RestrictedRoute
+  return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
+};
+
+export default RestrictedRoute;

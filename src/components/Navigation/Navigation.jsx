@@ -15,7 +15,7 @@ const Navigation = () => {
       <Container className={s.navContainer}>
         <nav className={s.navList}>
           {isSmallScreen ? (
-            <NavLink className={activeStyle} to="/home" end>
+            <NavLink className={activeStyle} to="home">
               {({ isActive }) => (
                 <div className={isActive ? s.activeBorder : s.iconBorder}>
                   <BiSolidHome
@@ -26,7 +26,7 @@ const Navigation = () => {
               )}
             </NavLink>
           ) : (
-            <NavLink className={activeStyle} to="/home" end>
+            <NavLink className={activeStyle} to="home" >
               {({ isActive }) => (
                 <div className={s.wrapper}>
                   <div className={isActive ? s.activeBox : s.box}>
@@ -41,7 +41,7 @@ const Navigation = () => {
             </NavLink>
           )}
           {isSmallScreen ? (
-            <NavLink className={activeStyle} to="/statistics" end>
+            <NavLink className={activeStyle} to="statistics" >
               {({ isActive }) => (
                 <div className={isActive ? s.activeBorder : s.iconBorder}>
                   <MdOutlineTimeline
@@ -52,7 +52,7 @@ const Navigation = () => {
               )}
             </NavLink>
           ) : (
-            <NavLink className={activeStyle} to="/statistics" end>
+            <NavLink className={activeStyle} to="statistics">
               {({ isActive }) => (
                 <div className={s.wrapper}>
                   <div className={isActive ? s.activeBox : s.box}>
@@ -67,7 +67,7 @@ const Navigation = () => {
             </NavLink>
           )}
           {isSmallScreen && (
-            <NavLink className={activeStyle} to="/currency" end>
+            <NavLink className={activeStyle} to="currency">
               {({ isActive }) => (
                 <div className={isActive ? s.activeBorder : s.iconBorder}>
                   <FaDollarSign

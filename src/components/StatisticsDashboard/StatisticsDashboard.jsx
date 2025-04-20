@@ -1,6 +1,8 @@
+import Container from "../Container/Container"
+
 const StatisticsDashboard = () => {
   return (
-    <div>StatisticsDashboard</div>
+    <div><Container>StatisticsDashboard</Container></div>
   )
 }
 
