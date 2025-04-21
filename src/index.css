@@ -14,6 +14,9 @@
   --bg-modal: rgba(255, 255, 255, 0.1);
   /* background under modal*/
   --bg-blur: rgba(34, 13, 91, 0.23);
+  /* backgroud header */
+  --bg-header-gradient: linear-gradient(276deg, #2e1746 3.19%, #2e225f 100%);
+
   /* main color by text */
   --main-color: #fbfbfb;
   /* color info user: name + exit/icon */
@@ -33,6 +36,8 @@
   --btn-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
   /* shadow for all modal (example Register, AddTransaction etc.) */
   --modal-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  --header-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25),
+    inset 0 -3px 2px 0 rgba(0, 0, 0, 0.1);
 
   --main-font: "Poppins", sans-serif;
   --transform: ease-in-out;
