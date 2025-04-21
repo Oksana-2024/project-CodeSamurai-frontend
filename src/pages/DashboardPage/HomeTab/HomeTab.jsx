@@ -1,8 +1,15 @@
+import { useMediaQuery } from "react-responsive";
+import Balance from "../../../components/Balance/Balance";
 
 const HomeTab = () => {
-  return (
-    <div>HomeTab</div>
-  )
-}
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
 
-export default HomeTab
+  return (
+    <div>
+      {isSmallScreen && <Balance />}
+      HomeTab
+    </div>
+  );
+};
+
+export default HomeTab;
