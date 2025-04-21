@@ -12,6 +12,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import authReducer from "./auth/slice";
+import currencyReducer from "./currency/slice"
 
 const persistConfig = {
   key: "users", // Ключ для сховища
@@ -27,7 +28,7 @@ const store = configureStore({
     // transaction: transactionReducer,
     // category: categoryReducer,
     // balance: balanceReducer,
-    // currency: currencyReducer,
+    currency: currencyReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
