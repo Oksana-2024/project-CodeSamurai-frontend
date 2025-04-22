@@ -5,18 +5,18 @@ import { handlePending, handleRejected } from "../../service/axios.js";
 import { selectRates, selectUpdatedAt } from "./selectors.js";
 
 const currency = {
-  updatedAt: null,
-  rates: [],
+  updatedAt: null, // коли востаннє були отримані дані
+  rates: [], // список курсів валют
   isLoading: false,
   isError: false,
 };
 
 export const useCurrency = () => {
   const rates = useSelector(selectRates);
-  const lastUpdated = useSelector(selectUpdatedAt);
+  const updatedAt = useSelector(selectUpdatedAt);
   return {
     rates,
-    lastUpdated,
+    updatedAt,
   };
 };
 
@@ -37,7 +37,7 @@ const currencySlice = createSlice({
             sale: rateSell,
           }));
         state.rates = filtered;
-        state.lastUpdated = Date.now();
+        state.updatedAt = Date.now();
       })
       .addCase(fetchCurrency.rejected, handleRejected);
   },

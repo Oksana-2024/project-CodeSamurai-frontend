@@ -7,16 +7,16 @@ import CurrencyChart from "../CurrencyChart/CurrencyChart.jsx";
 
 const Currency = () => {
   const dispatch = useDispatch();
-  const {rates, lastUpdated} = useCurrency();
+  const {rates, updatedAt } = useCurrency();
 
   useEffect(() => {
     const now = Date.now();
     const oneHour = 60 * 60 * 1000;
 
-    if (!lastUpdated || now - lastUpdated > oneHour) {
+    if (!updatedAt  || now - updatedAt  > oneHour) {
       dispatch(fetchCurrency());
     }
-  }, [dispatch, lastUpdated]);
+  }, [dispatch, updatedAt ]);
 
 
   return  (<div className={s.wrapper}>

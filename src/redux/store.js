@@ -20,7 +20,15 @@ const persistConfig = {
   whitelist: ["user", "token"], // Масив частин стану для збереження
 };
 
+const persistCurrensyConfig  = {
+  key: "currency", // Ключ для сховища
+  storage, // Тип сховища
+  whitelist: ["rates", "updatedAt"], // Масив частин стану для збереження
+};
+
 const persistedReducer = persistReducer(persistConfig, authReducer);
+
+const persistedCurrencyReducer = persistReducer(persistCurrensyConfig, currencyReducer);
 
 const store = configureStore({
   reducer: {
@@ -28,7 +36,7 @@ const store = configureStore({
     // transaction: transactionReducer,
     // category: categoryReducer,
     // balance: balanceReducer,
-    currency: currencyReducer,
+    currency: persistedCurrencyReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
