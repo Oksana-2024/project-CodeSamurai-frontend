@@ -11,3 +11,12 @@ export const setAuthHeader = (token) => {
 export const clearAuthHeader = () => {
   baseAxios.defaults.headers.common.Authorization = "";
 };
+
+export const handlePending = (state) => {
+  state.loading = true;
+};
+
+export const handleRejected = (state, action) => {
+  state.loading = false;
+  state.error = action.payload;
+};
