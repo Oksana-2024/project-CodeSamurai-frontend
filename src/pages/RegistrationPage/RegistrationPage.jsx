@@ -1,13 +1,12 @@
-import Container from "../../components/Container/Container";
-import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
+import Container from "../../components/Container/Container.jsx";
+import RegistrationForm from "../../components/RegistrationForm/RegistrationForm.jsx";
+import s from "./RegistrationPage.module.css";
 
 const RegistrationPage = () => {
   return (
-    <>
-      <Container>
-        <RegistrationForm />
-      </Container>
-    </>
+    <Container className={s.register}>
+      <RegistrationForm />
+    </Container>
   );
 };
 

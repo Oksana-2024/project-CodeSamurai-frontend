@@ -1,14 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
-const auth = {
+import { registerThunk } from "./operations.js";
+import { selectIsLoggedIn, selectUser, selectToken } from "./selectors.js";
+
+const initialState = {
   user: {
     name: null,
     email: null,
   },
-  balance: 0,
   token: null,
   isLoggedIn: false,
+  isError: null,
 };
 
 export const useAuth = () => {
@@ -24,10 +27,24 @@ export const useAuth = () => {
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: auth,
+  initialState,
   extraReducers: (builder) => {
-    // .addCase()
+    builder
+      .addCase(registerThunk.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+        state.isError = null;
+      })
+      .addMatcher(isAnyOf(registerThunk.rejected), (state, action) => {
+        state.isError = action.payload;
+      })
+      .addMatcher(isAnyOf(registerThunk.pending), (state) => {
+        state.isError = false;
+      });
   },
 });
 
-export default authSlice.reducer;
+const authReducer = authSlice.reducer;
+
+export default authReducer;

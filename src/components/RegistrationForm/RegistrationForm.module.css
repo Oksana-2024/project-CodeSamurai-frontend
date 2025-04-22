@@ -1,0 +1,200 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
+}
+
+.registerLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.registerContainer {
+  background-color: var(--bg-modal);
+}
+
+.boxLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.label {
+  width: 280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.inputContainerLogo {
+  width: 280px;
+  max-height: 50px;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 40%;
+  left: 16px;
+  transform: translateY(-50%);
+  fill: var(--form-color);
+  pointer-events: none;
+}
+/* 
+Прибирає біле поле при автозаповненні та чорні букви при переході на наступне поле */
+.regInput:-webkit-autofill,
+.regInput:-webkit-autofill:hover,
+.regInput:-webkit-autofill:focus,
+.regInput:-webkit-autofill:active {
+  transition: background-color 9999s ease-in-out 0s;
+  -webkit-text-fill-color: var(--form-color) !important;
+  background-color: transparent !important;
+  caret-color: var(--form-color);
+  border-bottom: 1px solid #ccc;
+}
+
+.regInput {
+  padding-bottom: 8px;
+  width: 280px;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid #ccc;
+  color: var(--form-color);
+  transition: all 0.3s ease;
+  padding-left: 56px;
+}
+
+.regInput:hover,
+.regInput:focus {
+  border-bottom: 1px solid #ffb627;
+}
+
+.togglePassButton {
+  position: absolute;
+  background: none;
+  cursor: pointer;
+  right: 10px;
+}
+
+.togglePassButton svg {
+  color: var(--form-color);
+}
+
+.errorWrapper {
+  width: 100%;
+}
+
+.error {
+  color: #ffb627;
+  font-size: 9px;
+  margin-top: 2px;
+  position: fixed;
+}
+
+.button {
+  width: 280px;
+  height: 50px;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fbfbfb;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  transform: scale(1.1);
+}
+
+.link {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-content: space-around;
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 280px;
+  height: 50px;
+  box-shadow: var(--btn-shadow);
+  color: #623f8b;
+  border: 1px solid #4a56e2;
+  background: #fbfbfb;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.link:hover,
+.link:focus {
+  transform: scale(1.1);
+}
+
+.passwordStrengthWrapper {
+  margin-top: 8px;
+  margin-bottom: 40px;
+}
+
+.bar {
+  width: 280px;
+  height: 4px;
+  background-color: #ccc;
+  border-radius: 2px;
+}
+
+.bar div {
+  transition: all 0.2s ease;
+  height: 100%;
+  border-radius: 2px;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    border-radius: 8px;
+    width: 533px;
+    height: 624px;
+  }
+
+  .button {
+    width: 300px;
+    height: 50px;
+  }
+
+  .label {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .inputContainerLogo {
+    width: 409px;
+  }
+  .regInput {
+    width: 409px;
+  }
+
+  .link {
+    width: 300px;
+  }
+
+  .bar {
+    width: 409px;
+  }
+}
