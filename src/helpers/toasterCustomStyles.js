@@ -6,7 +6,7 @@ export const toasterCustomStyles = {
   draggable: true,
 
   style: {
-    backgroundColor: " #fbfbfb",
+    backgroundColor: "#fbfbfb",
     color: "#623f8b",
     fontSize: "16px",
     padding: "10px 40px",

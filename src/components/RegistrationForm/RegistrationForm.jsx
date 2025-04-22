@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PasswordStrengthBar from "react-password-strength-bar-with-style-item";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
@@ -32,12 +32,18 @@ const RegistrationForm = () => {
   });
 
   const [passwordValue, setPasswordValue] = useState("");
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isPasswordFilled, setIsPasswordFilled] = useState(false);
   const [isConfirmPasswordFilled, setIsConfirmPasswordFilled] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword((prev) => !prev);
   };
 
   const handlePasswordChange = (e) => {
@@ -47,13 +53,18 @@ const RegistrationForm = () => {
   };
 
   const handleConfirmPasswordChange = (e) => {
-    setIsConfirmPasswordFilled(e.target.value.length > 0);
+    const value = e.target.value;
+    setIsConfirmPasswordFilled(value.length > 0);
+    setConfirmPasswordValue(value);
   };
+
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
       const { confirmPassword: _, ...credentials } = data;
       await dispatch(registerThunk(credentials)).unwrap();
+      navigate("/dashboard");
     } catch {
       setError("email", {
         type: "server",
@@ -141,21 +152,21 @@ const RegistrationForm = () => {
           <label className={s.label}>
             <div className={s.inputContainerLogo}>
               <PiLockFill size={24} className={s.icon} />
-
               <input
-                type={showPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
                 className={s.regInput}
                 {...register("confirmPassword")}
                 onChange={handleConfirmPasswordChange}
+                value={confirmPasswordValue}
               />
               {isConfirmPasswordFilled && (
                 <button
                   type="button"
                   className={s.togglePassButton}
-                  onClick={togglePasswordVisibility}
+                  onClick={toggleConfirmPasswordVisibility}
                 >
-                  {showPassword ? (
+                  {showConfirmPassword ? (
                     <AiOutlineEye size={20} className={s.eyeIcon} />
                   ) : (
                     <AiOutlineEyeInvisible size={20} className={s.eyeIcon} />

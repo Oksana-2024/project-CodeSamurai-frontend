@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export const baseAxios = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000"
+  baseURL:
+    import.meta.env.VITE_API_URL ||
+    "https://project-codesamurai-backend.onrender.com/",
 });
 
 export const setAuthHeader = (token) => {
