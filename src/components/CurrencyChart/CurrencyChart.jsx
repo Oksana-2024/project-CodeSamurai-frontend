@@ -11,7 +11,15 @@ import {
   Legend,
 } from "chart.js";
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip, Legend);
+ChartJS.register(
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Filler,
+  Tooltip,
+  Legend
+);
 
 const CurrencyChart = () => {
   const rates = useSelector((state) => state.currency.rates);
@@ -120,14 +128,16 @@ const CurrencyChart = () => {
         tension: 0.4,
         pointBackgroundColor: "#ff868d",
         pointRadius: sale.map((_, i) =>
-          finalRates[i]?.currency === "USD" || finalRates[i]?.currency === "EUR" ? 5 : 0
+          finalRates[i]?.currency === "USD" || finalRates[i]?.currency === "EUR"
+            ? 5
+            : 0
         ), // точки лише на USD і EUR
       },
     ],
   };
 
   return (
-    <div style={{ margin: "-10px auto 0", maxWidth: 480, padding: 0 }}>
+    <div style={{ margin: "-10px auto 0", width: "100%", padding: 0 }}>
       <Line data={data} options={options} plugins={[labelPlugin]} />
     </div>
   );

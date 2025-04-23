@@ -14,7 +14,7 @@ const Navigation = () => {
   const isSmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
   return (
    <section className={s.navSection}>
-      <Container className={s.navContainer}>
+      <div className={s.navContainer}>
         <nav className={s.navList}>
           {isSmallScreen ? (
             <NavLink className={activeStyle} to="home">
@@ -81,7 +81,7 @@ const Navigation = () => {
             </NavLink>
           )}
         </nav>
-        </Container>
+        </div>
    </section>
   );
 };
