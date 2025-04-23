@@ -6,18 +6,22 @@ import Button from "../Button/Button";
 import {MdOutlineModeEdit} from "react-icons/md";
 import useMedia from "../../helpers/useMedia";
 
-const getStyleByType = (type) => (type === "INCOME" ? "var(--income-color)" : "var(--expense-color)");
+const getStyleByType = (type) => (type === "income" ? "var(--income-color)" : "var(--expense-color)");
 
 function TransactionItem({transaction, id}) {
   const dispatch = useDispatch();
   const {isMobile} = useMedia();
 
-  const {transactionDate, type, comment, amount} = transaction;
-  const date = new Date(transactionDate);
-  const formatedDate = `${String(date.getDate()).padStart(2, "0")}
-  .${String(date.getMonth() + 1).padStart(2, "0")}
-  .${date.getFullYear().toString().slice(-2)}`;
-  const formatedType = type == "INCOME" ? "+" : "-";
+  const {date, type, category, comment, sum} = transaction;
+
+  const dateObj = new Date(date);
+  const day = String(dateObj.getDate()).padStart(2, "0");
+  const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const year = dateObj.getFullYear().toString().slice(-2);
+  const formatedDate = `${day}.${month}.${year}`;
+
+  const formatedType = type == "income" ? "+" : "-";
+  const formatedCategoty = category.charAt(0).toUpperCase() + category.slice(1);
   const color = getStyleByType(type);
 
   function onEdit() {
@@ -43,7 +47,7 @@ function TransactionItem({transaction, id}) {
         </div>
         <div className={s.list_item}>
           <span>Category</span>
-          <span>todo...</span>
+          <span>{formatedCategoty}</span>
         </div>
         <div className={s.list_item}>
           <span>Comment</span>
@@ -51,7 +55,7 @@ function TransactionItem({transaction, id}) {
         </div>
         <div className={s.list_item}>
           <span>Sum</span>
-          <span>{amount}</span>
+          <span>{sum}</span>
         </div>
         <div className={s.list_item}>
           <Button
@@ -78,15 +82,14 @@ function TransactionItem({transaction, id}) {
       <td
         className={s.row_item}
         style={{textAlign: "center"}}>
-        {transaction.type == "INCOME" ? "+" : "-"}
+        {formatedType}
       </td>
-      <td className={s.row_item}>categoryId</td>
-      {/* <td className={s.row_item}>{transaction.category}</td> */}
-      <td className={s.row_item}>{transaction.comment}</td>
+      <td className={s.row_item}>{formatedCategoty}</td>
+      <td className={s.row_item}>{comment}</td>
       <td
         className={s.row_item}
         style={{color}}>
-        {transaction.amount}
+        {sum}
       </td>
       <td className={clsx(s.row_item, s.controls)}>
         <button

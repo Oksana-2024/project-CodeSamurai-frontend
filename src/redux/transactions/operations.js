@@ -1,4 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
+import {getTransactionsApi} from "../../service/transactionsApi";
 
 const testData = [
   {
@@ -36,7 +37,7 @@ const testData = [
 export const getTransactions = createAsyncThunk("transactions/all", async (_, thunkApi) => {
   try {
     await new Promise((resolve) => setTimeout(resolve, 100));
-    const data = testData; // Simulating fetching data
+    const data = await getTransactionsApi(thunkApi.getState().auth.token);
 
     return data;
   } catch (error) {

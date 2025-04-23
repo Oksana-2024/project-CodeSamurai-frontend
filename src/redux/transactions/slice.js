@@ -5,6 +5,9 @@ const initialState = {
   isTransLoading: false,
   isTransError: null,
   transactions: [],
+  category: [],
+  currentTransaction: null,
+  deleteTransaction: null,
 };
 
 const slice = createSlice({
