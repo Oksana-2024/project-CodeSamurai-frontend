@@ -1,10 +1,9 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { logoutUser } from "./operations.js";
 
 import { registerThunk, loginThunk } from "./operations.js";
 import { selectIsLoggedIn, selectUser, selectToken } from "./selectors.js";
-import { handlePending, handleRejected } from "../../service/axios.js";
 
 const auth = {
   user: {
@@ -13,8 +12,6 @@ const auth = {
   },
   token: null,
   isLoggedIn: false,
-  isError: null,
-  isLoading: false,
 };
 
 export const useAuth = () => {
@@ -37,27 +34,24 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        state.isError = null;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        state.isError = null;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addMatcher(
-        isAnyOf(registerThunk.rejected, loginThunk.rejected),
-        handleRejected
-      )
-      .addMatcher(
-        isAnyOf(registerThunk.pending, loginThunk.pending),
-        handlePending
-      );
+      .addCase(logoutUser.rejected, (state, action) => {
+        if (action.payload.status === 401) {
+          state.user = { name: null, email: null };
+          state.token = null;
+          state.isLoggedIn = false;
+        }
+      });
   },
 });
 

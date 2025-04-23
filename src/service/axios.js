@@ -14,13 +14,3 @@ export const useAxios = (token) => {
 
   return baseAxios;
 };
-
-export const handlePending = (state) => {
-  state.isLoading = true;
-  state.isError = false;
-};
-
-export const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.isError = action.payload;
-};
