@@ -1,15 +1,12 @@
-//import s from "./LoginPage.module.css"
-
-import Container from "../../components/Container/Container";
-import LoginForm from "../../components/LoginForm/LoginForm";
+import Container from "../../components/Container/Container.jsx";
+import LoginForm from "../../components/LoginForm/LoginForm.jsx";
+import s from "./LoginPage.module.css";
 
 const LoginPage = () => {
   return (
-    <>
-      <Container>
-        <LoginForm />
-      </Container>
-    </>
+    <Container className={s.login}>
+      <LoginForm />
+    </Container>
   );
 };
 

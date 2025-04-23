@@ -1,9 +1,15 @@
-import clsx from "clsx"
-import s from "./Button"
+import clsx from "clsx";
+import s from "./Button.module.css";
 
- const Button = ({className, onClick, text, type="submit"}) => {
+const Button = ({ className, onClick, text, type = "submit" }) => {
   return (
-    <button onClick={onClick} type={type} className={clsx(s.baseStyle, className)}>{text}</button>
-  )
-}
-export default Button
+    <button
+      onClick={onClick}
+      type={type}
+      className={clsx(s.baseStyle, className)}
+    >
+      {text}
+    </button>
+  );
+};
+export default Button;

@@ -14,10 +14,10 @@ import {
 import authReducer from "./auth/slice";
 import currencyReducer from "./currency/slice"
 
-const persistConfig = {
+const persistAuthConfig = {
   key: "users", // Ключ для сховища
   storage, // Тип сховища
-  whitelist: ["user", "token"], // Масив частин стану для збереження
+  whitelist: ["user", "token", "isLoggedIn"], // Масив частин стану для збереження
 };
 
 const persistCurrensyConfig  = {
@@ -26,13 +26,13 @@ const persistCurrensyConfig  = {
   whitelist: ["rates", "updatedAt"], // Масив частин стану для збереження
 };
 
-const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
 
 const persistedCurrencyReducer = persistReducer(persistCurrensyConfig, currencyReducer);
 
 const store = configureStore({
   reducer: {
-    auth: persistedReducer,
+    auth: persistedAuthReducer,
     // transaction: transactionReducer,
     // category: categoryReducer,
     // balance: balanceReducer,
@@ -47,4 +47,4 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store);
-export { store, persistor};
+export { store, persistor };
