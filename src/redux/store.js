@@ -17,7 +17,7 @@ import currencyReducer from "./currency/slice"
 const persistAuthConfig = {
   key: "users", // Ключ для сховища
   storage, // Тип сховища
-  whitelist: ["user", "token"], // Масив частин стану для збереження
+  whitelist: ["user", "token", "isLoggedIn"], // Масив частин стану для збереження
 };
 
 const persistCurrensyConfig  = {
