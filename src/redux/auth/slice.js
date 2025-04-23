@@ -1,10 +1,12 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { logoutUser } from "./operations.js";
 
 import { registerThunk, loginThunk } from "./operations.js";
 import { selectIsLoggedIn, selectUser, selectToken } from "./selectors.js";
+import { handlePending, handleRejected } from "../../service/axios.js";
 
-const initialState = {
+const auth = {
   user: {
     name: null,
     email: null,
@@ -12,6 +14,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isError: null,
+  isLoading: false,
 };
 
 export const useAuth = () => {
@@ -27,7 +30,7 @@ export const useAuth = () => {
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: auth,
   extraReducers: (builder) => {
     builder
       .addCase(registerThunk.fulfilled, (state, action) => {
@@ -42,17 +45,18 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isError = null;
       })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.user = { name: null, email: null };
+        state.token = null;
+        state.isLoggedIn = false;
+      })
       .addMatcher(
         isAnyOf(registerThunk.rejected, loginThunk.rejected),
-        (state, action) => {
-          state.isError = action.payload;
-        }
+        handleRejected
       )
       .addMatcher(
         isAnyOf(registerThunk.pending, loginThunk.pending),
-        (state) => {
-          state.isError = false;
-        }
+        handlePending
       );
   },
 });

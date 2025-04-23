@@ -1,14 +1,11 @@
-//import { baseAxios } from "../../service/axios";
-
-//import { setAuthHeader } from "../../service/axios";
-//import { clearAuthHeader } from "../../service/axios";
-
-//baseAxios.post = axios.post
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { toasterCustomStyles } from "../../helpers/toasterCustomStyles.js";
-import { baseAxios, setAuthHeader } from "../../service/axios.js";
+import {
+  baseAxios,
+  setAuthHeader,
+  clearAuthHeader,
+} from "../../service/axios.js";
 
 export const registerThunk = createAsyncThunk(
   "auth/register",
@@ -25,7 +22,7 @@ export const registerThunk = createAsyncThunk(
       let message = "Something went wrong. Please try again later.";
 
       if (status === 400) {
-        message = backendMessage || "Invalid Invalid request data";
+        message = backendMessage || "Invalid request data";
       } else if (status === 409) {
         message =
           backendMessage || "The user already exists. Please try another one";
@@ -65,6 +62,18 @@ export const loginThunk = createAsyncThunk(
 
       toast.error(message, toasterCustomStyles);
       return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const logoutUser = createAsyncThunk(
+  "auth/logout",
+  async (_, thunkApi) => {
+    try {
+      await baseAxios.post("/auth/Logout");
+      clearAuthHeader();
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
