@@ -1,18 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { toasterCustomStyles } from "../../helpers/toasterCustomStyles.js";
-import {
-  baseAxios,
-  setAuthHeader,
-  clearAuthHeader,
-} from "../../service/axios.js";
+import { useAxios } from "../../service/axios.js";
 
 export const registerThunk = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await baseAxios.post("/auth/register", credentials);
-      setAuthHeader(data.token);
+      const { data } = await useAxios().post("/auth/register", credentials);
       toast.success(`Welcome, ${data.user.name}!`, toasterCustomStyles);
       return data;
     } catch (error) {
@@ -40,8 +35,7 @@ export const loginThunk = createAsyncThunk(
   "auth/login",
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await baseAxios.post("/auth/login", credentials);
-      setAuthHeader(data.token);
+      const { data } = await useAxios().post("/auth/login", credentials);
       toast.success(`Welcome back, ${data.user.name}!`, toasterCustomStyles);
       return data;
     } catch (error) {
@@ -70,8 +64,9 @@ export const logoutUser = createAsyncThunk(
   "auth/logout",
   async (_, thunkApi) => {
     try {
-      await baseAxios.post("/auth/Logout");
-      clearAuthHeader();
+      const state = thunkApi.getState();
+      const { token } = state.auth;
+      await useAxios(token).post("/auth/logout");
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
