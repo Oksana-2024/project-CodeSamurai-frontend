@@ -25,8 +25,21 @@ function App() {
     <>
       <Suspense fallback={null}>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Registration />} />
+          <Route
+            path="/"
+            element={
+              <RestrictedRoute redirectTo="/dashboard" component={<Login />} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/dashboard"
+                component={<Registration />}
+              />
+            }
+          />
           <Route
             path="/dashboard"
             element={

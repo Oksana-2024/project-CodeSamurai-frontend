@@ -35,12 +35,14 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isError = null;
+        localStorage.setItem("token", action.payload.token);
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isError = null;
+        localStorage.setItem("token", action.payload.token);
       })
       .addMatcher(
         isAnyOf(registerThunk.rejected, loginThunk.rejected),

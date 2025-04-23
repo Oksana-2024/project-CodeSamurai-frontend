@@ -31,7 +31,6 @@ const LoginForm = () => {
     mode: "onBlur",
   });
 
-  const [setPasswordValue] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordFilled, setIsPasswordFilled] = useState(false);
 
@@ -42,7 +41,6 @@ const LoginForm = () => {
   const handlePasswordChange = (e) => {
     const value = e.target.value;
     setIsPasswordFilled(value.length > 0);
-    setPasswordValue(value);
   };
 
   const navigate = useNavigate();
