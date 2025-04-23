@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { logoutUser } from "./operations.js";
 
-const initialState = {
+const auth = {
   user: {
     name: null,
     email: null,
