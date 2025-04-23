@@ -1,0 +1,31 @@
+.row:not(:last-child) {
+  border-bottom: 1px solid #ffffff69;
+}
+
+.row td {
+  padding: 16px;
+}
+
+.row td:nth-child(1) {
+  text-align: left;
+}
+
+.row td:nth-child(3) {
+  text-align: left;
+}
+
+.row td:last-child {
+  text-align: right;
+}
+
+.edit_btn {
+  background-color: transparent;
+  color: var(--main-color);
+  padding: 5px;
+  margin-right: 8px;
+}
+
+.delete_btn {
+  color: var(--main-color);
+  padding: 5px 10px;
+}

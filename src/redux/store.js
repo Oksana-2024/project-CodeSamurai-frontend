@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import { persistStore, persistReducer } from "redux-persist";
+import {persistStore, persistReducer} from "redux-persist";
 import {
   // persistStore,
   // persistReducer,
@@ -12,8 +12,9 @@ import {
   REGISTER,
 } from "redux-persist";
 import authReducer from "./auth/slice";
-import currencyReducer from "./currency/slice"
 import globalReducer from "./global/slice";
+import currencyReducer from "./currency/slice";
+import transactionReducer from "./transactions/slice";
 
 const persistAuthConfig = {
   key: "users", // Ключ для сховища
@@ -21,7 +22,7 @@ const persistAuthConfig = {
   whitelist: ["user", "token", "isLoggedIn"], // Масив частин стану для збереження
 };
 
-const persistCurrensyConfig  = {
+const persistCurrensyConfig = {
   key: "currency", // Ключ для сховища
   storage, // Тип сховища
   whitelist: ["rates", "updatedAt"], // Масив частин стану для збереження
@@ -35,7 +36,7 @@ const store = configureStore({
   reducer: {
     global: globalReducer,
     auth: persistedAuthReducer,
-    // transaction: transactionReducer,
+    transaction: transactionReducer,
     // category: categoryReducer,
     // balance: balanceReducer,
     currency: persistedCurrencyReducer,
@@ -49,4 +50,4 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store);
-export { store, persistor };
+export {store, persistor};
