@@ -1,9 +1,8 @@
 import { useMediaQuery } from "react-responsive";
 import Header from "../../components/Header/Header";
-
+import { Outlet } from "react-router-dom";
 import Navigation from "../../components/Navigation/Navigation";
 import Currency from "../../components/Currency/Currency";
-import { Outlet } from "react-router-dom";
 import Balance from "../../components/Balance/Balance";
 import s from "./DashboardPage.module.css";
 import Container from "../../components/Container/Container";
@@ -20,23 +19,27 @@ const DashboardPage = () => {
         <Container className={s.dashboard}>
           {isBigScreen && (
             <>
-              <div>
+              <div className={s.nav}>
                 <Navigation />
               </div>
-              <div>
+
+              <div className={s.balance}>
                 <Balance />
               </div>
-              <div>
+
+              <div className={s.currency}>
                 <Currency />
               </div>
             </>
           )}
-        {isSmallScreen && (
-          <div className={s.mobileDashboard}>
-            <Navigation />
+          {isSmallScreen && (
+            <div className={s.mobileDashboard}>
+              <Navigation />
+            </div>
+          )}
+          <div className={s.content}>
+            <Outlet />
           </div>
-        )}
-        <Outlet />
         </Container>
       </main>
     </section>

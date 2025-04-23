@@ -47,7 +47,6 @@
   justify-content: center;
 }
 
-
 @media screen and (min-width: 768px) {
   .navList {
     flex-direction: column;
@@ -82,12 +81,14 @@
   .navSection {
     padding-top: 40px;
     padding-bottom: 28px;
+    width: 336px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-    .navSection {
-        padding-top: 40px;
-        padding-bottom: 28px;
-      }
+  .navSection {
+    padding-top: 40px;
+    width: 464px;
+    padding-bottom: 28px;
+  }
 }

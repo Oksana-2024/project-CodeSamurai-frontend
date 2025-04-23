@@ -1,10 +1,9 @@
+
 .register {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding-top: 23px;
-  padding-bottom: 23px;
   background-image: url("../../assets/img/mobile.png");
   background-repeat: no-repeat;
   background-size: cover;

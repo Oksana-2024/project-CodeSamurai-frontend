@@ -4,9 +4,11 @@ import s from "./RegistrationPage.module.css";
 
 const RegistrationPage = () => {
   return (
-    <Container className={s.register}>
-      <RegistrationForm />
-    </Container>
+  <section className={s.registerPage}>
+      <Container className={s.register}>
+        <RegistrationForm />
+      </Container>
+  </section>
   );
 };
 

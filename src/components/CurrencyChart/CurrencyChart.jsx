@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import s from "./CurrencyChart.module.css";
 
 ChartJS.register(
   LineElement,
@@ -63,7 +64,7 @@ const CurrencyChart = () => {
               ctx.fillStyle = "#ff868d";
               ctx.font = "bold 12px sans-serif";
               ctx.textAlign = "center";
-              ctx.fillText(currency, point.x, point.y - 10); // над точкою
+              ctx.fillText(currency, point.x - 1, point.y - 5); // над точкою
               ctx.restore();
             }
           });
@@ -137,7 +138,7 @@ const CurrencyChart = () => {
   };
 
   return (
-    <div style={{ margin: "-10px auto 0", width: "100%", padding: 0 }}>
+    <div className={s.chart}>
       <Line data={data} options={options} plugins={[labelPlugin]} />
     </div>
   );

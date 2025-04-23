@@ -4,9 +4,11 @@ import s from "./LoginPage.module.css";
 
 const LoginPage = () => {
   return (
-    <Container className={s.login}>
-      <LoginForm />
-    </Container>
+    <section className={s.loginPage}>
+      <Container className={s.login}>
+        <LoginForm />
+      </Container>
+    </section>
   );
 };
 

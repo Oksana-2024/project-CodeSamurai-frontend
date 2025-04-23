@@ -3,12 +3,10 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding-top: 97px;
-  padding-bottom: 98px;
   background-image: url("../../assets/img/mobile.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: 0px 0px;
   min-height: 100vh;
 }
 
