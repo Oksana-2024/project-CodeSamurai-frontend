@@ -6,13 +6,12 @@
 //baseAxios.post = axios.post
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 
 export const logoutUser = createAsyncThunk(
   "auth/logout",
   async (_, thunkApi) => {
     try {
-      await axios.post("/api/logout");
+      baseAxios.post = axios.post("/api/Log out user");
       localStorage.removeItem("token");
       return;
     } catch (error) {
