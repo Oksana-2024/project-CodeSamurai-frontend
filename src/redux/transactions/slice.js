@@ -1,23 +1,14 @@
+import { createSlice } from "@reduxjs/toolkit";
+
 const transactions = {
   items: [],
   category: [],
-  isLoading: false,
-  isError: false,
   currentTransaction: null,
   deleteTransaction: null,
 };
 
-const handlePending = (state) => {
-  state.isLoading = true;
-};
-
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.isError = action.payload;
-};
-
-const contactsSlice = createSlice({
-  name: "transaction",
+const transactionsSlice = createSlice({
+  name: "transactions",
   initialState: transactions,
   reducers: {
     setCurrentTransaction(state, action) {
@@ -32,3 +23,5 @@ const contactsSlice = createSlice({
     //.addCase
   },
 });
+
+export default transactionsSlice.reducer;
