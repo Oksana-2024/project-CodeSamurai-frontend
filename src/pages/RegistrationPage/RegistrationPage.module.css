@@ -1,0 +1,56 @@
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  background-image: url("../../assets/img/mobile.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+@media screen and (min-resolution: 192dpi),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 2dppx) {
+  .register {
+    background-image: url("../../assets/img/mobile@2x.png");
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-image: url("../../assets/img/reg_tab.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-resolution: 192dpi) {
+  .register {
+    background-image: url("../../assets/img/reg_tab@2x.png");
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .register {
+    background-image: url("../../assets/img/reg_pc.png");
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+@media screen and (min-width: 1280px) and (min-resolution: 192dpi) {
+  .register {
+    background-image: url("../../assets/img/reg_pc@2x.png");
+  }
+}

@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import "./App.css";
 import PrivateRoute from "./PrivateRoute";
-//import RestrictedRoute from "./RestrictedRoute";
+import RestrictedRoute from "./RestrictedRoute";
 
 const Login = lazy(() => import("../pages/LoginPage/LoginPage"));
 const Dashboard = lazy(() => import("../pages/DashboardPage/DashboardPage"));
@@ -25,8 +25,21 @@ function App() {
     <>
       <Suspense fallback={null}>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Registration />} />
+          <Route
+            path="/"
+            element={
+              <RestrictedRoute redirectTo="/dashboard" component={<Login />} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/dashboard"
+                component={<Registration />}
+              />
+            }
+          />
           <Route
             path="/dashboard"
             element={
