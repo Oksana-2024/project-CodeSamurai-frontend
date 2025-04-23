@@ -1,13 +1,8 @@
 :root {
   /* main background */
-  --main-bg: linear-gradient(
-    135deg,
-    #1e054b 0%,
-    #2f1557 35%,
-    #451e65 70%,
-    #7b2fa1 100%
-  );
-  --bg-currency: rgba(255, 255, 255, 0.2);
+  --main-bg: №101010;
+  --bg-currency: #5a4ea4;
+  --bg-tab-mobile:#101010;
   --bg-balance: rgba(82, 59, 126, 0.6);
   --bg-transaction: rgba(82, 59, 126, 0.6);
   /* background for modal*/
@@ -25,6 +20,8 @@
   --form-color: rgba(255, 255, 255, 0.6);
   /* color for light button */
   --dark-color: #623f8b;
+  --expense-color: #ff868d;
+  --income-color: #ffb627;
   /* gradient all orange button */
   --main-btn-gradient: linear-gradient(
     167deg,

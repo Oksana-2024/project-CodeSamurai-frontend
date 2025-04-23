@@ -1,3 +1,24 @@
-.dashboardSection{
-    background-color: #1b1440;
+.dashboardSection {
+  background-color: #1b1440;
+}
+
+.dashboard {
+  padding: 0;
+  background-image: url("../../assets/img/mobile_gradient.png"),
+    url("../../assets/img/ellipse_19.png");
+  background-repeat: no-repeat, no-repeat;
+  background-position: top, center;
+  background-size: auto 100vh, 454px 454px;
+}
+
+.mobileDashboard {
+  max-width: 320px;
+  margin: 0 auto;
+  height: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard {
+    background-image: url("../../assets/img/home_tab.png");
+  }
 }

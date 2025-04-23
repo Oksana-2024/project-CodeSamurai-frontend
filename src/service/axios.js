@@ -13,10 +13,10 @@ export const clearAuthHeader = () => {
 };
 
 export const handlePending = (state) => {
-  state.loading = true;
+  state.isLoading = true;
 };
 
 export const handleRejected = (state, action) => {
-  state.loading = false;
-  state.error = action.payload;
+  state.isLoading = false;
+  state.isError = action.payload;
 };

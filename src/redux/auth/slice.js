@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { selectIsLoggedIn, selectToken, selectUser } from "./selectors";
 
 const auth = {
   user: {
@@ -8,7 +9,7 @@ const auth = {
   },
   balance: 0,
   token: null,
-  isLoggedIn: false,
+  isLoggedIn: true,
 };
 
 export const useAuth = () => {
