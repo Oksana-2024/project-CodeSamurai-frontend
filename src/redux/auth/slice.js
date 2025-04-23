@@ -29,7 +29,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     // .addCase()
     builder.addCase(logoutUser.fulfilled, (state) => {
-      state.name = null;
+      state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     });
