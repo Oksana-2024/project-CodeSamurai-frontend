@@ -20,5 +20,66 @@
 @media screen and (min-width: 768px) {
   .dashboard {
     background-image: url("../../assets/img/home_tab.png");
+    background-size: cover;
+  }
+  .nav {
+    width: 336px;
+    height: 134px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .balance {
+    width: 336px;
+    grid-area: "balance";
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .currency {
+    width: 336px;
+    grid-area: "currency";
+    grid-row: span 2;
+  }
+
+  .content {
+    grid-column: span 2;
+  }
+  .dashboard {
+    padding: 0 32px;
+    display: grid;
+    gap: 20px 32px;
+    grid-template-columns: 336px 336px;
+    grid-template-areas:
+      "nav currency"
+      "balance currency"
+      "content";
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .nav {
+    width: 480px;
+  }
+
+  .balance {
+    width: 480px;
+  }
+
+  .currency {
+    width: 480px;
+    grid-row: 3;
+  }
+
+  .content {
+    grid-row: span 3;
+    grid-column: span 1;
+  }
+  .dashboard {
+    padding: 0;
+    gap: 0 62px;
+    grid-template-columns: 480px 715px;
+    grid-template-areas:
+      "nav content"
+      "balance "
+      "currency ";
   }
 }

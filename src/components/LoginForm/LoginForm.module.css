@@ -20,6 +20,10 @@
 
 .loginContainer {
   background-color: var(--bg-modal);
+  background-image: url("../../assets/img/ellipse_19.png");
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .loginBoxLabel {

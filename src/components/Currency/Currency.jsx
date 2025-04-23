@@ -7,39 +7,38 @@ import CurrencyChart from "../CurrencyChart/CurrencyChart.jsx";
 
 const Currency = () => {
   const dispatch = useDispatch();
-  const {rates, updatedAt } = useCurrency();
+  const { rates, updatedAt } = useCurrency();
 
   useEffect(() => {
     const now = Date.now();
     const oneHour = 60 * 60 * 1000;
 
-    if (!updatedAt  || now - updatedAt  > oneHour) {
+    if (!updatedAt || now - updatedAt > oneHour) {
       dispatch(fetchCurrency());
     }
-  }, [dispatch, updatedAt ]);
+  }, [dispatch, updatedAt]);
 
-
-  return  (<div className={s.wrapper}>
-  <table className={s.table}>
-    <thead className={s.thead}>
-      <tr className={s.tr}>
-        <th className={s.th}>Currency</th>
-        <th className={s.th}>Purchase</th>
-        <th className={s.th}>Sale</th>
-      </tr>
-    </thead>
-    <tbody className={s.tbody}>
-      {rates.map((rate) => (
-        <tr className={s.tr} key={rate.currency}>
-          <td className={s.td}>{rate.currency}</td>
-          <td className={s.td}>{rate.purchase.toFixed(2)}</td>
-          <td className={s.td}>{rate.sale.toFixed(2)}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-  <CurrencyChart />
-</div>)
+  return (
+    <div className={s.wrapper}>
+      <div className={s.table}>
+        <ul className={s.thead}>
+          <li className={s.th}>Currency</li>
+          <li className={s.th}>Purchase</li>
+          <li className={s.th}>Sale</li>
+        </ul>
+        <ul className={s.tbody}>
+          {rates.map((rate) => (
+            <li className={s.tr} key={rate.currency}>
+              <p className={s.td}>{rate.currency}</p>
+              <p className={s.td}>{rate.purchase.toFixed(2)}</p>
+              <p className={s.td}>{rate.sale.toFixed(2)}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <CurrencyChart />
+    </div>
+  );
 };
 
 export default Currency;

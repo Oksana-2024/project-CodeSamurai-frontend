@@ -1,0 +1,17 @@
+.chart {
+  width: 320px;
+  padding-top: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .chart {
+    width: 336px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+    .chart {
+      width: 480px;
+    }
+  }
+  
