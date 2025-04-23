@@ -25,13 +25,13 @@ const RegistrationForm = () => {
     register,
     handleSubmit,
     setError,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(validationSchemaRegister),
     mode: "onBlur",
   });
 
-  const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -49,7 +49,6 @@ const RegistrationForm = () => {
   const handlePasswordChange = (e) => {
     const value = e.target.value;
     setIsPasswordFilled(value.length > 0);
-    setPasswordValue(value);
   };
 
   const handleConfirmPasswordChange = (e) => {
@@ -59,6 +58,9 @@ const RegistrationForm = () => {
   };
 
   const navigate = useNavigate();
+
+  const password = watch("password");
+  const confirmPassword = watch("confirmPassword");
 
   const onSubmit = async (data) => {
     try {
@@ -88,13 +90,11 @@ const RegistrationForm = () => {
                 type="text"
                 placeholder="Name"
                 className={s.regInput}
-                {...register("username")}
+                {...register("name")}
               />
             </div>
             <div className={s.errorWrapper}>
-              {errors.username && (
-                <p className={s.error}>{errors.username.message}</p>
-              )}
+              {errors.name && <p className={s.error}>{errors.name.message}</p>}
             </div>
           </label>
 
@@ -179,18 +179,17 @@ const RegistrationForm = () => {
                 <p className={s.error}>{errors.confirmPassword.message}</p>
               )}
             </div>
-          </label>
-        </div>
 
-        {/* Password Strength Indicator */}
-        <div className={s.passwordStrengthWrapper}>
-          <PasswordStrengthBar
-            className={s.bar}
-            password={passwordValue}
-            scoreWords={[]}
-            shortScoreWord=""
-            minLength={6}
-          />
+            {/* Password Strength Indicator */}
+            <div className={s.passwordStrengthWrapper}>
+              <PasswordStrengthBar
+                password={password === confirmPassword ? password : ""}
+                scoreWords={[""]}
+                className={s.bar}
+                shortScoreWord=""
+              />
+            </div>
+          </label>
         </div>
 
         <Button
