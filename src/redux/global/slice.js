@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { loginThunk, registerThunk } from "../auth/operations";
+import { loginThunk, logoutUser, registerThunk } from "../auth/operations";
 import { fetchCurrency } from "../currency/operations";
 
 const handlePending = (state) => {
@@ -8,14 +8,14 @@ const handlePending = (state) => {
 };
 
 const handleFulfilled = (state) => {
-  state.isLoading = true;
+  state.isLoading = false;
   state.isError = false;
 };
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
   // todo: зробити обробку помилок?
-  state.isError = action.payload;
+  state.isError = action.payload.data?.message || "Something went wrong";
 };
 
 const global = {
@@ -30,25 +30,28 @@ const globalSlice = createSlice({
     builder
       .addMatcher(
         isAnyOf(
-          registerThunk.rejected,
-          loginThunk.rejected,
-          fetchCurrency.rejected
-        ),
-        handleRejected
-      )
-      .addMatcher(
-        isAnyOf(
           registerThunk.pending,
           loginThunk.pending,
-          fetchCurrency.pending
+          fetchCurrency.pending,
+          logoutUser.pending
         ),
         handlePending
       )
       .addMatcher(
         isAnyOf(
+          registerThunk.rejected,
+          loginThunk.rejected,
+          fetchCurrency.rejected,
+          logoutUser.rejected
+        ),
+        handleRejected
+      )
+      .addMatcher(
+        isAnyOf(
           registerThunk.fulfilled,
           loginThunk.fulfilled,
-          fetchCurrency.fulfilled
+          fetchCurrency.fulfilled,
+          logoutUser.fulfilled
         ),
         handleFulfilled
       );
