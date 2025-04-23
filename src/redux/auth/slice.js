@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { logoutUser } from "./operations.js";
 
 const auth = {
   user: {
@@ -27,6 +28,11 @@ const authSlice = createSlice({
   initialState: auth,
   extraReducers: (builder) => {
     // .addCase()
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
+    });
   },
 });
 
