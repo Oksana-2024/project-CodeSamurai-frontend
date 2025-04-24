@@ -111,7 +111,7 @@ const CurrencyChart = () => {
     },
     layout: {
       padding: {
-        top: 20,
+        top: 12,
       },
     },
   };
