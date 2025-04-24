@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {useAxios} from "./axios";
 
-const createTransactionApi = async (toekn, transaction) => {
+const createTransactionApi = async (token, transaction) => {
   try {
-    const response = await useAxios(toekn).post("/wallet/transactions", transaction);
+    const response = await useAxios(token).post("/wallet/transactions", transaction);
     return response.data;
   } catch (error) {
     console.error("Error creating transaction:", error);
@@ -11,9 +11,9 @@ const createTransactionApi = async (toekn, transaction) => {
   }
 };
 
-const getTransactionsApi = async (toekn) => {
+const getTransactionsApi = async (token) => {
   try {
-    const response = await useAxios(toekn).get("/wallet/transactions");
+    const response = await useAxios(token).get("/wallet/transactions");
     return response.data.data;
   } catch (error) {
     console.error("Error fetching transactions:", error);
@@ -21,9 +21,9 @@ const getTransactionsApi = async (toekn) => {
   }
 };
 
-const updateTransactionApi = async (toekn, id, updatedData) => {
+const updateTransactionApi = async (token, id, updatedData) => {
   try {
-    const response = await useAxios(toekn).put(`/wallet/transactions/${id}`, updatedData);
+    const response = await useAxios(token).put(`/wallet/transactions/${id}`, updatedData);
     return response.data;
   } catch (error) {
     console.error("Error updating transaction:", error);
@@ -31,9 +31,9 @@ const updateTransactionApi = async (toekn, id, updatedData) => {
   }
 };
 
-const deleteTransactionApi = async (toekn, id) => {
+const deleteTransactionApi = async (token, id) => {
   try {
-    const response = await useAxios(toekn).delete(`/wallet/transactions/${id}`);
+    const response = await useAxios(token).delete(`/wallet/transactions/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting transaction:", error);
