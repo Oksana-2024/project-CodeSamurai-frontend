@@ -1,6 +1,7 @@
 .chart {
   width: 320px;
-  padding-top: 12px;
+  padding-top: 80px;
+  position: relative;
 }
 
 @media screen and (min-width: 768px) {

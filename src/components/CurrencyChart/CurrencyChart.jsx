@@ -75,6 +75,7 @@ const CurrencyChart = () => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false, // приховати легенду згори
@@ -106,6 +107,11 @@ const CurrencyChart = () => {
           drawTicks: false,
           drawBorder: false,
         },
+      },
+    },
+    layout: {
+      padding: {
+        top: 20,
       },
     },
   };
