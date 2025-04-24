@@ -1,0 +1,32 @@
+.container {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 100px auto;
+}
+
+.bounce {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--icon-violet); /* Updated to use --icon-violet */
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+.bounce:nth-child(2) {
+  animation-delay: -0.75s;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

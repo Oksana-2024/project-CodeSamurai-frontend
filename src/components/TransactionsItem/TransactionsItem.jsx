@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {deleteTransactions} from "../../redux/transactions/operations";
+import {selectTransLoading} from "../../redux/transactions/selectors";
 import s from "./TransactionsItem.module.css";
 import Button from "../Button/Button";
 import {MdOutlineModeEdit} from "react-icons/md";
@@ -8,7 +9,7 @@ import useMedia from "../../helpers/useMedia";
 
 const getStyleByType = (type) => (type === "income" ? "var(--income-color)" : "var(--expense-color)");
 
-function TransactionItem({transaction, id}) {
+function TransactionItem({transaction, key}) {
   const dispatch = useDispatch();
   const {isMobile} = useMedia();
 
@@ -18,36 +19,39 @@ function TransactionItem({transaction, id}) {
   const day = String(dateObj.getDate()).padStart(2, "0");
   const month = String(dateObj.getMonth() + 1).padStart(2, "0");
   const year = dateObj.getFullYear().toString().slice(-2);
-  const formatedDate = `${day}.${month}.${year}`;
+  const formattedDate = `${day}.${month}.${year}`;
 
-  const formatedType = type == "income" ? "+" : "-";
-  const formatedCategoty = category.charAt(0).toUpperCase() + category.slice(1);
+  const formattedType = type == "income" ? "+" : "-";
+  const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
   const color = getStyleByType(type);
+
+  const isLoading = useSelector(selectTransLoading);
 
   function onEdit() {
     console.log("open edit modal");
   }
 
   async function OnDelete() {
-    await dispatch(deleteTransactions(id));
+    await dispatch(deleteTransactions(transaction._id));
   }
 
   if (isMobile) {
     return (
       <div
+        key={key}
         className={s.list}
         style={{borderColor: color}}>
         <div className={s.list_item}>
           <span>Date</span>
-          <span>{formatedDate}</span>
+          <span>{formattedDate}</span>
         </div>
         <div className={s.list_item}>
           <span>Type</span>
-          <span>{formatedType}</span>
+          <span>{formattedType}</span>
         </div>
         <div className={s.list_item}>
           <span>Category</span>
-          <span>{formatedCategoty}</span>
+          <span>{formattedCategory}</span>
         </div>
         <div className={s.list_item}>
           <span>Comment</span>
@@ -60,12 +64,14 @@ function TransactionItem({transaction, id}) {
         <div className={s.list_item}>
           <Button
             type="button"
+            disabled={isLoading}
             className={clsx(s.delete_btn)}
             onClick={OnDelete}
             text={"Delete"}
           />
           <button
             type="button"
+            disabled={isLoading}
             className={s.edit_btn}
             onClick={onEdit}>
             <MdOutlineModeEdit />
@@ -78,13 +84,13 @@ function TransactionItem({transaction, id}) {
 
   return (
     <tr className={s.row}>
-      <td className={s.row_item}>{formatedDate}</td>
+      <td className={s.row_item}>{formattedDate}</td>
       <td
         className={s.row_item}
         style={{textAlign: "center"}}>
-        {formatedType}
+        {formattedType}
       </td>
-      <td className={s.row_item}>{formatedCategoty}</td>
+      <td className={s.row_item}>{formattedCategory}</td>
       <td className={s.row_item}>{comment}</td>
       <td
         className={s.row_item}
@@ -95,11 +101,13 @@ function TransactionItem({transaction, id}) {
         <button
           type="button"
           className={s.edit_btn}
+          disabled={isLoading}
           onClick={onEdit}>
           <MdOutlineModeEdit />
         </button>
         <Button
           type="button"
+          disabled={isLoading}
           className={clsx(s.delete_btn)}
           onClick={OnDelete}
           text={"Delete"}

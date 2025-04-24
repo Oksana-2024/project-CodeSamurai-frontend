@@ -11,12 +11,16 @@ const createTransactionApi = async (token, transaction) => {
   }
 };
 
-const getTransactionsApi = async (token) => {
+const getTransactionsApi = async (token, abortSignal) => {
   try {
-    const response = await useAxios(token).get("/wallet/transactions");
+    const response = await useAxios(token).get("/wallet/transactions", {signal: abortSignal});
     return response.data.data;
   } catch (error) {
-    console.error("Error fetching transactions:", error);
+    if (abortSignal?.aborted) {
+      console.warn("Fetch transactions request was aborted");
+    } else {
+      console.error("Error fetching transactions:", error);
+    }
     throw error;
   }
 };

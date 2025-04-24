@@ -51,6 +51,8 @@
 
 .row td:last-child {
   text-align: right;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .edit_btn {

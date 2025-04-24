@@ -17,36 +17,22 @@ function TransactionList() {
   const isError = useSelector(selectTransError);
   const dispatch = useDispatch();
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   if (isError) {
     return <p className={s.text}>Oops, something went wrong...</p>;
   }
 
   if (reduxTransactions.length === 0 && !isLoading) {
-    return (
-      <div className={s.container}>
-        <p>No transactions available yet.</p>
-        <p>Let&#39;s add your first transaction:</p>
-        <FormButton
-          type="button"
-          text={"Add transaction"}
-          variant={"multiColorButton"}
-          handlerFunction={() => console.log("open modal")}
-        />
-      </div>
-    );
+    return <div className={s.container}></div>;
   }
 
   if (isMobile) {
     return (
       <div className={s.container}>
-        {reduxTransactions.map(({id, ...item}) => (
+        {isLoading && <Loader />}
+        {reduxTransactions.map(({_id, ...item}) => (
           <TransactionItem
-            key={id}
-            id={id}
+            key={_id}
+            id={_id}
             transaction={item}
           />
         ))}
@@ -54,27 +40,27 @@ function TransactionList() {
     );
   }
 
-  return (
-    <>
-      <table className={s.table}>
-        <thead className={s.head_row}>
-          <tr className={s.row_item}>
-            {columns.map((column, idx) => (
-              <th key={idx}>{column}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {reduxTransactions.map(({id, ...item}) => (
-            <TransactionItem
-              key={id}
-              id={id}
-              transaction={item}
-            />
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <table className={s.table}>
+      <thead className={s.head_row}>
+        <tr className={s.row_item}>
+          {columns.map((column, idx) => (
+            <th key={idx}>{column}</th>
           ))}
-        </tbody>
-      </table>
-    </>
+        </tr>
+      </thead>
+      <tbody>
+        {reduxTransactions.map(({id, ...item}) => (
+          <TransactionItem
+            key={id}
+            id={id}
+            transaction={item}
+          />
+        ))}
+      </tbody>
+    </table>
   );
 }
 
