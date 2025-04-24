@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   width: 100%;
   padding: 20px;
 }
@@ -14,11 +13,11 @@
 
 .registerContainer {
   border-radius: 8px;
-  background-color: var(--bg-modal);
   background-image: url("../../assets/img/ellipse_19.png");
-  background-position: 0px 0px;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: var(--bg-modal);
 }
 
 .boxLabel {
@@ -62,7 +61,7 @@
 }
 
 .regInput {
-  padding-bottom: 8px;
+  padding: 0 8px 0 56px;
   font-weight: 400;
   font-size: 18px;
   width: 280px;
@@ -72,7 +71,6 @@
   border-bottom: 1px solid var(--form-color);
   color: var(--main-color);
   transition: border-bottom 0.3s var(--main-transform);
-  padding-left: 56px;
 }
 
 .regInput::placeholder {
@@ -176,7 +174,7 @@
 @media screen and (min-width: 768px) {
   .form {
     width: 533px;
-    height: 624px;
+    padding: 40px 62px;
   }
 
   .button {
@@ -202,5 +200,24 @@
 
   .bar {
     width: 409px;
+  }
+  .registerContainer {
+    display: block;
+    width: 533px;
+    height: 624px;
+    background-image: url("../../assets/img/reg_form_t.png"),
+      url("../../assets/img/ellipse_19.png");
+    background-repeat: no-repeat;
+    background-size: 800px 900px;
+    background-position: center;
+  }
+
+  @media screen and (min-resolution: 192dpi),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 2dppx) {
+    .registerContainer {
+      background-image: url("../../assets/img/reg_form_t.png"),
+        url("../../assets/img/ellipse_19@2x.png");
+    }
   }
 }

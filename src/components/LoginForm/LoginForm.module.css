@@ -32,6 +32,8 @@
   (min-resolution: 2dppx) {
   .loginContainer {
     background-color: var(--bg-modal);
+    backdrop-filter: blur(100px);
+    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
     background-image: url("../../assets/img/ellipse_19@2x.png");
   }
 }
@@ -178,10 +180,10 @@
 }
 
 @media screen and (min-width: 768px) {
-  .form {
-    border-radius: 8px;
+  .loginForm {
     width: 533px;
     height: 570px;
+    padding: 80px 62px;
   }
 
   .button {
@@ -203,5 +205,23 @@
 
   .link {
     width: 300px;
+  }
+
+  .loginContainer {
+    background-image: url("../../assets/img/log_form_t.png"),
+      url("../../assets/img/ellipse_19.png");
+    background-repeat: no-repeat, no-repeat;
+    background-size: 800px 700px;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  @media screen and (min-resolution: 192dpi),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 2dppx) {
+    .loginContainer {
+      background-image: url("../../assets/img/log_form_t@2x.png"),
+        url("../../assets/img/ellipse_19@2x.png");
+    }
   }
 }

@@ -7,7 +7,7 @@
   background-image: url("../../assets/img/mobile.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0px 0px;
+  background-position: center;
   min-height: 100vh;
 }
 
