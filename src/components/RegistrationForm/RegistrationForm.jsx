@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import PasswordStrengthBar from "react-password-strength-bar-with-style-item";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -17,6 +17,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BiSolidUser } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import { PiLockFill } from "react-icons/pi";
+import ProgressBar from "../ProgressBar/ProgressBar.jsx";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,6 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
 
   const password = watch("password");
-  const confirmPassword = watch("confirmPassword");
 
   const onSubmit = async (data) => {
     try {
@@ -184,14 +184,10 @@ const RegistrationForm = () => {
             </div>
 
             {/* Password Strength Indicator */}
-            <div className={s.passwordStrengthWrapper}>
-              <PasswordStrengthBar
-                password={password === confirmPassword ? password : ""}
-                scoreWords={[""]}
-                className={s.bar}
-                shortScoreWord=""
-              />
-            </div>
+            <ProgressBar
+              password={password}
+              confirmPassword={confirmPasswordValue}
+            />
           </label>
         </div>
 
