@@ -22,7 +22,7 @@
   .login {
     background-image: url("../../assets/img/login_t.png");
   }
-  @media (min-resolution: 192dpi),
+  @media screen and (min-resolution: 192dpi),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 2dppx) {
     .login {
@@ -35,7 +35,7 @@
   .login {
     background-image: url("../../assets/img/login_pc.png");
   }
-  @media (min-resolution: 192dpi),
+  @media screen and (min-resolution: 192dpi),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 2dppx) {
     .login {

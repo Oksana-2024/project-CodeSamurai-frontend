@@ -1,0 +1,37 @@
+.indicator {
+  display: flex;
+  height: 4px;
+  width: 280px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.segment {
+  flex: 1;
+  transition: background-color 0.3s;
+}
+
+.left.empty {
+  background-color: var(--income-color);
+}
+
+.right.default {
+  background-color: var(--form-color);
+}
+
+.left.match,
+.right.match {
+  background-color: var(--green);
+}
+
+.left.mismatch,
+.right.mismatch {
+  background-color: var(--red);
+}
+
+@media screen and (min-width: 768px) {
+  .indicator {
+    width: 409px;
+  }
+}

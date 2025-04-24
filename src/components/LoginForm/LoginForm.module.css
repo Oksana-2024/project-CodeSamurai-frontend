@@ -20,11 +20,11 @@
 
 .loginContainer {
   border-radius: 8px;
-  background-color: var(--bg-modal);
   background-image: url("../../assets/img/ellipse_19.png");
   background-position: 0px 0px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: var(--bg-modal);
 }
 
 @media screen and (min-resolution: 192dpi),
@@ -208,12 +208,14 @@
   }
 
   .loginContainer {
-    background-image: url("../../assets/img/log_form_t.png"),
-      url("../../assets/img/ellipse_19.png");
+    background-image: url("../../assets/img/ellipse_19.png"),
+      url("../../assets/img/log_form_t.png");
     background-repeat: no-repeat, no-repeat;
-    background-size: 800px 700px;
+    background-size:539px 569px, 800px 700px;
     background-position: center;
     overflow: hidden;
+    backdrop-filter: blur(100px);
+    box-shadow: var(--modal-shadow);
   }
 
   @media screen and (min-resolution: 192dpi),
