@@ -69,7 +69,7 @@ export const logoutUser = createAsyncThunk(
       const { data } = await useAxios(token).post("/auth/logout");
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.status);
     }
   }
 );
