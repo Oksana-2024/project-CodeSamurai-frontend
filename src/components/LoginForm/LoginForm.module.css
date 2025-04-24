@@ -19,11 +19,21 @@
 }
 
 .loginContainer {
+  border-radius: 8px;
   background-color: var(--bg-modal);
   background-image: url("../../assets/img/ellipse_19.png");
   background-position: 0px 0px;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+@media screen and (min-resolution: 192dpi),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 2dppx) {
+  .loginContainer {
+    background-color: var(--bg-modal);
+    background-image: url("../../assets/img/ellipse_19@2x.png");
+  }
 }
 
 .loginBoxLabel {
@@ -62,23 +72,32 @@
 .regInput:-webkit-autofill:focus,
 .regInput:-webkit-autofill:active {
   transition: background-color 9999s ease-in-out 0s;
-  -webkit-text-fill-color: var(--form-color) !important;
+  -webkit-text-fill-color: var(--main-color) !important;
   background-color: transparent !important;
   caret-color: var(--form-color);
   border-bottom: 1px solid #ccc;
 }
 
 .regInput {
+  font-weight: 400;
+  font-size: 18px;
   padding-bottom: 8px;
+  font-weight: 400;
+  font-size: 18px;
   width: 280px;
   height: 100%;
   border: none;
-  outline: none;
+  color: var(--main-color);
   background-color: transparent;
-  border-bottom: 1px solid #ccc;
-  color: var(--form-color);
-  transition: all 0.3s ease;
+  border-bottom: 1px solid var(--form-color);
+  transition: border-bottom 0.3s ease;
   padding-left: 56px;
+}
+
+.regInput::placeholder {
+  color: var(--form-color);
+  font-weight: 400;
+  font-size: 18px;
 }
 
 .regInput:hover,
@@ -123,8 +142,7 @@
   text-align: center;
   color: #fbfbfb;
   border: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .button:hover,

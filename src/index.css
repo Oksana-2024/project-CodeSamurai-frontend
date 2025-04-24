@@ -2,7 +2,7 @@
   /* main background */
   --main-bg: #101010;
   --bg-currency: #5a4ea4;
-  --bg-tab-mobile:#101010;
+  --bg-tab-mobile: #101010;
   --bg-balance: rgba(82, 59, 126, 0.6);
   --bg-transaction: rgba(82, 59, 126, 0.6);
   /* background for modal*/
@@ -37,7 +37,8 @@
     inset 0 -3px 2px 0 rgba(0, 0, 0, 0.1);
 
   --main-font: "Poppins", sans-serif;
-  --transform: ease-in-out;
+  --main-transform: ease;
+  --second-transform: ease-in-out;
   /* color for icon (mobile navigation, calendar */
   --icon-violet: #734aef;
   --icon-hover: rgba(255, 255, 255, 0.4);

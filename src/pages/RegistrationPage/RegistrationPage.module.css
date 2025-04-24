@@ -7,7 +7,7 @@
   background-image: url("../../assets/img/mobile.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: 0px 0px;
   min-height: 100vh;
 }
 
@@ -21,16 +21,7 @@
 
 @media screen and (min-width: 768px) {
   .register {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
     background-image: url("../../assets/img/reg_tab.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    padding-top: 200px;
-    padding-bottom: 200px;
   }
 }
 
@@ -43,8 +34,6 @@
 @media screen and (min-width: 1280px) {
   .register {
     background-image: url("../../assets/img/reg_pc.png");
-    padding-top: 48px;
-    padding-bottom: 48px;
   }
 }
 
