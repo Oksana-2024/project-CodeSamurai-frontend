@@ -105,6 +105,7 @@ const RegistrationForm = () => {
               <input
                 type="email"
                 placeholder="E-mail"
+                autoComplete="username"
                 className={s.regInput}
                 {...register("email")}
               />
@@ -123,6 +124,7 @@ const RegistrationForm = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
+                autoComplete="new-password"
                 className={s.regInput}
                 {...register("password")}
                 onChange={handlePasswordChange}
@@ -155,6 +157,7 @@ const RegistrationForm = () => {
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
+                autoComplete="new-password"
                 className={s.regInput}
                 {...register("confirmPassword")}
                 onChange={handleConfirmPasswordChange}

@@ -3,27 +3,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   width: 100%;
   padding: 20px;
 }
 
 .registerLogo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 54px;
-  text-align: center;
   margin-bottom: 40px;
 }
 
 .registerContainer {
-  background-color: var(--bg-modal);
-  background-image:  url("../../assets/img/ellipse_19.png");
-  background-position: 0px 0px;
+  border-radius: 8px;
+  background-image: url("../../assets/img/ellipse_19.png");
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: var(--bg-modal);
 }
 
 .boxLabel {
@@ -34,7 +28,6 @@
 
 .label {
   width: 280px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -60,24 +53,30 @@
 .regInput:-webkit-autofill:hover,
 .regInput:-webkit-autofill:focus,
 .regInput:-webkit-autofill:active {
-  transition: background-color 9999s ease-in-out 0s;
-  -webkit-text-fill-color: var(--form-color) !important;
+  transition: background-color 9999s var(--second-transform) 0s;
+  -webkit-text-fill-color: var(--main-color) !important;
   background-color: transparent !important;
   caret-color: var(--form-color);
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--form-color);
 }
 
 .regInput {
-  padding-bottom: 8px;
+  padding: 0 8px 0 56px;
+  font-weight: 400;
+  font-size: 18px;
   width: 280px;
   height: 100%;
   border: none;
-  outline: none;
   background-color: transparent;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--form-color);
+  color: var(--main-color);
+  transition: border-bottom 0.3s var(--main-transform);
+}
+
+.regInput::placeholder {
   color: var(--form-color);
-  transition: all 0.3s ease;
-  padding-left: 56px;
+  font-weight: 400;
+  font-size: 18px;
 }
 
 .regInput:hover,
@@ -88,12 +87,10 @@
 .togglePassButton {
   position: absolute;
   background: none;
-  cursor: pointer;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
   padding: 0;
-  border: none;
 }
 
 .togglePassButton svg {
@@ -121,8 +118,7 @@
   text-align: center;
   color: #fbfbfb;
   border: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.3s var(--main-transform);
 }
 
 .button:hover,
@@ -148,7 +144,7 @@
   font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.1em;
-  transition: all 0.3s ease;
+  transition: transform 0.3s var(--main-transform);
   cursor: pointer;
 }
 
@@ -165,21 +161,20 @@
 .bar {
   width: 280px;
   height: 4px;
-  background-color: #ccc;
+  background-color: var(--form-color);
   border-radius: 2px;
 }
 
 .bar div {
-  transition: all 0.2s ease;
+  transition: all 0.2s var(--main-transform);
   height: 100%;
   border-radius: 2px;
 }
 
 @media screen and (min-width: 768px) {
   .form {
-    border-radius: 8px;
     width: 533px;
-    height: 624px;
+    padding: 40px 62px;
   }
 
   .button {
@@ -205,5 +200,24 @@
 
   .bar {
     width: 409px;
+  }
+  .registerContainer {
+    display: block;
+    width: 533px;
+    height: 624px;
+    background-image: url("../../assets/img/reg_form_t.png"),
+      url("../../assets/img/ellipse_19.png");
+    background-repeat: no-repeat;
+    background-size: 800px 900px;
+    background-position: center;
+  }
+
+  @media screen and (min-resolution: 192dpi),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 2dppx) {
+    .registerContainer {
+      background-image: url("../../assets/img/reg_form_t.png"),
+        url("../../assets/img/ellipse_19@2x.png");
+    }
   }
 }

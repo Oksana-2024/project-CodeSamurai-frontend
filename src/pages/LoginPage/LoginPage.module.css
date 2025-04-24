@@ -20,35 +20,26 @@
 
 @media screen and (min-width: 768px) {
   .login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
     background-image: url("../../assets/img/login_t.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    padding-top: 227px;
-    padding-bottom: 227px;
   }
-}
-
-@media screen and (min-width: 768px) and (min-resolution: 192dpi) {
-  .login {
-    background-image: url("../../assets/img/login_t@2x.png");
+  @media (min-resolution: 192dpi),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 2dppx) {
+    .login {
+      background-image: url("../../assets/img/login_t@2x.png");
+    }
   }
 }
 
 @media screen and (min-width: 1280px) {
   .login {
     background-image: url("../../assets/img/login_pc.png");
-    padding-top: 75px;
-    padding-bottom: 75px;
   }
-}
-
-@media screen and (min-width: 1280px) and (min-resolution: 192dpi) {
-  .login {
-    background-image: url("../../assets/img/login_pc@2x.png");
+  @media (min-resolution: 192dpi),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 2dppx) {
+    .login {
+      background-image: url("../../assets/img/login_pc@2x.png");
+    }
   }
 }
