@@ -3,7 +3,6 @@ import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import Balance from "../../../components/Balance/Balance";
 import TransactionsList from "../../../components/TransactionsList/TransactionsList";
-import s from "./HomeTab.module.css";
 import {getTransactions} from "../../../redux/transactions/operations"; // Adjust the path as needed
 
 const HomeTab = () => {
@@ -15,17 +14,13 @@ const HomeTab = () => {
     dispatch(getTransactions());
   }, [dispatch]);
 
-  return (
-    <div>
-      {isSmallScreen ? (
-        <div className={s.homeTab}>
-          <Balance />
-          <TransactionsList />
-        </div>
-      ) : (
-        <TransactionsList />
-      )}
-    </div>
+  return isSmallScreen ? (
+    <>
+      <Balance />
+      <TransactionsList />
+    </>
+  ) : (
+    <TransactionsList />
   );
 };
 

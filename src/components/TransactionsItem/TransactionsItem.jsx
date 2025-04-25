@@ -9,7 +9,7 @@ import useMedia from "../../helpers/useMedia";
 
 const getStyleByType = (type) => (type === "income" ? "var(--income-color)" : "var(--expense-color)");
 
-function TransactionItem({transaction, key}) {
+function TransactionItem({transaction}) {
   const dispatch = useDispatch();
   const {isMobile} = useMedia();
 
@@ -28,7 +28,7 @@ function TransactionItem({transaction, key}) {
   const isLoading = useSelector(selectTransLoading);
 
   function onEdit() {
-    console.log("open edit modal");
+    console.log("open edit modal ", transaction._id);
   }
 
   async function OnDelete() {
@@ -38,7 +38,6 @@ function TransactionItem({transaction, key}) {
   if (isMobile) {
     return (
       <div
-        key={key}
         className={s.list}
         style={{borderColor: color}}>
         <div className={s.list_item}>
