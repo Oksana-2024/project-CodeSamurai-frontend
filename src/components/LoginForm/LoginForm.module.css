@@ -33,7 +33,7 @@
   .loginContainer {
     background-color: var(--bg-modal);
     backdrop-filter: blur(100px);
-    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: var(--modal-shadow);
     background-image: url("../../assets/img/ellipse_19@2x.png");
   }
 }
@@ -73,7 +73,7 @@
 .regInput:-webkit-autofill:hover,
 .regInput:-webkit-autofill:focus,
 .regInput:-webkit-autofill:active {
-  transition: background-color 9999s ease-in-out 0s;
+  transition: background-color 9999s var(--second-transform) 0s;
   -webkit-text-fill-color: var(--main-color) !important;
   background-color: transparent !important;
   caret-color: var(--form-color);
@@ -92,7 +92,7 @@
   color: var(--main-color);
   background-color: transparent;
   border-bottom: 1px solid var(--form-color);
-  transition: border-bottom 0.3s ease;
+  transition: border-bottom 0.3s var(--main-transform);
   padding-left: 56px;
 }
 
@@ -104,18 +104,16 @@
 
 .regInput:hover,
 .regInput:focus {
-  border-bottom: 1px solid #ffb627;
+  border-bottom: 1px solid var(--income-color);
 }
 
 .togglePassButton {
   position: absolute;
   background: none;
-  cursor: pointer;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
   padding: 0;
-  border: none;
 }
 
 .togglePassButton svg {
@@ -128,7 +126,7 @@
 }
 
 .error {
-  color: #ffb627;
+  color: var(--income-color);
   font-size: 9px;
   margin-top: 2px;
   position: fixed;
@@ -142,9 +140,8 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
-  color: #fbfbfb;
-  border: none;
-  transition: transform 0.3s ease;
+  color: var(--main-color);
+  transition: transform 0.3s var(--main-transform);
 }
 
 .button:hover,
@@ -162,15 +159,15 @@
   width: 280px;
   height: 50px;
   box-shadow: var(--btn-shadow);
-  color: #623f8b;
+  color: var(--dark-color);
   border: 1px solid #4a56e2;
-  background: #fbfbfb;
+  background: var(--main-color);
   text-transform: uppercase;
   text-align: center;
   font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.1em;
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--main-transform);
   cursor: pointer;
 }
 
@@ -211,7 +208,7 @@
     background-image: url("../../assets/img/ellipse_19.png"),
       url("../../assets/img/log_form_t.png");
     background-repeat: no-repeat, no-repeat;
-    background-size:539px 569px, 800px 700px;
+    background-size: 539px 569px, 800px 700px;
     background-position: center;
     overflow: hidden;
     backdrop-filter: blur(100px);
