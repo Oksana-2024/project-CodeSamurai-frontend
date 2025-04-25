@@ -29,7 +29,7 @@ const persistCurrensyConfig = {
 };
 
 const persistTransactionConfig = {
-  key: "currency", // Ключ для сховища
+  key: "transactions", // Ключ для сховища
   storage, // Тип сховища
   whitelist: ["transactions", "category"], // Масив частин стану для збереження
 };
