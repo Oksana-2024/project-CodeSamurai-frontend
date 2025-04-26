@@ -1,13 +1,12 @@
 import Button from "../Button/Button";
-import {FaPlus} from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import s from "./ButtonAddTransactions.module.css";
 
-const ButtonAddTransactions = () => {
+const ButtonAddTransactions = ({ onClick }) => {
   return (
-    <Button
-      className={s.addButton}
-      icon={<FaPlus size={20} />}
-    />
+    <button type="button" className={s.addButton} onClick={onClick}>
+      <FaPlus size={20} />
+    </button>
   );
 };
 
