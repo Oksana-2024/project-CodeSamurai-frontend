@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { addTransactions } from "./operations";
 
 const transactions = {
   items: [],
@@ -19,9 +20,25 @@ const transactionsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder;
+    builder
+      .addCase(addTransactions.fulfilled, (state, { payload }) => {
+        state = state.transactions.push(payload);
+      })
+      .addMatcher(isAnyOf(addTransactions.fulfilled), (state) => {
+        state.isTransLoading = false;
+        state.isTransError = null;
+      })
+      .addMatcher(isAnyOf(addTransactions.pending), (state) => {
+        state.isTransLoading = true;
+        state.isTransError = null;
+      })
+      .addMatcher(isAnyOf(addTransactions.rejected), (state, { payload }) => {
+        state.isTransLoading = false;
+        state.isTransError = payload;
+      });
     //.addCase
   },
 });
 
-export default transactionsSlice.reducer;
+const transactionsReducer = transactionsSlice.reducer;
+export default transactionsReducer;

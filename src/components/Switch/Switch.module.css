@@ -43,11 +43,11 @@
   background-size: 72px 72px;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: var(--main-color);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(38px);
   -ms-transform: translateX(38px);
   transform: translateX(38px);
@@ -71,6 +71,7 @@ input:checked + .slider:before {
   height: 44px;
   font-weight: 600;
   font-size: 16px;
+  margin: 0 auto 40px;
 }
 
 .expense,
@@ -81,6 +82,7 @@ input:checked + .slider:before {
 .incomeActive {
   color: var(--income-color);
 }
+
 .expenseActive {
   color: var(--expense-color);
 }

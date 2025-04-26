@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./Switch.module.css";
 import clsx from "clsx";
 
-const Switch = () => {
-  const [isOn, setIsOn] = useState(false);
+const Switch = ({ onChange, defaultValue = false }) => {
+  const [isOn, setIsOn] = useState(defaultValue);
+
+  // Коли пропс `onChange` змінюється, синхронізуємо стан
+  useEffect(() => {
+    onChange(isOn);
+  }, [isOn, onChange]);
+
   const handleToggle = () => {
     setIsOn((prev) => !prev);
   };
@@ -12,13 +18,7 @@ const Switch = () => {
       <p className={isOn ? s.income : s.incomeActive}>Income</p>
       <div className={s.switch}>
         <label htmlFor="switch" className={s.switchInput}>
-          <input
-            type="checkbox"
-            name="switch"
-            id="switch"
-            checked={isOn}
-            onChange={handleToggle}
-          />
+          <input type="checkbox" name="switch" id="switch" checked={isOn} onChange={handleToggle} />
           <span className={clsx(s.slider, s.round)}></span>
         </label>
       </div>

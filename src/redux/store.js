@@ -12,8 +12,10 @@ import {
   REGISTER,
 } from "redux-persist";
 import authReducer from "./auth/slice";
-import currencyReducer from "./currency/slice"
+import currencyReducer from "./currency/slice";
 import globalReducer from "./global/slice";
+import statisticsReduser from "./statistics/slice";
+import transactionsReducer from "./transactions/slice";
 
 const persistAuthConfig = {
   key: "users", // Ключ для сховища
@@ -21,7 +23,7 @@ const persistAuthConfig = {
   whitelist: ["user", "token", "isLoggedIn"], // Масив частин стану для збереження
 };
 
-const persistCurrensyConfig  = {
+const persistCurrensyConfig = {
   key: "currency", // Ключ для сховища
   storage, // Тип сховища
   whitelist: ["rates", "updatedAt"], // Масив частин стану для збереження
@@ -35,10 +37,11 @@ const store = configureStore({
   reducer: {
     global: globalReducer,
     auth: persistedAuthReducer,
-    // transaction: transactionReducer,
+    transaction: transactionsReducer,
     // category: categoryReducer,
     // balance: balanceReducer,
     currency: persistedCurrencyReducer,
+    statistics: statisticsReduser,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
