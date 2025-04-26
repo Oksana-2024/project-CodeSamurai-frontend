@@ -1,9 +1,10 @@
 .baseStyle {
-  background: var(--main-btn-gradient);
+  background: var(--main-color);
   border-radius: 20px;
   box-shadow: var(--btn-shadow);
   text-transform: uppercase;
-  color: var(--main-color);
+  width: 280px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,4 +12,11 @@
   font-size: 18px;
   letter-spacing: 0.1em;
   padding: 0;
+  color: var(--dark-color);
+}
+
+@media screen and (min-width: 768px) {
+  .baseStyle {
+    width: 300px;
+  }
 }
