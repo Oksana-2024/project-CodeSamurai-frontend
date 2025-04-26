@@ -4,16 +4,16 @@ import Logo from "../Logo/Logo.jsx";
 import s from "./Header.module.css";
 import { useMediaQuery } from "react-responsive";
 import { RxExit } from "react-icons/rx";
-import { useAuth } from "../../redux/auth/slice.js";
+import { setComfirmLogout, useAuth } from "../../redux/auth/slice.js";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../../redux/auth/operations.js";
 
 const Header = () => {
   const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
   const { user } = useAuth();
+  
   const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch(logoutUser());
+  const handleComfirmLogout = () => {
+    dispatch(setComfirmLogout(true))
   };
 
   return (
@@ -25,14 +25,22 @@ const Header = () => {
           <div className={s.user}>
             <p>{user.name}</p>
             <div className={s.line}></div>
-            <button onClick={handleLogout} type="button" className={s.exitBtn}>
+            <button
+              onClick={handleComfirmLogout}
+              type="button"
+              className={s.exitBtn}
+            >
               <RxExit size={18} /> <p>Exit</p>
             </button>
           </div>
         ) : (
           <div className={s.user}>
             <p>{user.name}</p>
-            <button type="button" className={s.exitIcon}>
+            <button
+              onClick={handleComfirmLogout}
+              type="button"
+              className={s.exitIcon}
+            >
               <RxExit size={18} />
             </button>
           </div>

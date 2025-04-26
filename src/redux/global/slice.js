@@ -1,7 +1,10 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { loginThunk, logoutUser, registerThunk } from "../auth/operations";
 import { fetchCurrency } from "../currency/operations";
-import {getTransactions, deleteTransactions} from "../transactions/operations";
+import {
+  getTransactions,
+  deleteTransactions,
+} from "../transactions/operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -34,12 +37,10 @@ const globalSlice = createSlice({
           registerThunk.pending,
           loginThunk.pending,
           fetchCurrency.pending,
-          logoutUser.pending
+          logoutUser.pending,
+          getTransactions.pending,
+          deleteTransactions.pending
         ),
-        handlePending
-      )
-      .addMatcher(
-        isAnyOf(getTransactions.pending, deleteTransactions.pending),
         handlePending
       )
       .addMatcher(
@@ -47,12 +48,10 @@ const globalSlice = createSlice({
           registerThunk.rejected,
           loginThunk.rejected,
           fetchCurrency.rejected,
-          logoutUser.rejected
+          logoutUser.rejected,
+          getTransactions.rejected,
+          deleteTransactions.rejected
         ),
-        handleRejected
-      )
-      .addMatcher(
-        isAnyOf(getTransactions.rejected, deleteTransactions.rejected),
         handleRejected
       )
       .addMatcher(
@@ -60,12 +59,10 @@ const globalSlice = createSlice({
           registerThunk.fulfilled,
           loginThunk.fulfilled,
           fetchCurrency.fulfilled,
-          logoutUser.fulfilled
+          logoutUser.fulfilled,
+          getTransactions.fulfilled,
+          deleteTransactions.fulfilled
         ),
-        handleFulfilled
-      )
-      .addMatcher(
-        isAnyOf(getTransactions.fulfilled, deleteTransactions.fulfilled),
         handleFulfilled
       );
   },

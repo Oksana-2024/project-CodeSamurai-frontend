@@ -39,7 +39,7 @@
 .head_row {
   border-radius: 8px;
   text-align: center;
-  background-color: #523b7e99;
+  background-color: var(--bg-currency);
 }
 
 .row_item th {
