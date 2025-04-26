@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
 import {selectTransactions} from "../../redux/transactions/selectors";
 import s from "./TransactionsList.module.css";
-import TransactionItem from "../TransactionsItem/TransactionsItem";
+import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import useMedia from "../../helpers/useMedia";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
@@ -10,7 +10,7 @@ import ButtonAddTransactions from "../ButtonAddTransactions/ButtonAddTransaction
 
 const columns = ["Date", "Type", "Category", "Comment", "Sum", ""];
 
-function TransactionList() {
+function TransactionsList() {
   const reduxTransactions = useSelector(selectTransactions);
 
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function TransactionList() {
       <div className={s.container}>
         <div className={s.list}>
           {reduxTransactions.map((item) => (
-            <TransactionItem
+            <TransactionsItem
               key={item._id}
               transaction={item}
             />
@@ -49,7 +49,7 @@ function TransactionList() {
         </thead>
         <tbody>
           {reduxTransactions.map((item) => (
-            <TransactionItem
+            <TransactionsItem
               key={item._id}
               transaction={item}
             />
@@ -61,4 +61,4 @@ function TransactionList() {
   );
 }
 
-export default TransactionList;
+export default TransactionsList;

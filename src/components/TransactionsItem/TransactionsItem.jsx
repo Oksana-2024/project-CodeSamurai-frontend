@@ -8,7 +8,7 @@ import useMedia from "../../helpers/useMedia";
 
 const getStyleByType = (type) => (type === "income" ? "var(--income-color)" : "var(--expense-color)");
 
-function TransactionItem({transaction}) {
+function TransactionsItem({transaction}) {
   const dispatch = useDispatch();
   const {isMobile} = useMedia();
 
@@ -109,4 +109,4 @@ function TransactionItem({transaction}) {
   );
 }
 
-export default TransactionItem;
+export default TransactionsItem;

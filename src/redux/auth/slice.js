@@ -12,6 +12,7 @@ const auth = {
   },
   token: null,
   isLoggedIn: false,
+  isComfirmLogout: false,
 };
 
 export const useAuth = () => {
@@ -28,6 +29,12 @@ export const useAuth = () => {
 const authSlice = createSlice({
   name: "auth",
   initialState: auth,
+  reducers: {
+    setComfirmLogout(state, action) {
+      state.isComfirmLogout = action.payload;
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(registerThunk.fulfilled, (state, action) => {
@@ -57,5 +64,5 @@ const authSlice = createSlice({
 });
 
 const authReducer = authSlice.reducer;
-
+export const { setComfirmLogout } = authSlice.actions;
 export default authReducer;
