@@ -14,6 +14,7 @@ import {
 import authReducer from "./auth/slice";
 import currencyReducer from "./currency/slice"
 import globalReducer from "./global/slice";
+import transactionReducer from "./transactions/slice";
 
 const persistAuthConfig = {
   key: "users", // Ключ для сховища
@@ -35,7 +36,7 @@ const store = configureStore({
   reducer: {
     global: globalReducer,
     auth: persistedAuthReducer,
-    // transaction: transactionReducer,
+    transaction: transactionReducer,
     // category: categoryReducer,
     // balance: balanceReducer,
     currency: persistedCurrencyReducer,

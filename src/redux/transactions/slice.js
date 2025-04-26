@@ -1,27 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
+import {getTransactions, deleteTransactions} from "./operations";
 
-const transactions = {
-  items: [],
+const initialState = {
+  transactions: [],
   category: [],
   currentTransaction: null,
-  deleteTransaction: null,
 };
 
-const transactionsSlice = createSlice({
+const slice = createSlice({
   name: "transactions",
-  initialState: transactions,
-  reducers: {
-    setCurrentTransaction(state, action) {
-      state.currentTransaction = action.payload;
-    },
-    setDeleteTransaction(state, action) {
-      state.deleteTransaction = action.payload;
-    },
-  },
+  initialState,
   extraReducers: (builder) => {
-    builder;
-    //.addCase
+    builder
+      .addCase(getTransactions.fulfilled, (state, {payload}) => {
+        state.transactions = payload;
+      })
+      .addCase(deleteTransactions.fulfilled, (state, {payload}) => {
+        state.transactions = state.transactions.filter((transaction) => transaction._id !== payload);
+      });
   },
 });
 
-export default transactionsSlice.reducer;
+export default slice.reducer;
