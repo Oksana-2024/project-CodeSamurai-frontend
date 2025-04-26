@@ -1,6 +1,8 @@
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 import { AiOutlineClose } from "react-icons/ai";
+import clsx from "clsx";
+import s from "./ModalWindow.module.css";
 
 const customStyles = {
   content: {
@@ -10,23 +12,43 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    padding: "0",
+    border: "none",
+    borderRadius: "0px",
+  },
+  overlay: {
+    backdropFilter: "blur(7px)",
+    background: "var(--bg-blur)",
   },
 };
 
-const ModalWindow = ({ title, children, modalIsOpen, closeModal }) => {
+const ModalWindow = ({
+  title,
+  children,
+  modalIsOpen,
+  closeModal,
+  className,
+  showIcon = true,
+}) => {
   return (
-    <div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Modal"
-      >
-        <AiOutlineClose size={18} />
+    <Modal
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      style={customStyles}
+      ariaHideApp={false}
+    >
+      <div className={clsx(s.modalBox, className)}>
+        {showIcon && (
+          <AiOutlineClose
+            size={18}
+            onClick={closeModal}
+            className={s.closeIcon}
+          />
+        )}
         <h3>{title}</h3>
         {children}
-      </Modal>
-    </div>
+      </div>
+    </Modal>
   );
 };
 

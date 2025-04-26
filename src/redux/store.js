@@ -37,7 +37,7 @@ const store = configureStore({
   reducer: {
     global: globalReducer,
     auth: persistedAuthReducer,
-    transaction: transactionsReducer,
+    transactions: transactionsReducer,
     // category: categoryReducer,
     // balance: balanceReducer,
     currency: persistedCurrencyReducer,

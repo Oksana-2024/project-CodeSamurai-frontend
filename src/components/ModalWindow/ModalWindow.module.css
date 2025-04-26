@@ -1,0 +1,20 @@
+.modalBox {
+  width: 320px;
+  background: #6b5794;
+  background-image: url("../../assets/img/ellipse_19.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modalBox {
+    width: 540px;
+    height: auto;
+  }
+}
