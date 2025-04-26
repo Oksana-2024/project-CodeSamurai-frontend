@@ -1,0 +1,73 @@
+/* mobile */
+
+.list {
+  /* background: linear-gradient(145deg, #2d2f6e, #1b1e3b); */
+  border-radius: 10px;
+  border-left: 5px solid #ff868d;
+  font-size: 14px;
+  width: 100%;
+  background-color: #ffffff1a;
+}
+
+.list_item {
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list_item span:first-child {
+  font-weight: 600;
+}
+
+.list_item span:last-child {
+  font-weight: 400;
+}
+
+.list_item:not(:last-child) {
+  border-bottom: 1px solid white;
+}
+
+/* desktop-tablet */
+.row:not(:last-child) {
+  border-bottom: 1px solid #ffffff69;
+}
+
+.row td {
+  padding: 16px;
+}
+
+.row td:nth-child(1) {
+  text-align: left;
+}
+
+.row td:nth-child(3) {
+  text-align: left;
+}
+
+.row td:nth-child(5) {
+  text-align: right;
+}
+
+.row td:last-child {
+  text-align: right;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.edit_btn {
+  background-color: transparent;
+  color: var(--main-color);
+  padding: 5px;
+  margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.delete_btn {
+  color: var(--main-color);
+  padding: 5px 10px;
+}
