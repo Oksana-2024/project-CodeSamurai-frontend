@@ -3,11 +3,10 @@ import {selectTransactions} from "../../redux/transactions/selectors";
 import s from "./TransactionsList.module.css";
 import TransactionItem from "../TransactionsItem/TransactionsItem";
 import useMedia from "../../helpers/useMedia";
-import Button from "../Button/Button";
-import {FaPlus} from "react-icons/fa";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {getTransactions} from "../../redux/transactions/operations";
+import ButtonAddTransactions from "../ButtonAddTransactions/ButtonAddTransactions";
 
 const columns = ["Date", "Type", "Category", "Comment", "Sum", ""];
 
@@ -33,10 +32,7 @@ function TransactionList() {
             />
           ))}
         </div>
-        <Button
-          className={s.addButton}
-          text={"+"}
-        />
+        <ButtonAddTransactions />
       </div>
     );
   }
@@ -60,10 +56,7 @@ function TransactionList() {
           ))}
         </tbody>
       </table>
-      <Button
-        className={s.addButton}
-        icon={<FaPlus size={20} />}
-      />
+      <ButtonAddTransactions />
     </div>
   );
 }
