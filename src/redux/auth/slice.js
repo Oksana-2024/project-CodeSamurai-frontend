@@ -9,6 +9,7 @@ const auth = {
   user: {
     name: null,
     email: null,
+    balance: 0.0,
   },
   token: null,
   isLoggedIn: false,
