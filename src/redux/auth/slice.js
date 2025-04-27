@@ -4,12 +4,14 @@ import { logoutUser } from "./operations.js";
 
 import { registerThunk, loginThunk } from "./operations.js";
 import { selectIsLoggedIn, selectUser, selectToken } from "./selectors.js";
+import { deleteTransactions } from "../transactions/operations.js";
 
 const auth = {
   user: {
     name: null,
     email: null,
-    balance: 0.0,
+    photo: null,
+    balance: 0,
   },
   token: null,
   isLoggedIn: false,
@@ -60,6 +62,9 @@ const authSlice = createSlice({
           state.token = null;
           state.isLoggedIn = false;
         }
+      })
+      .addCase(deleteTransactions.fulfilled, (state, action) => {
+        state.balance = action.payload.balance;
       });
   },
 });
