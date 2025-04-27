@@ -18,8 +18,12 @@ import { selectCategory } from "../../redux/transactions/selectors";
 
 // Form validation schema
 const AddTransactionSchema = yup.object({
-  category: yup.string().required("Please select a category"),
-  // categoryId: yup.string().required("Please select a category Id"),
+  // category: yup.string().required("Please select a category"),
+  category: yup.string().when("$isChecked", {
+    is: true,
+    then: (schema) => schema.required("Please select a category"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
   sum: yup.number().required("Please enter the amount").typeError("Must be a number"),
   comment: yup.string(),
 });
@@ -31,7 +35,6 @@ const AddTransactionForm = ({ closeModal }) => {
   const categories = useSelector(selectCategory);
 
   const dispatch = useDispatch();
-  // console.log("categories", categories);
 
   const {
     register,
@@ -42,15 +45,16 @@ const AddTransactionForm = ({ closeModal }) => {
   } = useForm({
     resolver: yupResolver(AddTransactionSchema),
     defaultValues: { sum: "", comment: "", date: new Date() },
+    context: { isChecked }, // <-- передаємо в контекст
   });
 
   const onSubmit = async (data) => {
-    // const categoryId = isChecked ? "063f1132-ba5d-42b4-951d-44011ca46262" : selectCategoriesId;
+    // const categoryId = isChecked ? "680a680d4d3d230f60d30fc5" : selectCategoriesId;
 
     const newTransaction = {
-      type: isChecked ? "income" : "expense", // використовуємо isChecked
+      type: !isChecked ? "income" : "expense", // використовуємо isChecked
       categoryId: selectCategoriesId,
-      category: data.category,
+      // categoryId: categoryId,
       sum: data.sum,
       date: data.date,
       comment: data.comment,
@@ -102,7 +106,7 @@ const AddTransactionForm = ({ closeModal }) => {
                 <IoIosArrowDown className={s.select_icon} />
               </div>
               <div className={s.error_box}>
-                {errors.categoryId && <p className={s.errors}>{errors.categoryId.message}</p>}
+                {errors.category && <p className={s.errors}>{errors.category.message}</p>}
               </div>
             </>
           )}
