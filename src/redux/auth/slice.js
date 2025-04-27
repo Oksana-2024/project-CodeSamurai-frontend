@@ -13,7 +13,6 @@ const auth = {
     photo: null,
     balance: 0,
   },
-  balance: 0,
   token: null,
   isLoggedIn: false,
   isComfirmLogout: false,

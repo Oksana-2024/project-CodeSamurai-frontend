@@ -1,7 +1,17 @@
-const Balance = () => {
-  return (
-    <div>Balance</div>
-  )
-}
+import { useSelector } from "react-redux";
+import s from "../Balance/Balance.module.css";
+import { selectBalance } from "../../redux/auth/selectors";
 
-export default Balance
+const Balance = () => {
+  const balance = useSelector(selectBalance);
+  return (
+    <div className={s.containerBalance}>
+      <h2 className={s.textBalance}>Your balance</h2>
+      <p className={s.totalBalance}>
+        ₴ <span className={s.totalNumber}>{balance}</span>
+      </p>
+    </div>
+  );
+};
+
+export default Balance;
