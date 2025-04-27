@@ -12,13 +12,14 @@ import { BiCalendar } from "react-icons/bi";
 import s from "./AddTransactionForm.module.css";
 import Switch from "../Switch/Switch";
 import { addTransactions } from "../../redux/transactions/operations";
-import { selectCategories } from "../../redux/statistics/selectors";
 import { setAddTransaction } from "../../redux/transactions/slice";
 import Button from "../Button/Button";
+import { selectCategory } from "../../redux/transactions/selectors";
 
 // Form validation schema
 const AddTransactionSchema = yup.object({
   category: yup.string().required("Please select a category"),
+  // categoryId: yup.string().required("Please select a category Id"),
   sum: yup.number().required("Please enter the amount").typeError("Must be a number"),
   comment: yup.string(),
 });
@@ -27,7 +28,7 @@ const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [isChecked, setIsChecked] = useState(true); // Стан для перемикача
   const [selectCategoriesId, setSelectCategoriesId] = useState(null);
-  const categories = useSelector(selectCategories);
+  const categories = useSelector(selectCategory);
 
   const dispatch = useDispatch();
   // console.log("categories", categories);
@@ -44,11 +45,12 @@ const AddTransactionForm = ({ closeModal }) => {
   });
 
   const onSubmit = async (data) => {
-    const categoryId = isChecked ? "67cece57cf044b5afacf7749" : selectCategoriesId;
+    // const categoryId = isChecked ? "063f1132-ba5d-42b4-951d-44011ca46262" : selectCategoriesId;
 
     const newTransaction = {
-      type: !isChecked ? "Income" : "Expense", // використовуємо isChecked
-      category: categoryId,
+      type: isChecked ? "income" : "expense", // використовуємо isChecked
+      categoryId: selectCategoriesId,
+      category: data.category,
       sum: data.sum,
       date: data.date,
       comment: data.comment,
@@ -68,7 +70,7 @@ const AddTransactionForm = ({ closeModal }) => {
         toast.error(`Error: ${error.message || "Something went wrong"}`);
       });
 
-    // console.log("Form: ", data);
+    console.log("Form: ", data);
   };
 
   return (
@@ -85,7 +87,7 @@ const AddTransactionForm = ({ closeModal }) => {
                   name="category"
                   defaultValue=""
                   {...register("category")}
-                  onChange={(selected) => setIsChecked(selected.value)}
+                  onChange={(selected) => setSelectCategoriesId(selected.value)}
                 >
                   <option value="" disabled hidden>
                     Select a category
@@ -100,7 +102,7 @@ const AddTransactionForm = ({ closeModal }) => {
                 <IoIosArrowDown className={s.select_icon} />
               </div>
               <div className={s.error_box}>
-                {errors.category && <p className={s.errors}>{errors.category.message}</p>}
+                {errors.categoryId && <p className={s.errors}>{errors.categoryId.message}</p>}
               </div>
             </>
           )}
@@ -148,7 +150,7 @@ const AddTransactionForm = ({ closeModal }) => {
 
         <input className={s.comment} {...register("comment")} placeholder="Comment" autoComplete="off" type="text" />
 
-        <Button className={s.add_btn} text="ADD" onClick={() => dispatch(addTransactions())} />
+        <Button className={s.add_btn} text="ADD" />
       </form>
     </div>
   );

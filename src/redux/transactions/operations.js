@@ -3,8 +3,8 @@ import { useAxios } from "../../service/axios";
 
 export const addTransactions = createAsyncThunk("transactions/add", async (transaction, thunkApi) => {
   try {
-    const { data } = await useAxios().post("wallet/transactions", transaction);
-    // thunkApi.dispatch(getBalanceThunk());
+    const token = thunkApi.getState().auth.token;
+    const { data } = await useAxios(token).post("/transactions", transaction);
     return data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
@@ -14,13 +14,12 @@ export const addTransactions = createAsyncThunk("transactions/add", async (trans
 export const getTransactions = createAsyncThunk("transactions/all", async (_, thunkApi) => {
   try {
     const token = thunkApi.getState().auth.token;
-
-    const response = await useAxios(token).get("/wallet/transactions");
-
-    return response.data.data;
+    const { data } = await useAxios(token).get("/transactions/");
+    const transactions = data.data.transactions.transactions;
+    const balance = data.data.balance;
+    const pagination = data.data.transactions.pageInfo;
+    return { transactions, balance, pagination };
   } catch (error) {
-    // console.log("error", error);
-
     return thunkApi.rejectWithValue(error.message);
   }
 });
@@ -28,13 +27,12 @@ export const getTransactions = createAsyncThunk("transactions/all", async (_, th
 export const deleteTransactions = createAsyncThunk("transactions/delete", async (id, thunkApi) => {
   try {
     const token = thunkApi.getState().auth.token;
-
-    await useAxios(token).delete(`/wallet/transactions/${id}`);
-
-    return id;
+    const { data } = await useAxios(token).delete(`/transactions/${id}`);
+    return { id, balance: data.balance };
   } catch (error) {
-    const errorMessage = error.response?.data || { message: "Unknown error occurred" };
-
+    const errorMessage = error.response?.data || {
+      message: "Unknown error occurred",
+    };
     return thunkApi.rejectWithValue(errorMessage);
   }
 });

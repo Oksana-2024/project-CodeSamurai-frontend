@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./Switch.module.css";
 import clsx from "clsx";
 
-const Switch = ({ defaultValue = false }) => {
+const Switch = ({ onChange, defaultValue = false }) => {
   const [isOn, setIsOn] = useState(defaultValue);
+
+  // Коли пропс `onChange` змінюється, синхронізуємо стан
+  useEffect(() => {
+    onChange(isOn);
+  }, [isOn, onChange]);
 
   const handleToggle = () => {
     setIsOn((prev) => !prev);

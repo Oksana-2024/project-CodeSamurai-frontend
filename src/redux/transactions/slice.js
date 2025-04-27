@@ -3,7 +3,19 @@ import { getTransactions, deleteTransactions, addTransactions } from "./operatio
 
 const transactions = {
   items: [],
-  category: [],
+  category: [
+    // Видалити коли прийде з беку
+    "Main expenses",
+    "Products",
+    "Car",
+    "Self care",
+    "Child care",
+    "Household products",
+    "Education",
+    "Leisure",
+    "Other expenses",
+    "Entertainment",
+  ],
   currentTransaction: null,
   isOpenAddTransaction: false,
 };
@@ -19,13 +31,18 @@ const transactionsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addTransactions.fulfilled, (state, { payload }) => {
-        state = state.transactions.push(payload);
+        state = state.items.push(payload);
       })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.balance = payload.balance;
+        state.items = payload.transactions;
+        state.perPage = payload.pagination.perPage;
+        state.page = payload.pagination.page;
+        state.totalPages = payload.pagination.totalPages;
       })
       .addCase(deleteTransactions.fulfilled, (state, { payload }) => {
-        state.items = state.items.filter((transaction) => transaction._id !== payload);
+        state.items = state.items.filter((transaction) => transaction._id !== payload.id);
+        state.balance = payload.balance;
       });
   },
 });

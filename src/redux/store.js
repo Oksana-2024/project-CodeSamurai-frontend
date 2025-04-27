@@ -14,7 +14,7 @@ import {
 import authReducer from "./auth/slice";
 import currencyReducer from "./currency/slice";
 import globalReducer from "./global/slice";
-import statisticsReduser from "./statistics/slice";
+import categoryReducer from "./category/slice";
 import transactionsReducer from "./transactions/slice";
 
 const persistAuthConfig = {
@@ -41,7 +41,7 @@ const store = configureStore({
     // category: categoryReducer,
     // balance: balanceReducer,
     currency: persistedCurrencyReducer,
-    statistics: statisticsReduser,
+    statistics: categoryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
