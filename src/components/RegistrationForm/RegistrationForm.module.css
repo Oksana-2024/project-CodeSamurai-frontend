@@ -81,7 +81,7 @@
 
 .regInput:hover,
 .regInput:focus {
-  border-bottom: 1px solid #ffb627;
+  border-bottom: 1px solid var(--income-color);
 }
 
 .togglePassButton {
@@ -103,7 +103,7 @@
 }
 
 .error {
-  color: #ffb627;
+  color: var(--income-color);
   font-size: 9px;
   margin-top: 2px;
   position: relative;
@@ -116,8 +116,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
-  color: #fbfbfb;
-  border: none;
+  color: var(--main-color);
   transition: transform 0.3s var(--main-transform);
 }
 
@@ -136,9 +135,9 @@
   width: 280px;
   height: 50px;
   box-shadow: var(--btn-shadow);
-  color: #623f8b;
+  color: var(--dark-color);
   border: 1px solid #4a56e2;
-  background: #fbfbfb;
+  background: var(--main-color);
   text-transform: uppercase;
   text-align: center;
   font-weight: 400;
@@ -205,19 +204,21 @@
     display: block;
     width: 533px;
     height: 624px;
-    background-image: url("../../assets/img/reg_form_t.png"),
-      url("../../assets/img/ellipse_19.png");
-    background-repeat: no-repeat;
-    background-size: 800px 900px;
+    background-image: url("../../assets/img/ellipse_19.png"),
+      url("../../assets/img/reg_form_t.png");
+    background-repeat: no-repeat, no-repeat;
+    background-size: 557px 626px, 800px 900px;
     background-position: center;
+    backdrop-filter: blur(100px);
+    box-shadow: var(--modal-shadow);
   }
 
   @media screen and (min-resolution: 192dpi),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 2dppx) {
     .registerContainer {
-      background-image: url("../../assets/img/reg_form_t.png"),
-        url("../../assets/img/ellipse_19@2x.png");
+      background-image: url("../../assets/img/ellipse_19@2x.png"),
+        url("../../assets/img/reg_form_t.png");
     }
   }
 }

@@ -2,4 +2,13 @@
   background: var(--main-btn-gradient);
   border-radius: 20px;
   box-shadow: var(--btn-shadow);
+  text-transform: uppercase;
+  color: var(--main-color);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
