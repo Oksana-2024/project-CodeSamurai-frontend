@@ -5,16 +5,43 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100vh;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 40px 0;
+  position: relative;
 }
 
 @media screen and (min-width: 768px) {
   .modalBox {
     width: 540px;
     height: auto;
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+
+}
+
+.closeIcon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  visibility: visible;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .closeIcon {
+    visibility: hidden;
   }
 }

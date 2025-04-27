@@ -5,11 +5,17 @@ const transactions = {
   items: [],
   category: [],
   currentTransaction: null,
+  isOpenAddTransaction: false,
 };
 
 const transactionsSlice = createSlice({
   name: "transactions",
   initialState: transactions,
+  reducers: {
+    setAddTransaction(state, action) {
+      state.isOpenAddTransaction = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addTransactions.fulfilled, (state, { payload }) => {
@@ -25,4 +31,7 @@ const transactionsSlice = createSlice({
 });
 
 const transactionsReducer = transactionsSlice.reducer;
+
+export const { setAddTransaction } = transactionsSlice.actions;
+
 export default transactionsReducer;

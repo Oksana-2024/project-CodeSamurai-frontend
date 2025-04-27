@@ -1,21 +1,8 @@
 .wrapper {
   max-width: 540px;
   margin: 0 auto;
-  border-radius: 8px;
-  backdrop-filter: blur(100px);
-  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
-  background: var(--bg-modal);
-  padding: 40px 73px;
+  padding: 40px 73px 20px;
 }
-
-.title {
-  font-weight: 400;
-  font-size: 30px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-/* .switch {} */
 
 .form {
   width: 100%;
@@ -33,12 +20,9 @@
   color: var(--main-color);
   padding: 8px;
   cursor: pointer;
+  transition: border-bottom 0.3s var(--main-transform);
 }
 
-.sum::placeholder,
-.comment::placeholder {
-  color: var(--icon-hover) !important;
-}
 
 .select {
   appearance: none;
@@ -48,23 +32,38 @@
   z-index: 1;
 }
 
-.select option:focus {
-  -webkit-appearance: none;
-  -moz-appearance: none;
+.comment:hover,
+.comment:focus,
+.DatePicker:hover,
+.DatePicker:focus,
+.sum:hover,
+.sum:focus,
+.select:hover,
+.select:focus {
+  border-bottom: 1px solid var(--income-color);
+}
+
+.select option {
   outline: none;
-  border-color: #7b5de3;
-  box-shadow: 0 0 0 3px rgba(123, 93, 227, 0.5);
+  background-color: #533DBA;
+  backdrop-filter: blur(100px);
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  color: var(--main-color);
+  border: none;
 }
 
-
-.select_placeholder {
-  color: var(--icon-hover);
-}
 
 .select_error_box {
   position: relative;
-  margin-bottom: 20px;
-  height: 54.2px;
+  margin-bottom: 30px;
+  height: 47.2px;
+}
+
+.errors {
+  color: var(--income-color);
+  font-size: 9px;
+  margin-top: 2px;
+  position: relative;
 }
 
 .select_box {
@@ -77,22 +76,24 @@
   right: 0;
   z-index: 0;
   color: var(--main-color);
+  transition: transform 0.3s var(--main-transform);
 }
 
-/* select.option { */
-/* font-family: var(--font-family);
+.select:focus .select_icon:focus {
+  transform: rotateX(180deg);
+}
+
+.placeholder {
+  font-family: var(--font-family);
   font-weight: 400;
-  font-size: 16px;
-  color: var(--white);
-  border-radius: 8px;
-  backdrop-filter: blur(100px);
-  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
-  background: linear-gradient(360deg, rgba(83, 61, 186, 0.7) 0%, rgba(80, 48, 154, 0.7) 35.94%, rgba(106, 70, 165, 0.7) 61.04%, rgba(133, 93, 175, 0.7) 100%); */
-/* } */
+  font-size: 18px;
+  color: var(--form-color);
+  color: red;
+}
 
 .error_box {
   width: 100%;
-  height: 20px;
+  height: 10px;
 }
 
 .box_sum_date {
@@ -130,24 +131,25 @@
 .add_btn {
   padding: 13px 129px 10px 129px;
   font-weight: 400;
+  height: 50px;
   font-size: 18px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
   color: #fff;
   max-width: 300px;
-  margin: 0 auto 20px;
+  margin: 0 auto;
 }
 
 .date_box {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   position: relative;
 }
 
 .date_icon {
   color: var(--icon-violet);
   position: absolute;
-  top: 10px;
+  top: 8px;
   right: 0;
   z-index: 0;
 }
@@ -164,4 +166,33 @@
   text-align: center;
   color: var(--dark-color);
   margin: 0 auto;
+}
+
+/* 
+Прибирає біле поле при автозаповненні та чорні букви при переході на наступне поле */
+.sum:-webkit-autofill,
+.sum:-webkit-autofill:hover,
+.sum:-webkit-autofill:focus,
+.sum:-webkit-autofill:active,
+.comment:-webkit-autofill,
+.comment:-webkit-autofill:hover,
+.comment:-webkit-autofill:focus,
+.comment:-webkit-autofill:active {
+  transition: background-color 9999s var(--second-transform) 0s;
+  -webkit-text-fill-color: var(--main-color) !important;
+  background-color: transparent !important;
+  caret-color: var(--form-color);
+  border-bottom: 1px solid #ccc;
+}
+
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    max-width: 320px;
+    padding: 40px 20px 20px;
+  }
+
+  .add_btn {
+    max-width: 280px;
+  }
 }

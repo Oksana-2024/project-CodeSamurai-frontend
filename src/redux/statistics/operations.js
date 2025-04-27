@@ -5,7 +5,7 @@ export const getTransactionsCategories = createAsyncThunk("transactions/categori
   try {
     const { data } = await useAxios().get("wallet/transaction-categories");
 
-    console.log("Отримані категорії:", data);
+    // console.log("Отримані категорії:", data);
 
     return data;
   } catch (error) {

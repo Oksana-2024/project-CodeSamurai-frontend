@@ -19,7 +19,7 @@ export const getTransactions = createAsyncThunk("transactions/all", async (_, th
 
     return response.data.data;
   } catch (error) {
-    console.log("error", error);
+    // console.log("error", error);
 
     return thunkApi.rejectWithValue(error.message);
   }

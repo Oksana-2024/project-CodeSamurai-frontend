@@ -1,33 +1,21 @@
-import Modal from "react-modal";
-Modal.setAppElement("#root");
-import { AiOutlineClose } from "react-icons/ai";
 import AddTransactionForm from "../AddTransactionForm/AddTransactionForm";
+import ModalWindow from "../ModalWindow/ModalWindow";
+import { useDispatch, useSelector } from "react-redux";
+import { setAddTransaction } from "../../redux/transactions/slice";
+import { selectOpenAddTransaction } from "../../redux/transactions/selectors";
+import ButtonCancel from "../ButtonCancel/ButtonCancel";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+const ModalAddTransaction = () => {
+  const dispatch = useDispatch();
 
-const ModalAddTransaction = ({ modalIsOpen, closeModal }) => {
+  const isAddModal = useSelector(selectOpenAddTransaction);
+
   return (
-    <div>
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="Modal">
-        <AiOutlineClose size={18} />
-        {/* <h3></h3> */}
+    <ModalWindow closeModal={() => dispatch(setAddTransaction(false))} modalIsOpen={isAddModal} title="Add transaction">
+      <AddTransactionForm closeModal={() => dispatch(setAddTransaction(false))} />
 
-        <AddTransactionForm closeModal={closeModal} />
-
-        <button type="button" onClick={closeModal}>
-          CANCEL
-        </button>
-      </Modal>
-    </div>
+      <ButtonCancel onClick={() => dispatch(setAddTransaction(false))} />
+    </ModalWindow>
   );
 };
 

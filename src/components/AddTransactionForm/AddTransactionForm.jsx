@@ -9,24 +9,23 @@ import { toast } from "react-toastify";
 import { IoIosArrowDown } from "react-icons/io";
 import { BiCalendar } from "react-icons/bi";
 
-import Button from "../Button/Button";
-import Switch from "../Switch/Switch";
 import s from "./AddTransactionForm.module.css";
-
+import Switch from "../Switch/Switch";
 import { addTransactions } from "../../redux/transactions/operations";
 import { selectCategories } from "../../redux/statistics/selectors";
+import { setAddTransaction } from "../../redux/transactions/slice";
+import Button from "../Button/Button";
 
 // Form validation schema
 const AddTransactionSchema = yup.object({
-  // category: yup.string().required("Please select a category"),
+  category: yup.string().required("Please select a category"),
   sum: yup.number().required("Please enter the amount").typeError("Must be a number"),
-  // date: yup.date().required("Date is required"),
   comment: yup.string(),
 });
 
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true); // Стан для перемикача
   const [selectCategoriesId, setSelectCategoriesId] = useState(null);
   const categories = useSelector(selectCategories);
 
@@ -44,37 +43,24 @@ const AddTransactionForm = ({ closeModal }) => {
     defaultValues: { sum: "", comment: "", date: new Date() },
   });
 
-  const categoriesForSelect = categories
-    .filter((category) => category.type !== "INCOME")
-    .map((category) => ({
-      value: category.id,
-      label: category.name,
-      isDisabled: category.name === "Main expenses",
-    }));
-
-  // ховає placeholder у select
-  const [isFocused, setIsFocused] = useState(false);
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
-
   const onSubmit = async (data) => {
     const categoryId = isChecked ? "67cece57cf044b5afacf7749" : selectCategoriesId;
 
     const newTransaction = {
-      type: isChecked ? "INCOME" : "EXPENSE",
+      type: !isChecked ? "Income" : "Expense", // використовуємо isChecked
       category: categoryId,
       sum: data.sum,
       date: data.date,
       comment: data.comment,
     };
+    console.log("newTransaction", newTransaction);
 
     dispatch(addTransactions(newTransaction))
       .unwrap()
       .then(() => {
         toast.success("Transaction added successfully!");
         reset(); // очищаємо форму
-        // dispatch(closeModal());
-        closeModal();
+        closeModal(() => dispatch(setAddTransaction(false)));
         // закриваємо модальне вікно, якщо передано функцію
       })
       .catch((error) => {
@@ -82,13 +68,11 @@ const AddTransactionForm = ({ closeModal }) => {
         toast.error(`Error: ${error.message || "Something went wrong"}`);
       });
 
-    console.log("Form: ", data);
+    // console.log("Form: ", data);
   };
 
   return (
     <div className={s.wrapper}>
-      <h2 className={s.title}>Add transaction</h2>
-
       <Switch className={s.switch} onChange={setIsChecked} defaultValue={true} />
 
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
@@ -99,26 +83,24 @@ const AddTransactionForm = ({ closeModal }) => {
                 <select
                   className={s.select}
                   name="category"
+                  defaultValue=""
                   {...register("category")}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  onChange={(selected) => setSelectCategoriesId(selected.value)}
+                  onChange={(selected) => setIsChecked(selected.value)}
                 >
-                  {!isFocused && (
-                    <option key="placeholder" value="" className={s.select_placeholder}>
-                      Select a category
-                    </option>
-                  )}
-                  {categoriesForSelect.map((cat) => (
-                    <option key={cat.value} value={cat.value} disabled={cat.isDisabled} className={s.select_option}>
-                      {cat.label}
+                  <option value="" disabled hidden>
+                    Select a category
+                  </option>
+
+                  {categories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
                     </option>
                   ))}
                 </select>
                 <IoIosArrowDown className={s.select_icon} />
               </div>
               <div className={s.error_box}>
-                {errors.category && <p style={{ color: "red" }}>{errors.category.message}</p>}
+                {errors.category && <p className={s.errors}>{errors.category.message}</p>}
               </div>
             </>
           )}
@@ -133,8 +115,9 @@ const AddTransactionForm = ({ closeModal }) => {
               defaultValue=""
               placeholder="0.00"
               step={0.01}
+              min={0.01}
             />
-            <div className={s.error_box}>{errors.sum && <p style={{ color: "red" }}>{errors.sum.message}</p>}</div>
+            <div className={s.error_box}>{errors.sum && <p className={s.errors}>{errors.sum.message}</p>}</div>
           </div>
           <div className={s.date_box}>
             <Controller
@@ -165,11 +148,7 @@ const AddTransactionForm = ({ closeModal }) => {
 
         <input className={s.comment} {...register("comment")} placeholder="Comment" autoComplete="off" type="text" />
 
-        <Button className={s.add_btn} type="submit" text="ADD" />
-
-        <button className={s.cancel_btn} type="button" onClick={closeModal}>
-          CANCEL
-        </button>
+        <Button className={s.add_btn} text="ADD" onClick={() => dispatch(addTransactions())} />
       </form>
     </div>
   );
