@@ -5,7 +5,7 @@ export const useAxios = (token) => {
   const baseAxios = axios.create({
     baseURL:
       import.meta.env.VITE_API_URL ||
-      "https://project-codesamurai-backend.onrender.com/",
+      "https://project-codesamurai-backend.onrender.com",
     // Передаємо заголовки для авторизації, якшо авторизовані
     headers: {
       Authorization: token ? `Bearer ${token}` : null,
