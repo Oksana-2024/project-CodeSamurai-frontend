@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-import { logoutUser } from "./operations.js";
+import { currentUser, logoutUser } from "./operations.js";
 
 import { registerThunk, loginThunk } from "./operations.js";
 import { selectIsLoggedIn, selectUser, selectToken } from "./selectors.js";
@@ -65,6 +65,15 @@ const authSlice = createSlice({
       })
       .addCase(deleteTransactions.fulfilled, (state, action) => {
         state.balance = action.payload.balance;
+      })
+      .addCase(currentUser.fulfilled, (state, { payload }) => {
+        state.user = payload.data;
+      })
+      .addCase(currentUser.rejected, (state, { payload }) => {
+        if (payload === 401) {
+          state.token = null;
+          state.isLoggedIn = false;
+        }
       });
   },
 });

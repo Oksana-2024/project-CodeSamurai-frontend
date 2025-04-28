@@ -1,11 +1,14 @@
-import {useSelector} from "react-redux";
-import {selectTransactions} from "../../redux/transactions/selectors";
+import { useSelector } from "react-redux";
+import { selectTransactions } from "../../redux/transactions/selectors";
 import s from "./TransactionsList.module.css";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import useMedia from "../../helpers/useMedia";
-import {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {getTransactions} from "../../redux/transactions/operations";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {
+  getCategories,
+  getTransactions,
+} from "../../redux/transactions/operations";
 import ButtonAddTransactions from "../ButtonAddTransactions/ButtonAddTransactions";
 
 const columns = ["Date", "Type", "Category", "Comment", "Sum", ""];
@@ -16,20 +19,18 @@ function TransactionsList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTransactions({}));
+    dispatch(getTransactions());
+    dispatch(getCategories());
   }, [dispatch]);
 
-  const {isMobile} = useMedia();
+  const { isMobile } = useMedia();
 
   if (isMobile) {
     return (
       <div className={s.container}>
         <div className={s.list}>
           {reduxTransactions.map((item) => (
-            <TransactionsItem
-              key={item._id}
-              transaction={item}
-            />
+            <TransactionsItem key={item._id} transaction={item} />
           ))}
         </div>
         <ButtonAddTransactions />
@@ -49,10 +50,7 @@ function TransactionsList() {
         </thead>
         <tbody>
           {reduxTransactions.map((item) => (
-            <TransactionsItem
-              key={item._id}
-              transaction={item}
-            />
+            <TransactionsItem key={item._id} transaction={item} />
           ))}
         </tbody>
       </table>

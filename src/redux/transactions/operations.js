@@ -35,3 +35,16 @@ export const deleteTransactions = createAsyncThunk(
     }
   }
 );
+
+export const getCategories = createAsyncThunk(
+  "categories/all",
+  async (_, thunkApi) => {
+    try {
+      const token = thunkApi.getState().auth.token;
+      const { data } = await useAxios(token).get("/categories");
+      return data.categories;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

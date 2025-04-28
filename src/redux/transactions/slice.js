@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTransactions, deleteTransactions } from "./operations";
+import {
+  getTransactions,
+  deleteTransactions,
+  getCategories,
+} from "./operations";
 import { selectPage, selectPerPage, selectTotalPages } from "./selectors";
 import { useSelector } from "react-redux";
-
 
 const transactions = {
   items: [],
@@ -24,7 +27,6 @@ export const useTransactionsPagination = () => {
   };
 };
 
-
 const transactionsSlice = createSlice({
   name: "transactions",
   initialState: transactions,
@@ -40,6 +42,9 @@ const transactionsSlice = createSlice({
         state.items = state.items.filter(
           (transaction) => transaction._id !== payload.id
         );
+      })
+      .addCase(getCategories.fulfilled, (state, { payload }) => {
+        state.category = payload;
       });
   },
 });
