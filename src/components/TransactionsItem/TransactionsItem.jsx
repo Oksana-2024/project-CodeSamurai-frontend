@@ -5,6 +5,7 @@ import s from "./TransactionsItem.module.css";
 import Button from "../Button/Button";
 import { MdOutlineModeEdit } from "react-icons/md";
 import useMedia from "../../helpers/useMedia";
+import { setEditTransaction } from "../../redux/transactions/slice";
 
 const getStyleByType = (type) =>
   type === "income" ? "var(--income-color)" : "var(--expense-color)";
@@ -24,12 +25,11 @@ function TransactionsItem({ transaction }) {
   const formattedType = type == "income" ? "+" : "-";
   const color = getStyleByType(type);
 
-  function onEdit() {
-    console.log("open edit modal ", transaction._id);
-  }
-
+  const isOpenEditModal = () => {
+    dispatch(setEditTransaction(transaction));
+  };
   async function OnDelete() {
-     dispatch(deleteTransactions(transaction._id));
+    dispatch(deleteTransactions(transaction._id));
   }
 
   if (isMobile) {
@@ -62,7 +62,11 @@ function TransactionsItem({ transaction }) {
             onClick={OnDelete}
             text={"Delete"}
           />
-          <button type="button" className={s.edit_btn} onClick={onEdit}>
+          <button
+            type="button"
+            className={s.edit_btn}
+            onClick={isOpenEditModal}
+          >
             <MdOutlineModeEdit />
             Edit
           </button>
@@ -83,7 +87,7 @@ function TransactionsItem({ transaction }) {
         {sum}
       </td>
       <td className={clsx(s.row_item, s.controls)}>
-        <button type="button" className={s.edit_btn} onClick={onEdit}>
+        <button type="button" className={s.edit_btn} onClick={isOpenEditModal}>
           <MdOutlineModeEdit />
         </button>
         <Button

@@ -4,6 +4,7 @@ import {
   deleteTransactions,
   addTransactions,
   getCategories,
+  updateTransaction,
 } from "./operations";
 import { selectPage, selectPerPage, selectTotalPages } from "./selectors";
 import { useSelector } from "react-redux";
@@ -16,6 +17,7 @@ const transactions = {
   perPage: 8,
   page: 1,
   totalPages: 1,
+  isOpenEditTransaction: false,
 };
 
 export const useTransactionsPagination = () => {
@@ -35,6 +37,9 @@ const transactionsSlice = createSlice({
   reducers: {
     setAddTransaction(state, action) {
       state.isOpenAddTransaction = action.payload;
+    },
+    setEditTransaction(state, action) {
+      state.currentTransaction = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -57,12 +62,21 @@ const transactionsSlice = createSlice({
       })
       .addCase(getCategories.fulfilled, (state, { payload }) => {
         state.category = payload;
+      })
+      .addCase(updateTransaction.fulfilled, (state, { payload }) => {
+        const items = state.items.filter(
+          (v) => payload.transaction._id !== v._id
+        );
+        state.items = [...items, payload.transaction].sort(
+          (b, a) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        );
       });
   },
 });
 
 const transactionsReducer = transactionsSlice.reducer;
 
-export const { setAddTransaction } = transactionsSlice.actions;
+export const { setAddTransaction, setEditTransaction } =
+  transactionsSlice.actions;
 
 export default transactionsReducer;

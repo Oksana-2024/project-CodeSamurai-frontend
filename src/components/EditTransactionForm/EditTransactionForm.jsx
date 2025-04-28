@@ -1,14 +1,15 @@
-import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux";
+import css from "./EditTransactionForm.module.css";
+import Button from "../Button/Button";
+import ButtonCancel from "../ButtonCancel/ButtonCancel";
+import { setEditTransaction } from "../../redux/transactions/slice";
 import { updateTransaction } from "../../redux/transactions/operations";
 import { toast } from "react-toastify";
-import css from "./EditTransactionForm.module.css";
-
 const validationSchema = yup.object().shape({
   sum: yup
     .number()
@@ -21,11 +22,8 @@ const validationSchema = yup.object().shape({
     .typeError("Invalid date format"),
   comment: yup.string().max(300, "Comment is too long"),
 });
-
-const EditTransactionForm = ({ initialData, onClose, onSuccess }) => {
+const EditTransactionForm = ({ transaction }) => {
   const dispatch = useDispatch();
-  const [submitting, setSubmitting] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -35,33 +33,27 @@ const EditTransactionForm = ({ initialData, onClose, onSuccess }) => {
   } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
-      sum: initialData.sum,
-      date: new Date(initialData.date),
-      comment: initialData.comment || "",
+      sum: transaction?.sum,
+      date: new Date(transaction?.date),
+      comment: transaction?.comment || "",
     },
   });
-
   const onSubmit = async (data) => {
-    setSubmitting(true);
-
-    try {
-      const updatedTransaction = {
-        id: initialData.id,
-        ...data,
-      };
-
-      await dispatch(updateTransaction(updatedTransaction)).unwrap();
-
-      toast.success("Transaction updated successfully!");
-      onSuccess(); 
-      onClose(); 
-    } catch (error) {
-      toast.error(`Update failed: ${error.message || "Something went wrong"}`);
-    } finally {
-      setSubmitting(false);
-    }
+    const updatedTransaction = {
+      _id: transaction._id,
+      ...data,
+    };
+    await dispatch(updateTransaction(updatedTransaction))
+      .unwrap()
+      .then(() => {
+        toast.success("Transaction updated successfully!");
+        dispatch(setEditTransaction(null));
+      })
+      .catch((error) => {
+        console.error(`Failed to add transaction: ${error.message}`);
+        toast.error(`Error: ${error.message || "Something went wrong"}`);
+      });
   };
-
   return (
     <form className={css.transaction_form} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.form_group}>
@@ -74,7 +66,6 @@ const EditTransactionForm = ({ initialData, onClose, onSuccess }) => {
         />
         {errors.sum && <p className={css.error}>{errors.sum.message}</p>}
       </div>
-
       <div className={css.form_group}>
         <Controller
           control={control}
@@ -93,7 +84,6 @@ const EditTransactionForm = ({ initialData, onClose, onSuccess }) => {
         />
         {errors.date && <p className={css.error}>{errors.date.message}</p>}
       </div>
-
       <div className={css.form_group}>
         <textarea
           placeholder="Comment"
@@ -105,21 +95,14 @@ const EditTransactionForm = ({ initialData, onClose, onSuccess }) => {
           <p className={css.error}>{errors.comment.message}</p>
         )}
       </div>
-
       <div className={css.button_group}>
-        <button
-          type="submit"
-          disabled={submitting}
-          className={css.submit_button}
-        >
-          Save
-        </button>
-        <button type="button" onClick={onClose} className={css.close_button}>
+        <Button text="Save" className={css.submit_button} />
+        {/* <button type="button" onClick={onClose} className={css.close_button}>
           Cancel
-        </button>
+        </button> */}
+        <ButtonCancel onClick={() => dispatch(setEditTransaction(false))} />
       </div>
     </form>
   );
 };
-
 export default EditTransactionForm;
