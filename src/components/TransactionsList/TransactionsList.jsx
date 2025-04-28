@@ -1,13 +1,16 @@
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import s from "./TransactionsList.module.css";
-import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import useMedia from "../../helpers/useMedia";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getTransactions } from "../../redux/transactions/operations";
-import ButtonAddTransactions from "../ButtonAddTransactions/ButtonAddTransactions";
+import {
+  getTransactions,
+  getCategories,
+} from "../../redux/transactions/operations";
 import { setAddTransaction } from "../../redux/transactions/slice";
+import ButtonAddTransactions from "../ButtonAddTransactions/ButtonAddTransactions";
+import TransactionsItem from "../TransactionsItem/TransactionsItem";
 
 const columns = ["Date", "Type", "Category", "Comment", "Sum", ""];
 
@@ -21,7 +24,8 @@ function TransactionsList() {
   };
 
   useEffect(() => {
-    dispatch(getTransactions({}));
+    dispatch(getTransactions());
+    dispatch(getCategories());
   }, [dispatch]);
 
   const { isMobile } = useMedia();

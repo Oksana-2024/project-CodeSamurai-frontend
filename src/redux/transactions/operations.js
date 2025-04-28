@@ -11,28 +11,50 @@ export const addTransactions = createAsyncThunk("transactions/add", async (trans
   }
 });
 
-export const getTransactions = createAsyncThunk("transactions/all", async (_, thunkApi) => {
-  try {
-    const token = thunkApi.getState().auth.token;
-    const { data } = await useAxios(token).get("/transactions/");
-    const transactions = data.data.transactions.transactions;
-    const balance = data.data.balance;
-    const pagination = data.data.transactions.pageInfo;
-    return { transactions, balance, pagination };
-  } catch (error) {
-    return thunkApi.rejectWithValue(error.message);
-  }
-});
+export const getTransactions = createAsyncThunk(
+  "transactions/all",
+  async (_, thunkApi) => {
+    try {
+      const token = thunkApi.getState().auth.token;
 
-export const deleteTransactions = createAsyncThunk("transactions/delete", async (id, thunkApi) => {
-  try {
-    const token = thunkApi.getState().auth.token;
-    const { data } = await useAxios(token).delete(`/transactions/${id}`);
-    return { id, balance: data.balance };
-  } catch (error) {
-    const errorMessage = error.response?.data || {
-      message: "Unknown error occurred",
-    };
-    return thunkApi.rejectWithValue(errorMessage);
+      const { data } = await useAxios(token).get("/transactions/");
+      const transactions = data.transactions;
+      const pagination = data.pageInfo;
+      return { transactions, pagination };
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
   }
-});
+);
+
+export const deleteTransactions = createAsyncThunk(
+  "transactions/delete",
+  async (id, thunkApi) => {
+    try {
+      const token = thunkApi.getState().auth.token;
+
+      const { data } = await useAxios(token).delete(`/transactions/${id}`);
+
+      return { id, balance: data.balance };
+    } catch (error) {
+      const errorMessage = error.response?.data || {
+        message: "Unknown error occurred",
+      };
+
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const getCategories = createAsyncThunk(
+  "categories/all",
+  async (_, thunkApi) => {
+    try {
+      const token = thunkApi.getState().auth.token;
+      const { data } = await useAxios(token).get("/categories");
+      return data.categories;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

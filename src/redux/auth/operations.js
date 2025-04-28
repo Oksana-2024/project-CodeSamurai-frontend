@@ -64,9 +64,21 @@ export const logoutUser = createAsyncThunk(
   "auth/logout",
   async (_, thunkApi) => {
     try {
-      const state = thunkApi.getState();
-      const { token } = state.auth;
+      const { token } = thunkApi.getState().auth;
       const { data } = await useAxios(token).post("/auth/logout");
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.status);
+    }
+  }
+);
+
+export const currentUser = createAsyncThunk(
+  "auth/user",
+  async (_, thunkApi) => {
+    try {
+      const { token } = thunkApi.getState().auth;
+      const { data } = await useAxios(token).get("/currentUsers");
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.status);

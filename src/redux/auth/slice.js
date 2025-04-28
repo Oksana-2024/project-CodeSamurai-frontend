@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-import { logoutUser } from "./operations.js";
+import { currentUser, logoutUser } from "./operations.js";
 
 import { registerThunk, loginThunk } from "./operations.js";
 import { selectIsLoggedIn, selectUser, selectToken } from "./selectors.js";
+import { deleteTransactions } from "../transactions/operations.js";
 
 const auth = {
   user: {
     name: null,
     email: null,
+    photo: null,
+    balance: 0,
   },
   token: null,
   isLoggedIn: false,
@@ -56,6 +59,18 @@ const authSlice = createSlice({
         // payload is HTTP status code
         if (action.payload === 401) {
           state.user = { name: null, email: null };
+          state.token = null;
+          state.isLoggedIn = false;
+        }
+      })
+      .addCase(deleteTransactions.fulfilled, (state, action) => {
+        state.balance = action.payload.balance;
+      })
+      .addCase(currentUser.fulfilled, (state, { payload }) => {
+        state.user = payload.data;
+      })
+      .addCase(currentUser.rejected, (state, { payload }) => {
+        if (payload === 401) {
           state.token = null;
           state.isLoggedIn = false;
         }

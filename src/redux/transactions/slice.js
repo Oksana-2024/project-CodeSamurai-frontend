@@ -1,23 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTransactions, deleteTransactions, addTransactions } from "./operations";
+import { getTransactions, deleteTransactions, addTransactions,getCategories } from "./operations";
+import { selectPage, selectPerPage, selectTotalPages } from "./selectors";
+import { useSelector } from "react-redux";
 
 const transactions = {
   items: [],
-  category: [
-    // Видалити коли прийде з беку
-    "Main expenses",
-    "Products",
-    "Car",
-    "Self care",
-    "Child care",
-    "Household products",
-    "Education",
-    "Leisure",
-    "Other expenses",
-    "Entertainment",
-  ],
+  category: [],
   currentTransaction: null,
   isOpenAddTransaction: false,
+  perPage: 8,
+  page: 1,
+  totalPages: 1,
+};
+
+export const useTransactionsPagination = () => {
+  const page = useSelector(selectPage);
+  const perPage = useSelector(selectPerPage);
+  const totalPage = useSelector(selectTotalPages);
+  return {
+    page,
+    perPage,
+    totalPage,
+  };
 };
 
 const transactionsSlice = createSlice({
@@ -31,7 +35,7 @@ const transactionsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addTransactions.fulfilled, (state, { payload }) => {
-        state = state.items.push(payload);
+        state = transactions.items.push(payload);
       })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
         state.balance = payload.balance;
@@ -40,9 +44,19 @@ const transactionsSlice = createSlice({
         state.page = payload.pagination.page;
         state.totalPages = payload.pagination.totalPages;
       })
+      .addCase(getTransactions.fulfilled, (state, { payload }) => {
+        state.items = payload.transactions;
+        state.perPage = payload.pagination.perPage;
+        state.page = payload.pagination.page;
+        state.totalPages = payload.pagination.totalPages;
+      })
       .addCase(deleteTransactions.fulfilled, (state, { payload }) => {
-        state.items = state.items.filter((transaction) => transaction._id !== payload.id);
-        state.balance = payload.balance;
+        state.items = state.items.filter(
+          (transaction) => transaction._id !== payload.id
+        );
+      })
+      .addCase(getCategories.fulfilled, (state, { payload }) => {
+        state.category = payload;
       });
   },
 });
