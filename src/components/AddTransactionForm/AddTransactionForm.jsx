@@ -3,36 +3,44 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { IoIosArrowDown } from "react-icons/io";
 import { BiCalendar } from "react-icons/bi";
+import { selectCategories } from "../../redux/transactions/selectors";
+import { addTransactions } from "../../redux/transactions/operations";
+import { setAddTransaction } from "../../redux/transactions/slice";
 
 import s from "./AddTransactionForm.module.css";
 import Switch from "../Switch/Switch";
-import { addTransactions } from "../../redux/transactions/operations";
-import { setAddTransaction } from "../../redux/transactions/slice";
 import Button from "../Button/Button";
-import { selectCategory } from "../../redux/transactions/selectors";
 
 // Form validation schema
 const AddTransactionSchema = yup.object({
-  // category: yup.string().required("Please select a category"),
-  category: yup.string().when("$isChecked", {
+    category: yup.string().when("$isChecked", {
     is: true,
     then: (schema) => schema.required("Please select a category"),
     otherwise: (schema) => schema.notRequired(),
   }),
-  sum: yup.number().required("Please enter the amount").typeError("Must be a number"),
+  sum: yup
+    .number()
+    .required("Please enter the amount")
+    .typeError("Must be a number"),
   comment: yup.string(),
 });
 
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [isChecked, setIsChecked] = useState(true); // Стан для перемикача
-  const [selectCategoriesId, setSelectCategoriesId] = useState(null);
-  const categories = useSelector(selectCategory);
+  const categories = useSelector(selectCategories);
+  const incomeCategory = categories.find(
+    (category) => category.name === "Income"
+  );
+  const expenceCategories = categories.filter(
+    (category) => category.name !== "Income"
+  );
 
   const dispatch = useDispatch();
 
@@ -49,17 +57,13 @@ const AddTransactionForm = ({ closeModal }) => {
   });
 
   const onSubmit = async (data) => {
-    // const categoryId = isChecked ? "680a680d4d3d230f60d30fc5" : selectCategoriesId;
-
     const newTransaction = {
       type: !isChecked ? "income" : "expense", // використовуємо isChecked
-      categoryId: selectCategoriesId,
-      // categoryId: categoryId,
+      categoryId: !isChecked ? incomeCategory._id : data.category,
       sum: data.sum,
       date: data.date,
       comment: data.comment,
     };
-    console.log("newTransaction", newTransaction);
 
     dispatch(addTransactions(newTransaction))
       .unwrap()
@@ -73,13 +77,15 @@ const AddTransactionForm = ({ closeModal }) => {
         console.error(`Failed to add transaction: ${error.message}`);
         toast.error(`Error: ${error.message || "Something went wrong"}`);
       });
-
-    console.log("Form: ", data);
   };
 
   return (
     <div className={s.wrapper}>
-      <Switch className={s.switch} onChange={setIsChecked} defaultValue={true} />
+      <Switch
+        className={s.switch}
+        onChange={setIsChecked}
+        defaultValue={true}
+      />
 
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
         <div className={s.select_error_box}>
@@ -91,22 +97,23 @@ const AddTransactionForm = ({ closeModal }) => {
                   name="category"
                   defaultValue=""
                   {...register("category")}
-                  onChange={(selected) => setSelectCategoriesId(selected.value)}
                 >
                   <option value="" disabled hidden>
                     Select a category
                   </option>
 
-                  {categories.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
+                  {expenceCategories.map((items) => (
+                    <option key={items._id} value={items._id}>
+                      {items.name}
                     </option>
                   ))}
                 </select>
                 <IoIosArrowDown className={s.select_icon} />
               </div>
               <div className={s.error_box}>
-                {errors.category && <p className={s.errors}>{errors.category.message}</p>}
+                {errors.category && (
+                  <p className={s.errors}>{errors.category.message}</p>
+                )}
               </div>
             </>
           )}
@@ -123,7 +130,9 @@ const AddTransactionForm = ({ closeModal }) => {
               step={0.01}
               min={0.01}
             />
-            <div className={s.error_box}>{errors.sum && <p className={s.errors}>{errors.sum.message}</p>}</div>
+            <div className={s.error_box}>
+              {errors.sum && <p className={s.errors}>{errors.sum.message}</p>}
+            </div>
           </div>
           <div className={s.date_box}>
             <Controller
@@ -152,7 +161,13 @@ const AddTransactionForm = ({ closeModal }) => {
           </div>
         </div>
 
-        <input className={s.comment} {...register("comment")} placeholder="Comment" autoComplete="off" type="text" />
+        <input
+          className={s.comment}
+          {...register("comment")}
+          placeholder="Comment"
+          autoComplete="off"
+          type="text"
+        />
 
         <Button className={s.add_btn} text="ADD" />
       </form>

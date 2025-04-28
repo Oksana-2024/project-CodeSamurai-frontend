@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTransactions, deleteTransactions, addTransactions,getCategories } from "./operations";
+import {
+  getTransactions,
+  deleteTransactions,
+  addTransactions,
+  getCategories,
+} from "./operations";
 import { selectPage, selectPerPage, selectTotalPages } from "./selectors";
 import { useSelector } from "react-redux";
 
@@ -35,14 +40,9 @@ const transactionsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addTransactions.fulfilled, (state, { payload }) => {
-        state = transactions.items.push(payload);
-      })
-      .addCase(getTransactions.fulfilled, (state, { payload }) => {
-        state.balance = payload.balance;
-        state.items = payload.transactions;
-        state.perPage = payload.pagination.perPage;
-        state.page = payload.pagination.page;
-        state.totalPages = payload.pagination.totalPages;
+        state.items = [...state.items, payload.transaction].sort(
+          (b, a) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        );
       })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
         state.items = payload.transactions;

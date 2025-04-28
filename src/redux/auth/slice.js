@@ -4,7 +4,10 @@ import { currentUser, logoutUser } from "./operations.js";
 
 import { registerThunk, loginThunk } from "./operations.js";
 import { selectIsLoggedIn, selectUser, selectToken } from "./selectors.js";
-import { deleteTransactions } from "../transactions/operations.js";
+import {
+  addTransactions,
+  deleteTransactions,
+} from "../transactions/operations.js";
 
 const auth = {
   user: {
@@ -64,7 +67,10 @@ const authSlice = createSlice({
         }
       })
       .addCase(deleteTransactions.fulfilled, (state, action) => {
-        state.balance = action.payload.balance;
+        state.user.balance = action.payload.balance;
+      })
+      .addCase(addTransactions.fulfilled, (state, action) => {
+        state.user.balance = action.payload.balance;
       })
       .addCase(currentUser.fulfilled, (state, { payload }) => {
         state.user = payload.data;

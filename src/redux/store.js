@@ -14,7 +14,6 @@ import {
 import authReducer from "./auth/slice";
 import currencyReducer from "./currency/slice";
 import globalReducer from "./global/slice";
-import categoryReducer from "./category/slice";
 import transactionsReducer from "./transactions/slice";
 
 const persistAuthConfig = {
@@ -31,7 +30,10 @@ const persistCurrensyConfig = {
 
 const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
 
-const persistedCurrencyReducer = persistReducer(persistCurrensyConfig, currencyReducer);
+const persistedCurrencyReducer = persistReducer(
+  persistCurrensyConfig,
+  currencyReducer
+);
 
 const store = configureStore({
   reducer: {
@@ -41,7 +43,6 @@ const store = configureStore({
     // category: categoryReducer,
     // balance: balanceReducer,
     currency: persistedCurrencyReducer,
-    statistics: categoryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

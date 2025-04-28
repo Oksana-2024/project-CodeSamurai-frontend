@@ -45,7 +45,7 @@ function TransactionsItem({ transaction }) {
         </div>
         <div className={s.list_item}>
           <span>Category</span>
-          <span>{categoryId.name}</span>
+          <span>{categoryId?.name}</span>
         </div>
         <div className={s.list_item}>
           <span>Comment</span>
@@ -77,7 +77,7 @@ function TransactionsItem({ transaction }) {
       <td className={s.row_item} style={{ textAlign: "center" }}>
         {formattedType}
       </td>
-      <td className={s.row_item}>{categoryId.name}</td>
+      <td className={s.row_item}>{categoryId?.name}</td>
       <td className={s.row_item}>{comment}</td>
       <td className={s.row_item} style={{ color }}>
         {sum}
