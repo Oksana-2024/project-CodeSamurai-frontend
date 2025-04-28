@@ -1,8 +1,10 @@
 .header {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   background: var(--bg-header-gradient);
   box-shadow: var();
+  z-index: 100000;
+  position: relative;
 }
 
 .headerContainer {

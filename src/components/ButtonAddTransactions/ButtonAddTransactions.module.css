@@ -1,5 +1,5 @@
 .addButton {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   right: 20px;
   width: 45px;
@@ -13,4 +13,8 @@
   align-items: center;
   justify-content: center;
   background: var(--main-btn-gradient);
+}
+
+.addButton:hover{
+
 }

@@ -1,15 +1,15 @@
 .containerBalance {
   width: 280px;
-  height: 80px;
+  height: 100%;
   background: var(--bg-balance);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0 20px 0 32px;
-  margin: 0% auto;
+  gap: 12px;
+  margin: 0 auto;
+  align-items: center;
+  padding: 8px 32px;
   border-radius: 8px;
-  backdrop-filter: blur(100px);
-  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: var(--modal-shadow);
 }
 
 .textBalance {
@@ -17,7 +17,6 @@
   font-size: 12px;
   text-transform: uppercase;
   color: var(--icon-hover);
-  margin-bottom: 12px;
 }
 
 .totalBalance {
@@ -32,14 +31,16 @@
 @media screen and (min-width: 768px) {
   .containerBalance {
     width: 336px;
-    padding: 0 20px 0 40px;
+    height: 80px;
+    padding: 8px 40px;
+    align-items: start;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .containerBalance {
     width: 100%;
-    margin-bottom: 32px;
     border-radius: 0;
+    padding: 8px 56px;
   }
 }

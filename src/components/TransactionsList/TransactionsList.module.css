@@ -1,6 +1,6 @@
-.container {
+/* .container {
   position: relative;
-}
+} */
 
 .list {
   width: 100%;
@@ -39,7 +39,7 @@
 .head_row {
   border-radius: 8px;
   text-align: center;
-  background-color: var(--bg-currency);
+  background-color: var(--bg-transaction);
 }
 
 .row_item th {
@@ -64,4 +64,12 @@
 
 .row_item th:nth-child(5) {
   text-align: right;
+}
+
+@media screen and (min-width: 1280px) {
+  .tableContainer {
+    padding-top: 46px;
+    
+  }
+  
 }

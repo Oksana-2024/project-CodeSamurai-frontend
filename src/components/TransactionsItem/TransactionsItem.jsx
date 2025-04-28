@@ -29,7 +29,7 @@ function TransactionsItem({ transaction }) {
   }
 
   async function OnDelete() {
-    await dispatch(deleteTransactions(transaction._id));
+     dispatch(deleteTransactions(transaction._id));
   }
 
   if (isMobile) {
@@ -88,7 +88,7 @@ function TransactionsItem({ transaction }) {
         </button>
         <Button
           type="button"
-          className={clsx(s.delete_btn)}
+          className={s.delete_btn}
           onClick={OnDelete}
           text={"Delete"}
         />

@@ -43,7 +43,7 @@ function App() {
       </Suspense>
       <ToastContainer
         pauseOnHover
-        position="top-right"
+        position="bottom-left"
         draggable
         theme="colored"
       />
