@@ -1,14 +1,13 @@
 .dashboardSection {
-  background-color: #1b1440;
+  background: var(--bg-dashboard);
 }
 
 .dashboard {
   padding: 0;
-  background-image: url("../../assets/img/mobile_gradient.png"),
-    url("../../assets/img/ellipse_19.png");
-  background-repeat: no-repeat, no-repeat;
-  background-position: top, center;
-  background-size: auto 100vh, 454px 454px;
+  background-image: url("../../assets/img/ellipse_19.png");
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: 454px auto;
 }
 
 .mobileDashboard {
@@ -21,6 +20,17 @@
   .dashboard {
     background-image: url("../../assets/img/home_tab.png");
     background-size: cover;
+    padding: 0 32px;
+    display: grid;
+    grid-template-rows: 234px 1fr;
+    gap: 20px 0px;
+    height: 100vh;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px 32px;
   }
   .nav {
     width: 336px;
@@ -30,28 +40,22 @@
   }
   .balance {
     width: 336px;
-    grid-area: "balance";
     grid-column: 1;
     grid-row: 2;
+    transform: translateY(21px);
   }
   .currency {
     width: 336px;
-    grid-area: "currency";
+    overflow: hidden;
     grid-row: span 2;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
-  .content {
-    grid-column: span 2;
-  }
-  .dashboard {
-    padding: 0 32px;
-    display: grid;
-    gap: 20px 32px;
-    grid-template-columns: 336px 336px;
-    grid-template-areas:
-      "nav currency"
-      "balance currency"
-      "content";
+  .navBalance {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 }
 

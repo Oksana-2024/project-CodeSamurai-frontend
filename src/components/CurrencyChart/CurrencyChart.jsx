@@ -123,7 +123,7 @@ const CurrencyChart = () => {
         label: "Purchase",
         data: purchase,
         fill: true,
-        backgroundColor: "rgba(100, 149, 237, 0.3)",
+        backgroundColor: "rgba(255, 255, 255, 0.2)",
         tension: 0.4,
         pointRadius: 0, // прибираємо всі точки
       },

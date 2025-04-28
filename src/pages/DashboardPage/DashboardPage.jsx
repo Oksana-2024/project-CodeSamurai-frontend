@@ -18,19 +18,20 @@ const DashboardPage = () => {
       <main>
         <Container className={s.dashboard}>
           {isBigScreen && (
-            <>
-              <div className={s.nav}>
-                <Navigation />
-              </div>
-
-              <div className={s.balance}>
-                <Balance />
-              </div>
+            <div className={s.grid}>
+             <div className={s.navBalance}>
+                <div className={s.nav}>
+                  <Navigation />
+                </div>
+                  <div className={s.balance}>
+                  <Balance />
+                </div>
+             </div>
 
               <div className={s.currency}>
                 <Currency />
               </div>
-            </>
+            </div>
           )}
           {isSmallScreen && (
             <div className={s.mobileDashboard}>

@@ -88,7 +88,7 @@ function TransactionsItem({ transaction }) {
         </button>
         <Button
           type="button"
-          className={clsx(s.delete_btn)}
+          className={s.delete_btn}
           onClick={OnDelete}
           text={"Delete"}
         />
