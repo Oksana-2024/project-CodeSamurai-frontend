@@ -8,6 +8,7 @@
   background-repeat: repeat-y;
   background-position: center;
   background-size: 454px auto;
+  position: relative;
 }
 
 .mobileDashboard {
@@ -24,7 +25,7 @@
     display: grid;
     grid-template-rows: 234px 1fr;
     gap: 20px 0px;
-    height: 100vh;
+    height: calc(100vh - 80px);
   }
 
   .grid {
@@ -64,26 +65,35 @@
     width: 480px;
   }
 
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    height: auto;
+    grid-row: span 2;
+  }
+
   .balance {
     width: 480px;
+    transform: translateY(0px);
   }
 
   .currency {
     width: 480px;
-    grid-row: 3;
+    
   }
 
-  .content {
+  /* .content {
     grid-row: span 3;
     grid-column: span 1;
-  }
+  } */
   .dashboard {
-    padding: 0;
-    gap: 0 62px;
+    padding: 0 16px;
+    gap: 0 53px;
     grid-template-columns: 480px 715px;
-    grid-template-areas:
+    /* grid-template-areas:
       "nav content"
       "balance "
-      "currency ";
+      "currency "; */
   }
 }

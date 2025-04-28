@@ -1,42 +1,46 @@
+.registerPage {
+  background-color: var(--bg-page);
+  background-image: url("../../assets/img/mobile.png");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  background-position: 0px 0px;
+}
+
 .register {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-image: url("../../assets/img/mobile.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 @media screen and (min-resolution: 192dpi),
   (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 2dppx) {
-  .register {
+  .registerPage {
     background-image: url("../../assets/img/mobile@2x.png");
   }
 }
 
 @media screen and (min-width: 768px) {
-  .register {
+  .registerPage {
     background-image: url("../../assets/img/reg_tab.png");
   }
   @media screen and (min-resolution: 192dpi),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 2dppx) {
-    .register {
+    .registerPage {
       background-image: url("../../assets/img/reg_tab@2x.png");
     }
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .register {
+  .registerPage {
     background-image: url("../../assets/img/reg_pc.png");
   }
   @media screen and (min-resolution: 192dpi) {
-    .register {
+    .registerPage {
       background-image: url("../../assets/img/reg_pc@2x.png");
     }
   }

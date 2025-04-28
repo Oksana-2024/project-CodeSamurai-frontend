@@ -1,6 +1,6 @@
-.container {
+/* .container {
   position: relative;
-}
+} */
 
 .list {
   width: 100%;
@@ -64,4 +64,12 @@
 
 .row_item th:nth-child(5) {
   text-align: right;
+}
+
+@media screen and (min-width: 1280px) {
+  .tableContainer {
+    padding-top: 46px;
+    
+  }
+  
 }

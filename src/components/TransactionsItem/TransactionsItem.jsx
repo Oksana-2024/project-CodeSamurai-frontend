@@ -29,7 +29,7 @@ function TransactionsItem({ transaction }) {
   }
 
   async function OnDelete() {
-    await dispatch(deleteTransactions(transaction._id));
+     dispatch(deleteTransactions(transaction._id));
   }
 
   if (isMobile) {

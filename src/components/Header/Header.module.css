@@ -3,7 +3,7 @@
   padding-bottom: 14px;
   background: var(--bg-header-gradient);
   box-shadow: var();
-  z-index: 100;
+  z-index: 100000;
   position: relative;
 }
 
