@@ -64,10 +64,14 @@ export const getCategories = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
   "transactions/update",
-  async (updatedTransaction, { rejectWithValue }) => {
+  async (updatedTransaction, { rejectWithValue, getState }) => {
     try {
-      const { id, ...data } = updatedTransaction;
-      const response = await useAxios(`/transactions/${id}`, data);
+      const token = getState().auth.token;
+      const { _id, ...data } = updatedTransaction;
+      const response = await useAxios(token).patch(
+        `/transactions/${_id}`,
+        data
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(
