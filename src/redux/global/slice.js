@@ -6,11 +6,7 @@ import {
   registerThunk,
 } from "../auth/operations";
 import { fetchCurrency } from "../currency/operations";
-import {
-  getTransactions,
-  deleteTransactions,
-  getCategories,
-} from "../transactions/operations";
+import { getTransactions, deleteTransactions, addTransactions, getCategories } from "../transactions/operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -47,7 +43,8 @@ const globalSlice = createSlice({
           getCategories.pending,
           fetchCurrency.pending,
           getTransactions.pending,
-          deleteTransactions.pending
+          deleteTransactions.pending,
+          addTransactions.pending
         ),
         handlePending
       )
@@ -60,7 +57,8 @@ const globalSlice = createSlice({
           getCategories.rejected,
           fetchCurrency.rejected,
           getTransactions.rejected,
-          deleteTransactions.rejected
+          deleteTransactions.rejected,
+          addTransactions.rejected
         ),
         handleRejected
       )
@@ -73,7 +71,8 @@ const globalSlice = createSlice({
           getCategories.fulfilled,
           fetchCurrency.fulfilled,
           getTransactions.fulfilled,
-          deleteTransactions.fulfilled
+          deleteTransactions.fulfilled,
+          addTransactions.fulfilled
         ),
         handleFulfilled
       );

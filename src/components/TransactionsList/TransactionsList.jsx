@@ -1,15 +1,16 @@
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import s from "./TransactionsList.module.css";
-import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import useMedia from "../../helpers/useMedia";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import {
-  getCategories,
   getTransactions,
+  getCategories,
 } from "../../redux/transactions/operations";
+import { setAddTransaction } from "../../redux/transactions/slice";
 import ButtonAddTransactions from "../ButtonAddTransactions/ButtonAddTransactions";
+import TransactionsItem from "../TransactionsItem/TransactionsItem";
 
 const columns = ["Date", "Type", "Category", "Comment", "Sum", ""];
 
@@ -17,6 +18,10 @@ function TransactionsList() {
   const reduxTransactions = useSelector(selectTransactions);
 
   const dispatch = useDispatch();
+
+  const handleOpenModal = () => {
+    dispatch(setAddTransaction(true));
+  };
 
   useEffect(() => {
     dispatch(getTransactions());
@@ -33,7 +38,7 @@ function TransactionsList() {
             <TransactionsItem key={item._id} transaction={item} />
           ))}
         </div>
-        <ButtonAddTransactions />
+        <ButtonAddTransactions onClick={handleOpenModal} />
       </div>
     );
   }
@@ -54,7 +59,7 @@ function TransactionsList() {
           ))}
         </tbody>
       </table>
-      <ButtonAddTransactions />
+      <ButtonAddTransactions onClick={handleOpenModal} />
     </div>
   );
 }

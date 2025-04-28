@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getTransactions,
   deleteTransactions,
+  addTransactions,
   getCategories,
 } from "./operations";
 import { selectPage, selectPerPage, selectTotalPages } from "./selectors";
@@ -11,6 +12,7 @@ const transactions = {
   items: [],
   category: [],
   currentTransaction: null,
+  isOpenAddTransaction: false,
   perPage: 8,
   page: 1,
   totalPages: 1,
@@ -30,8 +32,18 @@ export const useTransactionsPagination = () => {
 const transactionsSlice = createSlice({
   name: "transactions",
   initialState: transactions,
+  reducers: {
+    setAddTransaction(state, action) {
+      state.isOpenAddTransaction = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
+      .addCase(addTransactions.fulfilled, (state, { payload }) => {
+        state.items = [...state.items, payload.transaction].sort(
+          (b, a) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        );
+      })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
         state.items = payload.transactions;
         state.perPage = payload.pagination.perPage;
@@ -49,4 +61,8 @@ const transactionsSlice = createSlice({
   },
 });
 
-export default transactionsSlice.reducer;
+const transactionsReducer = transactionsSlice.reducer;
+
+export const { setAddTransaction } = transactionsSlice.actions;
+
+export default transactionsReducer;

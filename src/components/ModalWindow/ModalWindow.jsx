@@ -14,7 +14,9 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     padding: "0",
     border: "none",
-    borderRadius: "0px",
+    borderRadius: "8px",
+    backdropFilter: "blur(100px)",
+    boxShadow: "0 4px 60px 0 rgba(0, 0, 0, 0.25)",
   },
   overlay: {
     backdropFilter: "blur(7px)",
@@ -22,30 +24,12 @@ const customStyles = {
   },
 };
 
-const ModalWindow = ({
-  title,
-  children,
-  modalIsOpen,
-  closeModal,
-  className,
-  showIcon = true,
-}) => {
+const ModalWindow = ({ title, children, modalIsOpen, closeModal, className, showIcon = true }) => {
   return (
-    <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
-      style={customStyles}
-      ariaHideApp={false}
-    >
+    <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} ariaHideApp={false}>
       <div className={clsx(s.modalBox, className)}>
-        {showIcon && (
-          <AiOutlineClose
-            size={18}
-            onClick={closeModal}
-            className={s.closeIcon}
-          />
-        )}
-        <h3>{title}</h3>
+        {showIcon && <AiOutlineClose size={18} onClick={closeModal} className={s.closeIcon} />}
+        <h3 className={s.title}>{title}</h3>
         {children}
       </div>
     </Modal>
