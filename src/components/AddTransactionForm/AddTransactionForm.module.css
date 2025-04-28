@@ -23,7 +23,6 @@
   transition: border-bottom 0.3s var(--main-transform);
 }
 
-
 .select {
   appearance: none;
   outline: none;
@@ -52,7 +51,6 @@
   border: none;
 }
 
-
 .select_error_box {
   position: relative;
   margin-bottom: 30px;
@@ -79,7 +77,6 @@
   transition: transform 0.3s var(--main-transform), color 0.3s var(--main-transform);
 }
 
-
 .select:focus+.select_icon {
   transform: rotateX(180deg);
 }
@@ -89,7 +86,6 @@
   color: var(--income-color);
 }
 
-.select option:first-of-type,
 .comment::placeholder,
 .sum::placeholder {
   color: var(--icon-hover);
@@ -188,7 +184,6 @@
   caret-color: var(--form-color);
   border-bottom: 1px solid #ccc;
 }
-
 
 @media screen and (max-width: 768px) {
   .wrapper {
