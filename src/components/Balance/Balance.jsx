@@ -8,7 +8,7 @@ const Balance = () => {
     <div className={s.containerBalance}>
       <h2 className={s.textBalance}>Your balance</h2>
       <p className={s.totalBalance}>
-        ₴ <span className={s.totalNumber}>{balance}</span>
+        ₴ <span className={s.totalNumber}>{balance.toFixed(2)}</span>
       </p>
     </div>
   );

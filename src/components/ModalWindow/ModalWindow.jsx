@@ -3,6 +3,7 @@ Modal.setAppElement("#root");
 import { AiOutlineClose } from "react-icons/ai";
 import clsx from "clsx";
 import s from "./ModalWindow.module.css";
+import { noScrollDisable, noScrollEnable } from "../../helpers/noScroll";
 
 const customStyles = {
   content: {
@@ -15,6 +16,7 @@ const customStyles = {
     padding: "0",
     border: "none",
     borderRadius: "8px",
+    backgroundColor:"var(--bg-modal)",
     backdropFilter: "blur(100px)",
     boxShadow: "0 4px 60px 0 rgba(0, 0, 0, 0.25)",
   },
@@ -24,11 +26,31 @@ const customStyles = {
   },
 };
 
-const ModalWindow = ({ title, children, modalIsOpen, closeModal, className, showIcon = true }) => {
+const ModalWindow = ({
+  title,
+  children,
+  modalIsOpen,
+  closeModal,
+  className,
+  showIcon = true,
+}) => {
   return (
-    <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} ariaHideApp={false}>
+    <Modal
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
+      style={customStyles}
+      ariaHideApp={false}
+      onAfterOpen={noScrollEnable}
+      onAfterClose={noScrollDisable}
+    >
       <div className={clsx(s.modalBox, className)}>
-        {showIcon && <AiOutlineClose size={18} onClick={closeModal} className={s.closeIcon} />}
+        {showIcon && (
+          <AiOutlineClose
+            size={18}
+            onClick={closeModal}
+            className={s.closeIcon}
+          />
+        )}
         <h3 className={s.title}>{title}</h3>
         {children}
       </div>

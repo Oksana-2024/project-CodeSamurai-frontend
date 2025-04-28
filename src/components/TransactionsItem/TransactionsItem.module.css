@@ -24,13 +24,9 @@
   font-weight: 400;
 }
 
-.list_item:not(:last-child) {
-  border-bottom: 1px solid white;
-}
-
-/* desktop-tablet */
+.list_item:not(:last-child),
 .row:not(:last-child) {
-  border-bottom: 1px solid #ffffff69;
+  border-bottom: 1px solid var(--bg-modal);
 }
 
 .row td {
@@ -68,5 +64,10 @@
 
 .delete_btn {
   color: var(--main-color);
-  padding: 5px 10px;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: start;
+  width: 69px;
+  height: 29px;
+  text-transform: unset;
 }
