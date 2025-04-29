@@ -12,15 +12,7 @@ import {
 } from "chart.js";
 import s from "./CurrencyChart.module.css";
 
-ChartJS.register(
-  LineElement,
-  PointElement,
-  LinearScale,
-  CategoryScale,
-  Filler,
-  Tooltip,
-  Legend
-);
+ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip, Legend);
 
 const CurrencyChart = () => {
   const rates = useSelector((state) => state.currency.rates);
@@ -50,10 +42,24 @@ const CurrencyChart = () => {
   const purchase = finalRates.map((r) => r.purchase);
   const sale = finalRates.map((r) => r.sale);
 
+  const createGradient = (ctx, area) => {
+    const gradient = ctx.createLinearGradient(0, area.top, 0, area.bottom);
+    gradient.addColorStop(0, "#ffffff");
+    gradient.addColorStop(0.375, "rgba(255, 255, 255, 0.54)");
+    gradient.addColorStop(0.6091, "rgba(255, 255, 255, 0.27)");
+    gradient.addColorStop(0.766, "rgba(255, 255, 255, 0.15)");
+    gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+    return gradient;
+  };
+
   const labelPlugin = {
     id: "customLabels",
     afterDatasetsDraw(chart) {
       const { ctx } = chart;
+
+      if (window.innerWidth < 1280) {
+        return; // не рендеримо підписи на маленьких екранах
+      }
 
       chart.data.datasets.forEach((dataset, datasetIndex) => {
         if (dataset.label === "Sale") {
@@ -123,7 +129,12 @@ const CurrencyChart = () => {
         label: "Purchase",
         data: purchase,
         fill: true,
-        backgroundColor: "rgba(255, 255, 255, 0.2)",
+        backgroundColor: function (context) {
+          const { chart } = context;
+          const { ctx, chartArea } = chart;
+          if (!chartArea) return "rgba(255,255,255,0.2)";
+          return createGradient(ctx, chartArea);
+        },
         tension: 0.4,
         pointRadius: 0, // прибираємо всі точки
       },
@@ -133,11 +144,10 @@ const CurrencyChart = () => {
         fill: false,
         borderColor: "#ff868d",
         tension: 0.4,
-        pointBackgroundColor: "#ff868d",
+        pointBackgroundColor: "#563eaf",
+        pointBorderColor: "#ff868d",
         pointRadius: sale.map((_, i) =>
-          finalRates[i]?.currency === "USD" || finalRates[i]?.currency === "EUR"
-            ? 5
-            : 0
+          finalRates[i]?.currency === "USD" || finalRates[i]?.currency === "EUR" ? 4 : 0
         ), // точки лише на USD і EUR
       },
     ],
