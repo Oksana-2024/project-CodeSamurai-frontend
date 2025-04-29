@@ -1,7 +1,13 @@
+import StatisticsDashboard from "../../../components/StatisticsDashboard/StatisticsDashboard";
+import StatisticsTable from "../../../components/StatisticsTable/StatisticsTable";
+
 const StatisticsTab = () => {
   return (
-    <div>StatisticsTab</div>
-  )
-}
+    <>
+      <StatisticsDashboard />
+      <StatisticsTable />
+    </>
+  );
+};
 
-export default StatisticsTab
+export default StatisticsTab;

@@ -15,6 +15,7 @@ import authReducer from "./auth/slice";
 import currencyReducer from "./currency/slice";
 import globalReducer from "./global/slice";
 import transactionsReducer from "./transactions/slice";
+import { statisticsReducer } from "./statistics/slice";
 
 const persistAuthConfig = {
   key: "users", // Ключ для сховища
@@ -43,6 +44,7 @@ const store = configureStore({
     // category: categoryReducer,
     // balance: balanceReducer,
     currency: persistedCurrencyReducer,
+    statistics: statisticsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
