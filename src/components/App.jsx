@@ -11,6 +11,7 @@ import ModalAddTransaction from "./ModalAddTransaction/ModalAddTransaction.jsx";
 import { useDispatch } from "react-redux";
 import { currentUser } from "../redux/auth/operations.js";
 import ModalEditTransaction from "./ModalEditTransaction/ModalEditTransaction.jsx";
+import UserModal from "./UserModal/UserModal.jsx";
 
 const Login = lazy(() => import("../pages/LoginPage/LoginPage"));
 const Dashboard = lazy(() => import("../pages/DashboardPage/DashboardPage"));
@@ -77,6 +78,7 @@ function App() {
       <ModalConfirmLogout />
       <ModalAddTransaction />
       <ModalEditTransaction />
+      <UserModal />
       <Loader />
     </>
   );

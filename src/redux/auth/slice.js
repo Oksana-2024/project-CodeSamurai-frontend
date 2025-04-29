@@ -20,6 +20,7 @@ const auth = {
   token: null,
   isLoggedIn: false,
   isComfirmLogout: false,
+  isUserOpen: false,
 };
 
 export const useAuth = () => {
@@ -39,6 +40,9 @@ const authSlice = createSlice({
   reducers: {
     setComfirmLogout(state, action) {
       state.isComfirmLogout = action.payload;
+    },
+    setOpenUserProfile(state, action) {
+      state.isUserOpen = action.payload;
     },
   },
 
@@ -89,5 +93,5 @@ const authSlice = createSlice({
 });
 
 const authReducer = authSlice.reducer;
-export const { setComfirmLogout } = authSlice.actions;
+export const { setComfirmLogout, setOpenUserProfile } = authSlice.actions;
 export default authReducer;

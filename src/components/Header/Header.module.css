@@ -1,10 +1,8 @@
 .header {
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   background: var(--bg-header-gradient);
-  box-shadow: var();
-  z-index: 100000;
-  position: relative;
+  box-shadow: var(--btn-shadow);
 }
 
 .headerContainer {
@@ -15,19 +13,31 @@
   position: relative;
 }
 
+.exitIcon {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  height: 32px;
+}
+
+.exitBtn {
+  background-color: transparent;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  gap: 8px;
+  padding: 0;
+}
+
 .user {
   display: flex;
+  align-items: center;
   flex-direction: row;
   gap: 8px;
   font-size: 16px;
   font-weight: 400;
   color: var(--user-color);
-}
-
-.exitIcon {
-  background-color: transparent;
-  color: inherit;
-  padding: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -38,18 +48,8 @@
     height: 0px;
     transform: rotate(-90deg);
     position: absolute;
-    top: 33px;
-    right: 81px;
-  }
-
-  .exitBtn {
-    background-color: transparent;
-    color: inherit;
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    gap: 8px;
-    padding: 0;
+    top: 27px;
+    right: 85px;
   }
 
   .user {

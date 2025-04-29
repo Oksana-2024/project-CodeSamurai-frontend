@@ -1,0 +1,9 @@
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--bg-avatar);
+  border-radius: 8px;
+}
