@@ -16,13 +16,12 @@
 .comment {
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--user-color);
+  border-bottom: 1px solid var(--bg-modal);
   color: var(--main-color);
   padding: 8px;
   cursor: pointer;
   transition: border-bottom 0.3s var(--main-transform);
 }
-
 
 .select {
   appearance: none;
@@ -47,16 +46,15 @@
   outline: none;
   background-color: #533DBA;
   backdrop-filter: blur(100px);
-  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: var(--modal-shadow);
   color: var(--main-color);
   border: none;
 }
 
-
 .select_error_box {
   position: relative;
   margin-bottom: 30px;
-  height: 47.2px;
+  height: 45.5px;
 }
 
 .errors {
@@ -73,22 +71,24 @@
 .select_icon {
   position: absolute;
   top: 8px;
-  right: 0;
+  right: 8px;
   z-index: 0;
   color: var(--main-color);
-  transition: transform 0.3s var(--main-transform);
+  transition: transform 0.3s var(--main-transform), color 0.3s var(--main-transform);
 }
 
-.select:focus .select_icon:focus {
+.select:focus+.select_icon {
   transform: rotateX(180deg);
 }
 
-.placeholder {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 18px;
-  color: var(--form-color);
-  color: red;
+.select:hover+.select_icon,
+.select:focus+.select_icon {
+  color: var(--income-color);
+}
+
+.comment::placeholder,
+.sum::placeholder {
+  color: var(--icon-hover);
 }
 
 .error_box {
@@ -150,7 +150,7 @@
   color: var(--icon-violet);
   position: absolute;
   top: 8px;
-  right: 0;
+  right: 8px;
   z-index: 0;
 }
 
@@ -185,7 +185,6 @@
   border-bottom: 1px solid #ccc;
 }
 
-
 @media screen and (max-width: 768px) {
   .wrapper {
     max-width: 320px;
@@ -194,5 +193,39 @@
 
   .add_btn {
     max-width: 280px;
+  }
+
+  .box_sum_date {
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .date_box {
+    width: 100%;
+  }
+
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
+
+  .sum {
+    text-align: start;
+  }
+
+  .select,
+  .sum,
+  .DatePicker,
+  .comment {
+    padding: 8px 20px;
+  }
+
+  .select_icon {
+    right: 20px;
+  }
+
+  .date_icon {
+    right: 20px;
   }
 }
