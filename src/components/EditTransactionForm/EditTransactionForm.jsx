@@ -92,12 +92,12 @@ const EditTransactionForm = ({ transaction }) => {
             step="0.01"
             placeholder="Enter amount"
             {...register("sum")}
-            className={css.input}
+            className={css.inputSumm}
           />
-          {errors.sum && <p className={css.error}>{errors.sum.message}</p>}
-        </div>
+          <div className={css.error}>
+            {errors.sum && <p className={css.error}>{errors.sum.message}</p>}
+          </div>
 
-        <div className={css.form_group}>
           <Controller
             control={control}
             name="date"
@@ -113,25 +113,28 @@ const EditTransactionForm = ({ transaction }) => {
                   placeholderText="Select date"
                 />
                 <div className={css.date_icon}>
-                  <BiCalendar />
+                  <BiCalendar size={24} />
                 </div>
               </div>
             )}
           />
-          {errors.date && <p className={css.error}>{errors.date.message}</p>}
+          <div className={css.error}>
+            {errors.date && <p className={css.error}>{errors.date.message}</p>}
+          </div>
         </div>
-      </div>
 
-      <div className={css.form_group}>
-        <textarea
-          placeholder="Comment"
-          {...register("comment")}
-          className={css.textarea}
-          rows={3}
-        />
-        {errors.comment && (
-          <p className={css.error}>{errors.comment.message}</p>
-        )}
+        <div className={css.comment}>
+          <input
+            placeholder="Comment"
+            {...register("comment")}
+            className={css.textarea}
+          />
+          <div className={css.error}>
+            {errors.comment && (
+              <p className={css.error}>{errors.comment.message}</p>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className={css.button_group}>
