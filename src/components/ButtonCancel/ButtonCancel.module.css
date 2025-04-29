@@ -13,6 +13,12 @@
   letter-spacing: 0.1em;
   padding: 0;
   color: var(--dark-color);
+  transition: transform 0.3s var(--main-transform);
+}
+
+.baseStyle:hover,
+.baseStyle:focus {
+  transform: scale(1.1);
 }
 
 @media screen and (min-width: 768px) {

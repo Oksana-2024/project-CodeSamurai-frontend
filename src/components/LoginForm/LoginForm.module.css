@@ -28,8 +28,8 @@
 }
 
 @media screen and (min-resolution: 192dpi),
-  (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 2dppx) {
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   .loginContainer {
     background-color: var(--bg-modal);
     backdrop-filter: blur(100px);
@@ -67,6 +67,7 @@
   fill: var(--form-color);
   pointer-events: none;
 }
+
 /* 
 Прибирає біле поле при автозаповненні та чорні букви при переході на наступне поле */
 .regInput:-webkit-autofill,
@@ -141,12 +142,6 @@
   text-transform: uppercase;
   text-align: center;
   color: var(--main-color);
-  transition: transform 0.3s var(--main-transform);
-}
-
-.button:hover,
-.button:focus {
-  transform: scale(1.1);
 }
 
 .link {
@@ -196,6 +191,7 @@
   .inputContainerLogo {
     width: 409px;
   }
+
   .regInput {
     width: 409px;
   }
@@ -216,8 +212,8 @@
   }
 
   @media screen and (min-resolution: 192dpi),
-    (-webkit-min-device-pixel-ratio: 2),
-    (min-resolution: 2dppx) {
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 2dppx) {
     .loginContainer {
       background-image: url("../../assets/img/log_form_t@2x.png"),
         url("../../assets/img/ellipse_19@2x.png");
