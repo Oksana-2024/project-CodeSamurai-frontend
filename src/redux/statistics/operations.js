@@ -1,12 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../../configAPI/api";
+import { useAxios } from "../../service/axios";
 
 export const fetchStatistics = createAsyncThunk(
   "statistics/fetchStatistics",
-  async ({ month, year }, { rejectWithValue }) => {
+  async ({ month, year }, { rejectWithValue, getState }) => {
     try {
-      const { data } = await api.get(
-        `/api/transactions/statistics?month=${month}&year=${year}`
+      const { token } = getState().auth;
+      const { data } = await useAxios(token).get(
+        `/transactions/statistics?month=${month}&year=${year}`
       );
       return data;
     } catch (error) {

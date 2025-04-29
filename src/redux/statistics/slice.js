@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchStatistics } from "./operations";
+import { colors } from "../../helpers/statistics";
 
 const initialState = {
-  expensesByCategory: [],
-  statistics: null,
+  categories: [],
+  expense: 0,
+  income: 0,
+  transactions: 0,
   month: new Date().getMonth() + 1,
   year: new Date().getFullYear(),
-  isLoading: false,
-  error: null,
 };
 
 const statisticsSlice = createSlice({
@@ -21,8 +22,20 @@ const statisticsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchStatistics.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.statistics = action.payload;
+        const categories = Object.entries(action.payload.categoryExpenses).map(
+          ([name, value], index) => {
+            return {
+              name: name,
+              total: value,
+              color: colors[index % colors.length],
+            };
+          }
+        );
+
+        state.categories = categories;
+        state.expense = action.payload.totalExpense;
+        state.income = action.payload.totalIncome;
+        state.transactions = action.payload.periodTransactions;
         state.month = action.payload.month;
         state.year = action.payload.year;
       })

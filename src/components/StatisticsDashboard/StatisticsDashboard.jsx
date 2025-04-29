@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchStatistics } from "../../redux/statistics/operations";
-import { months, years } from "./options";
 import css from "./StatisticsDashboard.module.css";
+import { months, years } from "../../helpers/statistics";
 
 const StatisticsDashboard = () => {
   const dispatch = useDispatch();

@@ -17,3 +17,14 @@ export const years = Array.from(
   { length: 4 },
   (_, i) => new Date().getFullYear() - i
 );
+
+export const colors = [
+  "#0088FE",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "#8884D8",
+  "#82CA9D",
+  "#FFD700",
+  "#FFA07A",
+];

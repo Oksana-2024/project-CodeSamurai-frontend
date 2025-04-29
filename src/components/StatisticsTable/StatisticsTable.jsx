@@ -2,9 +2,11 @@ import { useSelector } from "react-redux";
 import styles from "./StatisticsTable.module.css";
 
 const StatisticsTable = () => {
-  const { statistics } = useSelector((state) => state.statistics);
+  const categories = useSelector((state) => state.statistics.categories);
+  const income = useSelector((state) => state.statistics.income);
+  const expense = useSelector((state) => state.statistics.expense);
 
-  if (!statistics?.categories?.length) {
+  if (!categories?.length) {
     return (
       <p className={styles.message}>No statistics available for this period.</p>
     );
@@ -13,16 +15,14 @@ const StatisticsTable = () => {
   return (
     <div className={styles.tableWrapper}>
       <ul className={styles.table}>
-        {statistics.categories.map((category) => (
+        {categories.map((category) => (
           <li key={category.name} className={styles.row}>
             <span
               className={styles.color}
               style={{ backgroundColor: category.color }}
             ></span>
             <span className={styles.name}>{category.name}</span>
-            <span className={styles.amount}>
-              {category.total.toFixed(2)} UAH
-            </span>
+            <span className={styles.amount}>{category.total.toFixed(2)}</span>
           </li>
         ))}
       </ul>
@@ -30,15 +30,10 @@ const StatisticsTable = () => {
       <div className={styles.total}>
         <p>
           Expenses:{" "}
-          <span className={styles.expenses}>
-            {statistics.expenseSummary.toFixed(2)} UAH
-          </span>
+          <span className={styles.expenses}>{expense?.toFixed(2)}</span>
         </p>
         <p>
-          Income:{" "}
-          <span className={styles.income}>
-            {statistics.incomeSummary.toFixed(2)} UAH
-          </span>
+          Income: <span className={styles.income}>{income?.toFixed(2)}</span>
         </p>
       </div>
     </div>
