@@ -12,15 +12,7 @@ import {
 } from "chart.js";
 import s from "./CurrencyChart.module.css";
 
-ChartJS.register(
-  LineElement,
-  PointElement,
-  LinearScale,
-  CategoryScale,
-  Filler,
-  Tooltip,
-  Legend
-);
+ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip, Legend);
 
 const CurrencyChart = () => {
   const rates = useSelector((state) => state.currency.rates);
@@ -54,6 +46,10 @@ const CurrencyChart = () => {
     id: "customLabels",
     afterDatasetsDraw(chart) {
       const { ctx } = chart;
+
+      if (window.innerWidth < 1280) {
+        return; // не рендеримо підписи на маленьких екранах
+      }
 
       chart.data.datasets.forEach((dataset, datasetIndex) => {
         if (dataset.label === "Sale") {
@@ -133,11 +129,10 @@ const CurrencyChart = () => {
         fill: false,
         borderColor: "#ff868d",
         tension: 0.4,
-        pointBackgroundColor: "#ff868d",
+        pointBackgroundColor: "#563eaf",
+        pointBorderColor: "#ff868d",
         pointRadius: sale.map((_, i) =>
-          finalRates[i]?.currency === "USD" || finalRates[i]?.currency === "EUR"
-            ? 5
-            : 0
+          finalRates[i]?.currency === "USD" || finalRates[i]?.currency === "EUR" ? 4 : 0
         ), // точки лише на USD і EUR
       },
     ],

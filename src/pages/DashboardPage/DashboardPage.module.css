@@ -33,24 +33,28 @@
     grid-template-columns: 1fr 1fr;
     gap: 0px 32px;
   }
+
   .nav {
     width: 336px;
     height: 134px;
     grid-column: 1;
     grid-row: 1;
   }
+
   .balance {
     width: 336px;
     grid-column: 1;
     grid-row: 2;
-    transform: translateY(21px);
+    /* transform: translateY(21px); */
   }
+
   .currency {
     width: 336px;
     overflow: hidden;
     grid-row: span 2;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    height: 214px;
   }
 
   .navBalance {
@@ -80,7 +84,7 @@
 
   .currency {
     width: 480px;
-    
+    height: 380px;
   }
 
   /* .content {
