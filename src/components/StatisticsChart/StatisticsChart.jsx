@@ -2,11 +2,12 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import s from "./StatisticsChart.module.css";
 import { useSelector } from "react-redux";
+import { selectStatisticsTransactions } from "../../redux/statistics/selectors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const StatisticsChart = ({ data }) => {
-  const transactions = useSelector((state) => state.statistics.transactions);
+  const transactions = useSelector(selectStatisticsTransactions);
   const options = {
     responsive: true,
     maintainAspectRatio: false,

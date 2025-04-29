@@ -11,11 +11,20 @@ import {
   Legend,
 } from "chart.js";
 import s from "./CurrencyChart.module.css";
+import { selectRates } from "../../redux/currency/selectors";
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip, Legend);
+ChartJS.register(
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Filler,
+  Tooltip,
+  Legend
+);
 
 const CurrencyChart = () => {
-  const rates = useSelector((state) => state.currency.rates);
+  const rates = useSelector(selectRates);
 
   // Якщо ще немає курсів — не рендеримо графік
   if (rates.length === 0) return null;
@@ -147,7 +156,9 @@ const CurrencyChart = () => {
         pointBackgroundColor: "#563eaf",
         pointBorderColor: "#ff868d",
         pointRadius: sale.map((_, i) =>
-          finalRates[i]?.currency === "USD" || finalRates[i]?.currency === "EUR" ? 4 : 0
+          finalRates[i]?.currency === "USD" || finalRates[i]?.currency === "EUR"
+            ? 4
+            : 0
         ), // точки лише на USD і EUR
       },
     ],
