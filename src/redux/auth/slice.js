@@ -7,6 +7,7 @@ import { selectIsLoggedIn, selectUser, selectToken } from "./selectors.js";
 import {
   addTransactions,
   deleteTransactions,
+  updateTransaction,
 } from "../transactions/operations.js";
 
 const auth = {
@@ -74,6 +75,9 @@ const authSlice = createSlice({
       })
       .addCase(currentUser.fulfilled, (state, { payload }) => {
         state.user = payload.data;
+      })
+      .addCase(updateTransaction.fulfilled, (state, action) => {
+        state.user.balance = action.payload.balance;
       })
       .addCase(currentUser.rejected, (state, { payload }) => {
         if (payload === 401) {
