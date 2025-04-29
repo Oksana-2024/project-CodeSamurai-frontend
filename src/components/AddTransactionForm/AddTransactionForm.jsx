@@ -19,28 +19,21 @@ import Button from "../Button/Button";
 
 // Form validation schema
 const AddTransactionSchema = yup.object({
-    category: yup.string().when("$isChecked", {
+  category: yup.string().when("$isChecked", {
     is: true,
     then: (schema) => schema.required("Please select a category"),
     otherwise: (schema) => schema.notRequired(),
   }),
-  sum: yup
-    .number()
-    .required("Please enter the amount")
-    .typeError("Must be a number"),
-  comment: yup.string(),
+  sum: yup.number().required("Please enter the amount").typeError("Must be a number"),
+  comment: yup.string().max(60, "Max 60 characters"),
 });
 
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [isChecked, setIsChecked] = useState(true); // Стан для перемикача
   const categories = useSelector(selectCategories);
-  const incomeCategory = categories.find(
-    (category) => category.name === "Income"
-  );
-  const expenceCategories = categories.filter(
-    (category) => category.name !== "Income"
-  );
+  const incomeCategory = categories.find((category) => category.name === "Income");
+  const expenceCategories = categories.filter((category) => category.name !== "Income");
 
   const dispatch = useDispatch();
 
@@ -81,23 +74,14 @@ const AddTransactionForm = ({ closeModal }) => {
 
   return (
     <div className={s.wrapper}>
-      <Switch
-        className={s.switch}
-        onChange={setIsChecked}
-        defaultValue={true}
-      />
+      <Switch className={s.switch} onChange={setIsChecked} defaultValue={true} />
 
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
         <div className={s.select_error_box}>
           {isChecked && (
             <>
               <div className={s.select_box}>
-                <select
-                  className={s.select}
-                  name="category"
-                  defaultValue=""
-                  {...register("category")}
-                >
+                <select className={s.select} name="category" defaultValue="" {...register("category")}>
                   <option value="" disabled hidden>
                     Select a category
                   </option>
@@ -111,9 +95,7 @@ const AddTransactionForm = ({ closeModal }) => {
                 <IoIosArrowDown className={s.select_icon} />
               </div>
               <div className={s.error_box}>
-                {errors.category && (
-                  <p className={s.errors}>{errors.category.message}</p>
-                )}
+                {errors.category && <p className={s.errors}>{errors.category.message}</p>}
               </div>
             </>
           )}
@@ -130,9 +112,7 @@ const AddTransactionForm = ({ closeModal }) => {
               step={0.01}
               min={0.01}
             />
-            <div className={s.error_box}>
-              {errors.sum && <p className={s.errors}>{errors.sum.message}</p>}
-            </div>
+            <div className={s.error_box}>{errors.sum && <p className={s.errors}>{errors.sum.message}</p>}</div>
           </div>
           <div className={s.date_box}>
             <Controller
@@ -161,14 +141,10 @@ const AddTransactionForm = ({ closeModal }) => {
           </div>
         </div>
 
-        <input
-          className={s.comment}
-          {...register("comment")}
-          placeholder="Comment"
-          autoComplete="off"
-          type="text"
-        />
-
+        <div className={s.comment_error_box}>
+          <input className={s.comment} {...register("comment")} placeholder="Comment" autoComplete="off" type="text" />
+          <div className={s.error_box}>{errors.comment && <p className={s.errors}>{errors.comment.message}</p>}</div>
+        </div>
         <Button className={s.add_btn} text="ADD" />
       </form>
     </div>
