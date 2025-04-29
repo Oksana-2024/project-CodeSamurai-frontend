@@ -1,0 +1,55 @@
+.tableWrapper {
+  padding: 16px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.table {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.name {
+  flex: 1;
+  margin-left: 8px;
+}
+
+.amount {
+  font-weight: bold;
+}
+
+.total {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.expenses {
+  color: red;
+}
+
+.income {
+  color: green;
+}
+
+.message {
+  text-align: center;
+  color: #888;
+}

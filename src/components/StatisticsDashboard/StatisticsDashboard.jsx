@@ -1,13 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { fetchStatistics } from '../../redux/statistics/operations';
-import { months, years } from './options';
-import css from './StatisticsDashboard.module.css';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { fetchStatistics } from "../../redux/statistics/operations";
+import { months, years } from "./options";
+import css from "./StatisticsDashboard.module.css";
 
 const StatisticsDashboard = () => {
   const dispatch = useDispatch();
   const { month: savedMonth, year: savedYear } = useSelector(
-    state => state.statistics
+    (state) => state.statistics
   );
   const [month, setMonth] = useState(savedMonth || new Date().getMonth() + 1);
   const [year, setYear] = useState(savedYear || new Date().getFullYear());
@@ -23,7 +23,7 @@ const StatisticsDashboard = () => {
         <select
           className={css.select}
           value={month}
-          onChange={e => setMonth(Number(e.target.value))}
+          onChange={(e) => setMonth(Number(e.target.value))}
         >
           {months.map(({ value, label }) => (
             <option key={value} value={value}>
@@ -38,9 +38,9 @@ const StatisticsDashboard = () => {
         <select
           className={css.select}
           value={year}
-          onChange={e => setYear(Number(e.target.value))}
+          onChange={(e) => setYear(Number(e.target.value))}
         >
-          {years.map(y => (
+          {years.map((y) => (
             <option key={y} value={y}>
               {y}
             </option>
