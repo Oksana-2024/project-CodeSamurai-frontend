@@ -2,22 +2,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchStatistics } from "../../redux/statistics/operations";
 import css from "./StatisticsDashboard.module.css";
-import { months, years } from "../../helpers/statistics";
+import { colors, months, years } from "../../helpers/statistics";
+import StatisticsChart from "../StatisticsChart/StatisticsChart";
+import {
+  selectStatisticsCategories,
+  selectMonth,
+  selectYear,
+} from "../../redux/statistics/selectors";
 
 const StatisticsDashboard = () => {
   const dispatch = useDispatch();
-  const { month: savedMonth, year: savedYear } = useSelector(
-    (state) => state.statistics
-  );
+  const categories = useSelector(selectStatisticsCategories);
+  const savedMonth = useSelector(selectMonth);
+  const savedYear = useSelector(selectYear);
   const [month, setMonth] = useState(savedMonth || new Date().getMonth() + 1);
   const [year, setYear] = useState(savedYear || new Date().getFullYear());
 
   useEffect(() => {
     dispatch(fetchStatistics({ month, year }));
   }, [dispatch, month, year]);
+  const data = {
+    labels: categories?.map((v) => v.name) || [],
+    datasets: [
+      {
+        label: "Amount",
+        data: categories.map((v) => v.total) || [],
+        backgroundColor: colors.slice(0, categories.length) || [],
+        borderColor: colors.slice(0, categories.length) || [],
+        borderWidth: 44,
+        weight: 0,
+      },
+    ],
+  };
 
   return (
     <div className={css.dashboard}>
+      <StatisticsChart data={data} />
       <label className={css.label}>
         Month
         <select

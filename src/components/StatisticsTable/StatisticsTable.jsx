@@ -1,10 +1,15 @@
 import { useSelector } from "react-redux";
 import styles from "./StatisticsTable.module.css";
+import {
+  selectStatisticsCategories,
+  selectExpense,
+  selectIncome,
+} from "../../redux/statistics/selectors";
 
 const StatisticsTable = () => {
-  const categories = useSelector((state) => state.statistics.categories);
-  const income = useSelector((state) => state.statistics.income);
-  const expense = useSelector((state) => state.statistics.expense);
+  const categories = useSelector(selectStatisticsCategories);
+  const income = useSelector(selectIncome);
+  const expense = useSelector(selectExpense);
 
   if (!categories?.length) {
     return (

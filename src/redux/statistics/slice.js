@@ -16,33 +16,24 @@ const statisticsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchStatistics.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchStatistics.fulfilled, (state, action) => {
-        const categories = Object.entries(action.payload.categoryExpenses).map(
-          ([name, value], index) => {
-            return {
-              name: name,
-              total: value,
-              color: colors[index % colors.length],
-            };
-          }
-        );
+    builder.addCase(fetchStatistics.fulfilled, (state, action) => {
+      const categories = Object.entries(action.payload.categoryExpenses).map(
+        ([name, value], index) => {
+          return {
+            name: name,
+            total: value,
+            color: colors[index % colors.length],
+          };
+        }
+      );
 
-        state.categories = categories;
-        state.expense = action.payload.totalExpense;
-        state.income = action.payload.totalIncome;
-        state.transactions = action.payload.periodTransactions;
-        state.month = action.payload.month;
-        state.year = action.payload.year;
-      })
-      .addCase(fetchStatistics.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
+      state.categories = categories;
+      state.expense = action.payload.totalExpense;
+      state.income = action.payload.totalIncome;
+      state.transactions = action.payload.periodTransactions;
+      state.month = action.payload.month;
+      state.year = action.payload.year;
+    });
   },
 });
 
