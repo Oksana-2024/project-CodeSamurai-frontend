@@ -46,7 +46,7 @@
   outline: none;
   background-color: #533DBA;
   backdrop-filter: blur(100px);
-  box-shadow: 0 4px 60px 0 var(--modal-shadow);
+  box-shadow: var(--modal-shadow);
   color: var(--main-color);
   border: none;
 }
