@@ -11,6 +11,25 @@
   margin-bottom: 30px;
 }
 
+.form_row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.form_row .form_group {
+  flex: 1;
+}
+
+.date_icon {
+  color: var(--icon-violet);
+  position: absolute;
+  bottom: 400px;
+  left: 450px;
+  z-index: 0;
+}
+
 .input,
 .textarea {
   width: 100%;
@@ -47,6 +66,13 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+}
+.date_icon {
+  color: var(--icon-violet);
+  position: absolute;
+  bottom: 400px;
+  left: 450px;
+  z-index: 0;
 }
 
 .submit_button {
@@ -86,6 +112,40 @@
   background-color: transparent !important;
   caret-color: var(--form-color);
   border-bottom: 1px solid #ccc;
+}
+.type_toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.type_option {
+  cursor: pointer;
+  color: #bfbfc0;
+  transition: color 0.3s;
+}
+
+.type_option:hover {
+  color: #f89c1c;
+}
+
+.separator {
+  margin: 0 10px;
+  color: #bfbfc0;
+}
+
+.active {
+  color: #f89c1c;
+  text-decoration: underline;
+}
+.active.income {
+  color: #f89c1c;
+}
+.active.expense {
+  color: #ccccff;
 }
 
 @media screen and (max-width: 768px) {
