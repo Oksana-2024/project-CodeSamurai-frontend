@@ -11,12 +11,10 @@ import {
   Legend,
 } from "chart.js";
 import s from "./CurrencyChart.module.css";
-import { useRef } from "react";
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip, Legend);
 
 const CurrencyChart = () => {
-  const chartRef = useRef(null);
   const rates = useSelector((state) => state.currency.rates);
 
   // Якщо ще немає курсів — не рендеримо графік
