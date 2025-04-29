@@ -1,20 +1,19 @@
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
-import { deleteTransactions } from "../../redux/transactions/operations";
+import {useDispatch} from "react-redux";
+import {deleteTransactions} from "../../redux/transactions/operations";
 import s from "./TransactionsItem.module.css";
 import Button from "../Button/Button";
-import { MdOutlineModeEdit } from "react-icons/md";
+import {MdOutlineModeEdit} from "react-icons/md";
 import useMedia from "../../helpers/useMedia";
-import { setEditTransaction } from "../../redux/transactions/slice";
+import {setEditTransaction} from "../../redux/transactions/slice";
 
-const getStyleByType = (type) =>
-  type === "income" ? "var(--income-color)" : "var(--expense-color)";
+const getStyleByType = (type) => (type === "income" ? "var(--income-color)" : "var(--expense-color)");
 
-function TransactionsItem({ transaction }) {
+function TransactionsItem({transaction}) {
   const dispatch = useDispatch();
-  const { isMobile } = useMedia();
+  const {isMobile} = useMedia();
 
-  const { date, type, categoryId, comment, sum } = transaction;
+  const {date, type, categoryId, comment, sum} = transaction;
 
   const dateObj = new Date(date);
   const day = String(dateObj.getDate()).padStart(2, "0");
@@ -34,7 +33,9 @@ function TransactionsItem({ transaction }) {
 
   if (isMobile) {
     return (
-      <div className={s.list} style={{ borderColor: color }}>
+      <div
+        className={s.list}
+        style={{borderColor: color}}>
         <div className={s.list_item}>
           <span>Date</span>
           <span>{formattedDate}</span>
@@ -65,8 +66,7 @@ function TransactionsItem({ transaction }) {
           <button
             type="button"
             className={s.edit_btn}
-            onClick={isOpenEditModal}
-          >
+            onClick={isOpenEditModal}>
             <MdOutlineModeEdit />
             Edit
           </button>
@@ -78,18 +78,27 @@ function TransactionsItem({ transaction }) {
   return (
     <tr className={s.row}>
       <td className={s.row_item}>{formattedDate}</td>
-      <td className={s.row_item} style={{ textAlign: "center" }}>
+      <td
+        className={s.row_item}
+        style={{textAlign: "center"}}>
         {formattedType}
       </td>
       <td className={s.row_item}>{categoryId?.name}</td>
       <td className={s.row_item}>{comment}</td>
-      <td className={s.row_item} style={{ color }}>
+      <td
+        className={s.row_item}
+        style={{color}}>
         {sum}
       </td>
-      <td className={clsx(s.row_item, s.controls)}>
-        <button type="button" className={s.edit_btn} onClick={isOpenEditModal}>
+      <td className={clsx(s.row_item)}>
+        <button
+          type="button"
+          className={s.edit_btn}
+          onClick={isOpenEditModal}>
           <MdOutlineModeEdit />
         </button>
+      </td>
+      <td className={clsx(s.row_item)}>
         <Button
           type="button"
           className={s.delete_btn}
