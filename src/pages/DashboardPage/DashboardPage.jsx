@@ -6,18 +6,12 @@ import Currency from "../../components/Currency/Currency";
 import Balance from "../../components/Balance/Balance";
 import s from "./DashboardPage.module.css";
 import Container from "../../components/Container/Container";
-import { useDispatch } from "react-redux";
-import { setAddTransaction } from "../../redux/transactions/slice";
-import ButtonAddTransactions from "../../components/ButtonAddTransactions/ButtonAddTransactions";
 
 const DashboardPage = () => {
   const isBigScreen = useMediaQuery({ query: "(min-width: 768px)" });
 
   const isSmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
-  const dispatch = useDispatch();
-  const handleOpenModal = () => {
-    dispatch(setAddTransaction(true));
-  };
+
   return (
     <section className={s.dashboardSection}>
       <Header />
@@ -26,14 +20,14 @@ const DashboardPage = () => {
         <Container className={s.dashboard}>
           {isBigScreen && (
             <div className={s.grid}>
-             <div className={s.navBalance}>
+              <div className={s.navBalance}>
                 <div className={s.nav}>
                   <Navigation />
                 </div>
-                  <div className={s.balance}>
+                <div className={s.balance}>
                   <Balance />
                 </div>
-             </div>
+              </div>
 
               <div className={s.currency}>
                 <Currency />
@@ -48,7 +42,6 @@ const DashboardPage = () => {
           <div className={s.content}>
             <Outlet />
           </div>
-          <ButtonAddTransactions onClick={handleOpenModal} />
         </Container>
       </main>
     </section>

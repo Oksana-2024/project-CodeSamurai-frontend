@@ -1,18 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchStatistics } from "../../redux/statistics/operations";
-import css from "./StatisticsDashboard.module.css";
-import { colors, months, years } from "../../helpers/statistics";
-import StatisticsChart from "../StatisticsChart/StatisticsChart";
-import {
-  selectStatisticsCategories,
-  selectMonth,
-  selectYear,
-} from "../../redux/statistics/selectors";
+import s from "./StatisticsDashboard.module.css";
+import { months, years } from "../../helpers/statistics";
+import { selectMonth, selectYear } from "../../redux/statistics/selectors";
+import { IoIosArrowDown } from "react-icons/io";
 
 const StatisticsDashboard = () => {
   const dispatch = useDispatch();
-  const categories = useSelector(selectStatisticsCategories);
+
   const savedMonth = useSelector(selectMonth);
   const savedYear = useSelector(selectYear);
   const [month, setMonth] = useState(savedMonth || new Date().getMonth() + 1);
@@ -21,51 +17,43 @@ const StatisticsDashboard = () => {
   useEffect(() => {
     dispatch(fetchStatistics({ month, year }));
   }, [dispatch, month, year]);
-  const data = {
-    labels: categories?.map((v) => v.name) || [],
-    datasets: [
-      {
-        label: "Amount",
-        data: categories.map((v) => v.total) || [],
-        backgroundColor: colors.slice(0, categories.length) || [],
-        borderColor: colors.slice(0, categories.length) || [],
-        borderWidth: 44,
-        weight: 0,
-      },
-    ],
-  };
 
   return (
-    <div className={css.dashboard}>
-      <StatisticsChart data={data} />
-      <label className={css.label}>
-        Month
+    <div className={s.dashboard}>
+      <label className={s.label}>
         <select
-          className={css.select}
+          className={s.selectStatistic}
           value={month}
           onChange={(e) => setMonth(Number(e.target.value))}
         >
+          <option value="" disabled hidden>
+            Month
+          </option>
           {months.map(({ value, label }) => (
-            <option key={value} value={value}>
+            <option  key={value} value={value}>
               {label}
             </option>
           ))}
         </select>
+        <IoIosArrowDown size={24} className={s.selectIcon} />
       </label>
 
-      <label className={css.label}>
-        Year
+      <label className={s.label}>
         <select
-          className={css.select}
+          className={s.selectStatistic}
           value={year}
           onChange={(e) => setYear(Number(e.target.value))}
         >
+          <option  value="" disabled hidden>
+            Year
+          </option>
           {years.map((y) => (
             <option key={y} value={y}>
               {y}
             </option>
           ))}
         </select>
+        <IoIosArrowDown size={24} className={s.selectIcon} />
       </label>
     </div>
   );

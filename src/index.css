@@ -1,6 +1,12 @@
 :root {
   /* main background */
   --main-bg: linear-gradient(45deg, #2e225f, #411e93, #2e225f);
+  --bg-mobile: linear-gradient(
+    90deg,
+    #442378 0%,    
+    #2D1A71 50%,  
+    #1A1447 100% 
+  );
   --bg-page: #101010;
   --bg-dashboard: #261856;
   --bg-currency: rgba(255, 255, 255, 0.2);
@@ -9,6 +15,7 @@
   --bg-balance: rgba(82, 59, 126, 0.6);
   --bg-transaction: rgba(82, 59, 126, 0.6);
   --bg-avatar: #6c3db5;
+  --bg-option: rgba(133, 93, 175, 0.7);
   /* background for modal*/
   --bg-modal: rgba(255, 255, 255, 0.1);
   /* background under modal*/
@@ -131,11 +138,9 @@ textarea {
 body {
   font-family: var(--main-font);
   color: var(--main-color);
-  background: var(--main-bg);
+  background: var(--bg-mobile);
 }
 
 .no-scroll {
   overflow: hidden;
 }
-
-

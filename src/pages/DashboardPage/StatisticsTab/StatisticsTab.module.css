@@ -1,0 +1,41 @@
+.statisticsBox {
+  padding: 16px 20px 45px;
+  background: var(--bg-mobile);
+  border-radius: 8px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.chart {
+  margin-bottom: 24px;
+}
+
+.dashboard {
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .statisticsBox {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    padding: 0 0 13px;
+    background: transparent;
+  }
+  .chart {
+    margin-bottom: 0;
+  }
+  .tabContainer {
+    width: 336px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .statisticsBox {
+    padding-top: 32px;
+  }
+}

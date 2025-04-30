@@ -19,6 +19,14 @@ const StatisticsTable = () => {
 
   return (
     <div className={styles.tableWrapper}>
+      <ul className={styles.titleTab}>
+        <li>
+          <p>Category</p>
+        </li>
+        <li>
+          <p>Sum</p>
+        </li>
+      </ul>
       <ul className={styles.table}>
         {categories.map((category) => (
           <li key={category.name} className={styles.row}>
@@ -33,13 +41,14 @@ const StatisticsTable = () => {
       </ul>
 
       <div className={styles.total}>
-        <p>
-          Expenses:{" "}
-          <span className={styles.expenses}>{expense?.toFixed(2)}</span>
-        </p>
-        <p>
-          Income: <span className={styles.income}>{income?.toFixed(2)}</span>
-        </p>
+        <div className={styles.totalRow}>
+          <p>Expenses:</p>
+          <p className={styles.expenses}>{expense?.toFixed(2)}</p>
+        </div>
+        <div className={styles.totalRow}>
+          <p>Income:</p>
+          <p className={styles.income}>{income?.toFixed(2)}</p>
+        </div>
       </div>
     </div>
   );
