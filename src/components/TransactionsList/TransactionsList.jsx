@@ -1,19 +1,13 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { selectTransactions } from "../../redux/transactions/selectors";
+import {useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {selectTransactions} from "../../redux/transactions/selectors";
 import s from "./TransactionsList.module.css";
 import useMedia from "../../helpers/useMedia";
-import {
-  getTransactions,
-  getCategories,
-} from "../../redux/transactions/operations";
+import {getTransactions, getCategories} from "../../redux/transactions/operations";
 
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
-import {
-  setPage,
-  useTransactionsPagination,
-} from "../../redux/transactions/slice";
+import {setPage, useTransactionsPagination} from "../../redux/transactions/slice";
 import ReactPaginate from "react-paginate";
 
 const columns = ["Date", "Type", "Category", "Comment", "Sum", "", ""];
@@ -38,7 +32,7 @@ function TransactionsList() {
     dispatch(getCategories());
   }, [dispatch, pagination.page]);
 
-  const { isMobile } = useMedia();
+  const {isMobile} = useMedia();
 
   if (isMobile) {
     return (
@@ -46,7 +40,10 @@ function TransactionsList() {
         <div className={`${s.mobileScrollList} ${s.scroll}`}>
           {reduxTransactions.length ? (
             reduxTransactions.map((item) => (
-              <TransactionsItem key={item._id} transaction={item} />
+              <TransactionsItem
+                key={item._id}
+                transaction={item}
+              />
             ))
           ) : (
             <EmptyStateMessage />
@@ -80,20 +77,25 @@ function TransactionsList() {
             ))}
           </tr>
         </thead>
+        <tbody>
+          {reduxTransactions.length ? (
+            reduxTransactions.map((item) => (
+              <TransactionsItem
+                key={item._id}
+                transaction={item}
+              />
+            ))
+          ) : (
+            <tr>
+              <td
+                colSpan={columns.length}
+                className={s.emptyCell}>
+                <EmptyStateMessage />
+              </td>
+            </tr>
+          )}
+        </tbody>
       </table>
-      <div className={`${s.scrollBody} ${s.scroll}`}>
-        <table className={s.table}>
-          <tbody>
-            {reduxTransactions.length ? (
-              reduxTransactions.map((item) => (
-                <TransactionsItem key={item._id} transaction={item} />
-              ))
-            ) : (
-              <EmptyStateMessage />
-            )}
-          </tbody>
-        </table>
-      </div>
       <div>
         <ReactPaginate
           breakLabel="..."
