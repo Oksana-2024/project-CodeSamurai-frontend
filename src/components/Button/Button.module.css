@@ -11,9 +11,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s var(--main-transform);
 }
 
 .baseStyle:hover,
-.baseStyle:focus{
-
+.baseStyle:focus {
+  transform: scale(1.1);
 }

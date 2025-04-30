@@ -1,0 +1,20 @@
+.chartContainer {
+  width: 280px;
+  height: 280px;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.balance {
+  font-weight: 600;
+  font-size: 18px;
+}
+@media screen and (min-width: 768px) {
+  .chartContainer {
+    width: 336px;
+    height: 336px;
+  }
+}

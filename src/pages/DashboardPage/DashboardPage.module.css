@@ -1,5 +1,5 @@
 .dashboardSection {
-  background: var(--bg-dashboard);
+  background: var(--bg-mobile);
 }
 
 .dashboard {
@@ -19,8 +19,8 @@
 
 @media screen and (min-width: 768px) {
   .dashboard {
-    background-image: url("../../assets/img/home_tab.png");
-    background-size: cover;
+    background: var(--bg-mobile);
+    background-image: none;
     padding: 0 32px;
     display: grid;
     grid-template-rows: 234px 1fr;
@@ -33,24 +33,28 @@
     grid-template-columns: 1fr 1fr;
     gap: 0px 32px;
   }
+
   .nav {
     width: 336px;
     height: 134px;
     grid-column: 1;
     grid-row: 1;
   }
+
   .balance {
     width: 336px;
     grid-column: 1;
     grid-row: 2;
-    transform: translateY(21px);
+    /* transform: translateY(21px); */
   }
+
   .currency {
     width: 336px;
     overflow: hidden;
     grid-row: span 2;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    height: 214px;
   }
 
   .navBalance {
@@ -80,7 +84,7 @@
 
   .currency {
     width: 480px;
-    
+    height: 380px;
   }
 
   /* .content {

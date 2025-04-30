@@ -9,6 +9,7 @@
 .navSection {
   padding-top: 12px;
   padding-bottom: 24px;
+  background: var(--bg-mobile);
 }
 
 .active {
@@ -82,6 +83,7 @@
     padding-top: 40px;
     padding-bottom: 28px;
     width: 336px;
+    background: transparent;
   }
 }
 
