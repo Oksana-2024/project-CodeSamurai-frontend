@@ -22,7 +22,7 @@ const validationSchema = yup.object().shape({
     .date()
     .required("Date is required")
     .typeError("Invalid date format"),
-  comment: yup.string().max(300, "Comment is too long"),
+  comment: yup.string().max(60, "Comment is too long"),
 });
 
 const EditTransactionForm = ({ transaction }) => {
@@ -33,7 +33,6 @@ const EditTransactionForm = ({ transaction }) => {
     handleSubmit,
     control,
     formState: { errors },
-    setValue,
     watch,
   } = useForm({
     resolver: yupResolver(validationSchema),
@@ -50,7 +49,9 @@ const EditTransactionForm = ({ transaction }) => {
   const onSubmit = async (data) => {
     const updatedTransaction = {
       _id: transaction._id,
-      ...data,
+      sum: data.sum,
+      date: data.date,
+      comment: data.comment,
     };
 
     try {
@@ -70,7 +71,6 @@ const EditTransactionForm = ({ transaction }) => {
           className={`${css.type_option} ${
             watchType === "income" ? css.active : ""
           }`}
-          onClick={() => setValue("type", "income")}
         >
           Income
         </span>
@@ -79,7 +79,6 @@ const EditTransactionForm = ({ transaction }) => {
           className={`${css.type_option} ${
             watchType === "expense" ? css.active : ""
           }`}
-          onClick={() => setValue("type", "expense")}
         >
           Expense
         </span>
