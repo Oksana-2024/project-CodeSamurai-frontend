@@ -8,6 +8,8 @@ import { useRef, useState } from "react";
 import Button from "../Button/Button";
 import Avatar from "../Avatar/Avatar";
 import { updateUser } from "../../redux/auth/operations";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { validationSchemaUserUpdate } from "../../helpers/userSchema";
 
 const UserModal = () => {
   const dispatch = useDispatch();
@@ -23,7 +25,9 @@ const UserModal = () => {
     if (photo) {
       form.append("photo", photo);
     }
-    dispatch(updateUser(form));
+    await dispatch(updateUser(form))
+      .unwrap()
+      .then(() => dispatch(setOpenUserProfile(false)));
   };
 
   const handlePhotoChange = (event) => {
@@ -37,6 +41,7 @@ const UserModal = () => {
     defaultValues: {
       name: user.name,
     },
+    resolver: yupResolver(validationSchemaUserUpdate),
   });
 
   return (
@@ -62,19 +67,25 @@ const UserModal = () => {
             accept="image/*"
             onChange={handlePhotoChange}
             ref={inputAvatar}
+            className={s.file}
           />
-          <div className={s.error}>
-            {errors.name && <p>Last name is required.</p>}
-          </div>
           <input
+          className={s.textEdit}
             placeholder="Name"
             type="text"
             {...register("name", { required: true })}
+            onChange={(event) => {
+              const target = event.target;
+
+              if (typeof target.value === "string" && target.value) {
+                target.value = target.value.trim();
+              }
+            }}
           />
           <div className={s.error}>
-            {errors.name && <p>Last name is required.</p>}
+            {errors.name && <p>{errors.name.message}</p>}
           </div>
-          <Button text="save" />
+          <Button text="save" className={s.save} />
         </form>
       </div>
     </ModalWindow>

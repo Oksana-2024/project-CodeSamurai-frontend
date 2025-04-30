@@ -26,7 +26,17 @@ const Header = () => {
       <Container className={s.headerContainer}>
         <Logo header />
         <div className={s.user}>
-          <Avatar user={user} onClick={handleOpenUserProfile} />
+          <button
+            type="button"
+            className={s.avatar}
+            onClick={handleOpenUserProfile}
+          >
+            {user?.photo ? (
+              <img width={32} src={user.photo} className={s.photo} />
+            ) : (
+              user.name[0]
+            )}
+          </button>
           <div className={s.line}></div>
           <button
             onClick={handleComfirmLogout}

@@ -14,7 +14,7 @@ const DashboardPage = () => {
 
   return (
     <section className={s.dashboardSection}>
-      <Header />
+    <div className={s.header}>  <Header /></div>
 
       <main>
         <Container className={s.dashboard}>
