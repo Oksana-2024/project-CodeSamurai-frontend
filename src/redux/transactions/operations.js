@@ -16,11 +16,13 @@ export const addTransactions = createAsyncThunk(
 
 export const getTransactions = createAsyncThunk(
   "transactions/all",
-  async (_, thunkApi) => {
+  async (page, thunkApi) => {
     try {
       const token = thunkApi.getState().auth.token;
 
-      const { data } = await useAxios(token).get("/transactions");
+      const { data } = await useAxios(token).get("/transactions", {
+        params: { page: page },
+      });
       const transactions = data.transactions;
       const pagination = data.pageInfo;
       return { transactions, pagination };

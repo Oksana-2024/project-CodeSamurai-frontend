@@ -1,12 +1,7 @@
 :root {
   /* main background */
   --main-bg: linear-gradient(45deg, #2e225f, #411e93, #2e225f);
-  --bg-mobile: linear-gradient(
-    90deg,
-    #442378 0%,    
-    #2D1A71 50%,  
-    #1A1447 100% 
-  );
+  --bg-mobile: linear-gradient(90deg, #442378 0%, #2d1a71 50%, #1a1447 100%);
   --bg-page: #101010;
   --bg-dashboard: #261856;
   --bg-currency: rgba(255, 255, 255, 0.2);
