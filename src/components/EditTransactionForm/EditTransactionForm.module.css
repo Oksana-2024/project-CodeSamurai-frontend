@@ -1,46 +1,28 @@
 .transaction_form {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  justify-content: center;
-  padding-top: 40px;
+  padding: 40px 20px;
 }
 
 .error {
   height: 20px;
   width: 100%;
-}
-
-.form_group,
-.comment {
-  width: 280px;
-}
-
-.comment {
-  display: flex;
-  justify-content: center;
-}
-
-.form_row {
-  display: flex;
- flex-direction: column;
-  gap: 40px;
-}
-
-.form_row .form_group {
-  flex: 1;
+  padding-bottom: 40px;
+  font-size: 10px;
+  color: var(--income-color);
 }
 
 .date_icon {
   color: var(--icon-violet);
   position: absolute;
-  top: 0;
+  top: 4px;
   right: 10px;
   z-index: 0;
   width: 24px;
   height: 24px;
+}
+
+.date_picker_container {
+  position: relative;
 }
 
 .input,
@@ -84,12 +66,6 @@
   resize: none;
 }
 
-.errors {
-  color: var(--income-color);
-  font-size: 9px;
-  margin-top: 2px;
-}
-
 .button_group {
   display: flex;
   flex-direction: column;
@@ -98,15 +74,14 @@
 }
 
 .submit_button {
-  padding: 13px 129px 10px 129px;
   font-weight: 400;
+  width: 280px;
   height: 50px;
   font-size: 18px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
   color: var(--main-color);
-  max-width: 300px;
   background-color: var(--income-color);
   border: none;
   cursor: pointer;
@@ -114,8 +89,8 @@
 
 .close_button {
   border-radius: 20px;
-  max-width: 300px;
-  padding: 13px 110px 10px 111px;
+  width: 280px;
+  height: 50px;
   font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.1em;
@@ -139,9 +114,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
-  font-size: 18px;
+  gap: 12px;
+  padding: 32px 73px 60px 73px;
   font-weight: 600;
+  font-size: 16px;
 }
 
 .type_option {
@@ -172,21 +148,41 @@
 
 @media screen and (min-width: 768px) {
   .transaction_form {
+    width: 540px;
+    padding: 60px 73px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .submit_button {
+    width: 300px;
+    height: 50px;
+  }
+  .form_group {
+    display: flex;
+    gap: 32px;
+    padding-bottom: 40px;
+    position: relative;
+  }
+
+  .input,
+  .inputSumm {
+    width: 181px;
+    text-align: center;
+  }
+  .textarea {
     width: 394px;
   }
-
-  /* .submit_button {
-    width: 280px;
-    } */
-
-  .comment {
+  .form_group .error:first-of-type {
+    position: absolute;
+    top: 20px;
+    left: 13px;
+    width: 181px;
+    font-size: 10px;
+    color: var(--income-color);
   }
-}
-
-.date_icon {
-  position: absolute;
-}
-
-.date_picker_container {
-  position: relative;
+  .type_toggle {
+    padding: 40px 182px 60px 182px;
+  }
 }
