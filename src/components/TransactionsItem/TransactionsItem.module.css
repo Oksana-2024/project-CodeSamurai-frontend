@@ -61,11 +61,17 @@
 }
 
 .row td:nth-child(6) {
-  padding: 0;
+  padding: 16px 0px 16px 12px;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .row td:nth-child(6) {
+    padding: 16px 0px 16px 19px;
+  }
 }
 
 .row td:nth-child(7) {
-  padding-left: 0;
+  padding-left: 8px;
 }
 
 .edit_btn {
