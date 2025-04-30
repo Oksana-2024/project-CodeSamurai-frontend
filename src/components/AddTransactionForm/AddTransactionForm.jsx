@@ -1,6 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -12,21 +11,11 @@ import { BiCalendar } from "react-icons/bi";
 import { selectCategories } from "../../redux/transactions/selectors";
 import { addTransactions } from "../../redux/transactions/operations";
 import { setAddTransaction } from "../../redux/transactions/slice";
+import { AddTransactionSchema } from "../../helpers/addTransactionSchema";
 
 import s from "./AddTransactionForm.module.css";
 import Switch from "../Switch/Switch";
 import Button from "../Button/Button";
-
-// Form validation schema
-const AddTransactionSchema = yup.object({
-  category: yup.string().when("$isChecked", {
-    is: true,
-    then: (schema) => schema.required("Please select a category"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
-  sum: yup.number().required("Please enter the amount").typeError("Must be a number"),
-  comment: yup.string().max(60, "Max 60 characters"),
-});
 
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
