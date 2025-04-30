@@ -72,6 +72,6 @@
 
 @media screen and (min-width: 1280px) {
   .line::after {
-    right: 65px;
+    right: 68px;
   }
 }
