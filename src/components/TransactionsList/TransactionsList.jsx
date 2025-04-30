@@ -1,12 +1,20 @@
-import {useSelector} from "react-redux";
-import {useDispatch} from "react-redux";
-import {useEffect} from "react";
-import {selectTransactions} from "../../redux/transactions/selectors";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { selectTransactions } from "../../redux/transactions/selectors";
 import s from "./TransactionsList.module.css";
 import useMedia from "../../helpers/useMedia";
-import {getTransactions, getCategories} from "../../redux/transactions/operations";
+import {
+  getTransactions,
+  getCategories,
+} from "../../redux/transactions/operations";
 
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
+import {
+  setPage,
+  useTransactionsPagination,
+} from "../../redux/transactions/slice";
+import ReactPaginate from "react-paginate";
 
 const columns = ["Date", "Type", "Category", "Comment", "Sum", "", ""];
 
@@ -21,15 +29,16 @@ function EmptyStateMessage() {
 
 function TransactionsList() {
   const reduxTransactions = useSelector(selectTransactions);
+  const pagination = useTransactionsPagination();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTransactions());
+    dispatch(getTransactions(pagination.page + 1));
     dispatch(getCategories());
-  }, [dispatch]);
+  }, [dispatch, pagination.page]);
 
-  const {isMobile} = useMedia();
+  const { isMobile } = useMedia();
 
   if (isMobile) {
     return (
@@ -37,14 +46,25 @@ function TransactionsList() {
         <div className={`${s.mobileScrollList} ${s.scroll}`}>
           {reduxTransactions.length ? (
             reduxTransactions.map((item) => (
-              <TransactionsItem
-                key={item._id}
-                transaction={item}
-              />
+              <TransactionsItem key={item._id} transaction={item} />
             ))
           ) : (
             <EmptyStateMessage />
           )}
+        </div>
+        <div>
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel="next >"
+            onPageChange={(page) => dispatch(setPage(page.selected))}
+            pageRangeDisplayed={1}
+            pageCount={pagination.totalPage}
+            previousLabel="< previous"
+            renderOnZeroPageCount={null}
+            activeClassName={s.pageActive}
+            disabledClassName={s.pageButtonDisabled}
+            className={s.pageContainer}
+          />
         </div>
       </div>
     );
@@ -66,16 +86,27 @@ function TransactionsList() {
           <tbody>
             {reduxTransactions.length ? (
               reduxTransactions.map((item) => (
-                <TransactionsItem
-                  key={item._id}
-                  transaction={item}
-                />
+                <TransactionsItem key={item._id} transaction={item} />
               ))
             ) : (
               <EmptyStateMessage />
             )}
           </tbody>
         </table>
+      </div>
+      <div>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="next >"
+          onPageChange={(page) => dispatch(setPage(page.selected))}
+          pageRangeDisplayed={1}
+          pageCount={pagination.totalPage}
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+          activeClassName={s.pageActive}
+          disabledClassName={s.pageButtonDisabled}
+          className={s.pageContainer}
+        />
       </div>
     </div>
   );

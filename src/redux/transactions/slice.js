@@ -15,7 +15,7 @@ const transactions = {
   currentTransaction: null,
   isOpenAddTransaction: false,
   perPage: 8,
-  page: 1,
+  page: 0, // page start from 0
   totalPages: 1,
   isOpenEditTransaction: false,
 };
@@ -41,6 +41,9 @@ const transactionsSlice = createSlice({
     setEditTransaction(state, action) {
       state.currentTransaction = action.payload;
     },
+    setPage(state, { payload }) {
+      state.page = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -52,7 +55,6 @@ const transactionsSlice = createSlice({
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
         state.items = payload.transactions;
         state.perPage = payload.pagination.perPage;
-        state.page = payload.pagination.page;
         state.totalPages = payload.pagination.totalPages;
       })
       .addCase(deleteTransactions.fulfilled, (state, { payload }) => {
@@ -76,7 +78,7 @@ const transactionsSlice = createSlice({
 
 const transactionsReducer = transactionsSlice.reducer;
 
-export const { setAddTransaction, setEditTransaction } =
+export const { setAddTransaction, setEditTransaction, setPage } =
   transactionsSlice.actions;
 
 export default transactionsReducer;
