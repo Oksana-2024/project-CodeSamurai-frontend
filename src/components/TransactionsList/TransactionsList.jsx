@@ -1,41 +1,51 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { selectTransactions } from "../../redux/transactions/selectors";
+import {useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {selectTransactions} from "../../redux/transactions/selectors";
 import s from "./TransactionsList.module.css";
 import useMedia from "../../helpers/useMedia";
-import {
-  getTransactions,
-  getCategories,
-} from "../../redux/transactions/operations";
+import {getTransactions, getCategories} from "../../redux/transactions/operations";
 
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 
-const columns = ["Date", "Type", "Category", "Comment", "Sum", ""];
+const columns = ["Date", "Type", "Category", "Comment", "Sum", "", ""];
+
+function EmptyStateMessage() {
+  return (
+    <>
+      <p className={s.emptyText}>No transaction yet.</p>
+      <p className={s.emptyText}>Let&apos;s add your first transaction!</p>
+    </>
+  );
+}
 
 function TransactionsList() {
   const reduxTransactions = useSelector(selectTransactions);
 
   const dispatch = useDispatch();
 
-  
-
   useEffect(() => {
     dispatch(getTransactions());
     dispatch(getCategories());
   }, [dispatch]);
 
-  const { isMobile } = useMedia();
+  const {isMobile} = useMedia();
 
   if (isMobile) {
     return (
-      <div className={s.container}>
-        <div className={s.list}>
-          {reduxTransactions.map((item) => (
-            <TransactionsItem key={item._id} transaction={item} />
-          ))}
+      <div className={s.mobileContainer}>
+        <div className={`${s.mobileScrollList} ${s.scroll}`}>
+          {reduxTransactions.length ? (
+            reduxTransactions.map((item) => (
+              <TransactionsItem
+                key={item._id}
+                transaction={item}
+              />
+            ))
+          ) : (
+            <EmptyStateMessage />
+          )}
         </div>
-     
       </div>
     );
   }
@@ -50,13 +60,23 @@ function TransactionsList() {
             ))}
           </tr>
         </thead>
-        <tbody>
-          {reduxTransactions.map((item) => (
-            <TransactionsItem key={item._id} transaction={item} />
-          ))}
-        </tbody>
       </table>
-    
+      <div className={`${s.scrollBody} ${s.scroll}`}>
+        <table className={s.table}>
+          <tbody>
+            {reduxTransactions.length ? (
+              reduxTransactions.map((item) => (
+                <TransactionsItem
+                  key={item._id}
+                  transaction={item}
+                />
+              ))
+            ) : (
+              <EmptyStateMessage />
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

@@ -20,6 +20,10 @@
   font-weight: 600;
 }
 
+.list_item span:nth-child(2) {
+  margin-left: 10px;
+}
+
 .list_item span:last-child {
   font-weight: 400;
 }
@@ -27,6 +31,10 @@
 .list_item:not(:last-child),
 .row:not(:last-child) {
   border-bottom: 1px solid var(--bg-modal);
+}
+
+.row {
+  height: 20px;
 }
 
 .row td {
@@ -41,21 +49,29 @@
   text-align: left;
 }
 
-.row td:nth-child(5) {
-  text-align: right;
+.row td:nth-child(4) {
+  text-align: left;
+  max-width: 200px;
 }
 
-.row td:last-child {
+.row td:nth-child(5) {
   text-align: right;
-  display: flex;
-  flex-wrap: nowrap;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.row td:nth-child(6) {
+  padding: 0;
+}
+
+.row td:nth-child(7) {
+  padding-left: 0;
 }
 
 .edit_btn {
   background-color: transparent;
   color: var(--main-color);
   padding: 5px;
-  margin-right: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
