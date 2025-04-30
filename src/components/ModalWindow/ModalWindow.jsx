@@ -1,9 +1,9 @@
 import Modal from "react-modal";
+import clsx from "clsx";
 Modal.setAppElement("#root");
 import { AiOutlineClose } from "react-icons/ai";
-import clsx from "clsx";
-import s from "./ModalWindow.module.css";
 import { noScrollDisable, noScrollEnable } from "../../helpers/noScroll";
+import s from "./ModalWindow.module.css";
 
 const customStyles = {
   content: {
@@ -16,7 +16,7 @@ const customStyles = {
     padding: "0",
     border: "none",
     borderRadius: "8px",
-    backgroundColor:"var(--bg-modal)",
+    backgroundColor: "var(--bg-modal)",
     backdropFilter: "blur(100px)",
     boxShadow: "0 4px 60px 0 rgba(0, 0, 0, 0.25)",
   },

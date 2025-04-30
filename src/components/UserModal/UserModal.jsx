@@ -10,12 +10,14 @@ import Avatar from "../Avatar/Avatar";
 import { updateUser } from "../../redux/auth/operations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchemaUserUpdate } from "../../helpers/userSchema";
+import useMedia from "../../helpers/useMedia";
 
 const UserModal = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const isUserOpen = useSelector(selectUserProfile);
   const inputAvatar = useRef(null);
+  const { isMobile } = useMedia;
 
   const [photo, setFile] = useState(null);
   const onSubmit = async (data) => {
@@ -49,6 +51,7 @@ const UserModal = () => {
       closeModal={() => dispatch(setOpenUserProfile(false))}
       modalIsOpen={isUserOpen}
       title="Edit Profile"
+      showIcon={isMobile ? false : true}
     >
       <div className={s.modalBox}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,7 +73,7 @@ const UserModal = () => {
             className={s.file}
           />
           <input
-          className={s.textEdit}
+            className={s.textEdit}
             placeholder="Name"
             type="text"
             {...register("name", { required: true })}
