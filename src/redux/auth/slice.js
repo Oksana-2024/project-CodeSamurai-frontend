@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-import { currentUser, logoutUser } from "./operations.js";
+import { currentUser, logoutUser, updateUser } from "./operations.js";
 
 import { registerThunk, loginThunk } from "./operations.js";
 import { selectIsLoggedIn, selectUser, selectToken } from "./selectors.js";
@@ -20,6 +20,7 @@ const auth = {
   token: null,
   isLoggedIn: false,
   isComfirmLogout: false,
+  isUserOpen: false,
 };
 
 export const useAuth = () => {
@@ -39,6 +40,9 @@ const authSlice = createSlice({
   reducers: {
     setComfirmLogout(state, action) {
       state.isComfirmLogout = action.payload;
+    },
+    setOpenUserProfile(state, action) {
+      state.isUserOpen = action.payload;
     },
   },
 
@@ -84,10 +88,14 @@ const authSlice = createSlice({
           state.token = null;
           state.isLoggedIn = false;
         }
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user.photo = action.payload.data.photo;
+        state.user.name = action.payload.data.name;
       });
   },
 });
 
 const authReducer = authSlice.reducer;
-export const { setComfirmLogout } = authSlice.actions;
+export const { setComfirmLogout, setOpenUserProfile } = authSlice.actions;
 export default authReducer;

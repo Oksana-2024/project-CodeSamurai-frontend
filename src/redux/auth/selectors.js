@@ -8,3 +8,4 @@ export const selectBalance = (state) => state.auth.user.balance;
 
 export const selectComfirmLogout = (state) => state.auth.isComfirmLogout;
 
+export const selectUserProfile = (state) => state.auth.isUserOpen;

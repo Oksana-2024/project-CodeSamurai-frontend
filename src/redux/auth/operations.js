@@ -78,7 +78,21 @@ export const currentUser = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { token } = thunkApi.getState().auth;
-      const { data } = await useAxios(token).get("/currentUsers");
+      const { data } = await useAxios(token).get("/users/current");
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.status);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "user/update",
+  async (newUser, thunkApi) => {
+    try {
+      const state = thunkApi.getState();
+      const { token } = state.auth;
+      const { data } = await useAxios(token).patch("/users/current", newUser);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.status);

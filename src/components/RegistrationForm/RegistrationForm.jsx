@@ -94,7 +94,9 @@ const RegistrationForm = () => {
               />
             </div>
             <div className={s.errorWrapper}>
-              {errors.name && <p className={s.error}>{errors.name.message}</p>}
+              {errors.name && (
+                <p className={s.error}>Error: {errors.name.message}</p>
+              )}
             </div>
           </label>
 

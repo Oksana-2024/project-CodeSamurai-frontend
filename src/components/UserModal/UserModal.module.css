@@ -1,0 +1,47 @@
+.modalBox {
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+}
+
+.save {
+  width: 280px;
+  height: 50px;
+  opacity: 0.5;
+  margin-top: 60px;
+}
+
+.file {
+  display: none;
+}
+
+.error {
+  height: 20px;
+  color: var(--red);
+}
+
+.textEdit {
+  width: 280px;
+  outline: none;
+  border: none;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--user-color);
+  background-color: transparent;
+  border-bottom: 1px solid var(--bg-modal);
+}
+
+@media screen and (min-width: 768px) {
+  .save {
+    width: 300px;
+    margin-top: 37px;
+  }
+  .modalBox {
+    padding-top: 24px;
+    width: 394px;
+  }
+}

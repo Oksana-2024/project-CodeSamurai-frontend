@@ -28,8 +28,8 @@
 }
 
 @media screen and (min-resolution: 192dpi),
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 2dppx) {
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 2dppx) {
   .loginContainer {
     background-color: var(--bg-modal);
     backdrop-filter: blur(100px);
@@ -130,8 +130,7 @@
   color: var(--income-color);
   font-size: 9px;
   margin-top: 2px;
-  position: fixed;
-  position: relative;
+  height: 20px;
 }
 
 .button {
@@ -212,8 +211,8 @@
   }
 
   @media screen and (min-resolution: 192dpi),
-  (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 2dppx) {
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 2dppx) {
     .loginContainer {
       background-image: url("../../assets/img/log_form_t@2x.png"),
         url("../../assets/img/ellipse_19@2x.png");

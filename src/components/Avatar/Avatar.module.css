@@ -1,0 +1,53 @@
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-avatar);
+  border-radius: 8px;
+  padding: 0;
+  overflow: hidden;
+  width: 96px;
+  height: 96px;
+}
+
+.addAvatar {
+  color: var(--main-color);
+  background: var(--main-btn-gradient);
+  position: absolute;
+  bottom: -14px;
+  right: 31px;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.avatarWrapper {
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+  position: relative;
+  margin: 0 auto 75px;
+}
+
+.photo {
+  border-radius: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .avatar {
+    width: 68px;
+    height: 68px;
+  }
+  .avatarWrapper {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 30px;
+  }
+
+  .addAvatar {
+    width: 24px;
+    height: 24px;
+    right: 23px;
+  }
+}
