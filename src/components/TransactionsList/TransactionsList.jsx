@@ -24,8 +24,8 @@ function TransactionsList() {
 
   if (isMobile) {
     return (
-      <div className={s.container}>
-        <div className={s.list}>
+      <div className={s.mobileContainer}>
+        <div className={`${s.mobileScrollList} ${s.scroll}`}>
           {reduxTransactions.map((item) => (
             <TransactionsItem
               key={item._id}
@@ -47,15 +47,19 @@ function TransactionsList() {
             ))}
           </tr>
         </thead>
-        <tbody>
-          {reduxTransactions.map((item) => (
-            <TransactionsItem
-              key={item._id}
-              transaction={item}
-            />
-          ))}
-        </tbody>
       </table>
+      <div className={`${s.scrollBody} ${s.scroll}`}>
+        <table className={s.table}>
+          <tbody>
+            {reduxTransactions.map((item) => (
+              <TransactionsItem
+                key={item._id}
+                transaction={item}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
