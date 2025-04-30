@@ -1,4 +1,65 @@
-.dashboardWrapper {
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.selectStatistic {
+  appearance: none;
+  outline: none;
+  width: 100%;
+  z-index: 1;
+  height: 50px;
+  border: 1px solid var(--form-color);
+  border-radius: 8px;
+  background: var(--bg-chart2);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--main-color);
+  padding: 12px 20px 14px;
+}
+.label {
+  position: relative;
+}
+.selectIcon {
+  position: absolute;
+  color: var(--form-color);
+  top: 12px;
+  right: 13px;
+  pointer-events: none;
+}
+
+.selectStatistic option {
+  outline: none;
+  background-color: var(--bg-option);
+  backdrop-filter: blur(100px);
+  box-shadow: var(--modal-shadow);
+  color: var(--main-color);
+  border: none;
+  appearance: none;
+}
+
+.selectStatistic:focus + .selectIcon {
+  transform: rotateX(180deg);
+}
+
+.selectStatistic option:checked,
+.selectStatistic:focus option:checked,
+.selectStatistic:focus-visible option:checked {
+  background: var(--bg-modal);
+  color: var(--expense-color);
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard {
+    flex-direction: row;
+    gap: 16px;
+  }
+  .selectStatistic {
+    width: 160px;
+  }
+}
+
+/* .dashboardWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,4 +117,4 @@
   .selectGroup {
     width: 160px;
   }
-}
+} */

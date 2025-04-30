@@ -1,5 +1,5 @@
 .dashboardSection {
-  background: var(--bg-dashboard);
+  background: var(--bg-mobile);
 }
 
 .dashboard {
@@ -19,8 +19,8 @@
 
 @media screen and (min-width: 768px) {
   .dashboard {
-    background-image: url("../../assets/img/home_tab.png");
-    background-size: cover;
+    background: var(--bg-mobile);
+    background-image: none;
     padding: 0 32px;
     display: grid;
     grid-template-rows: 234px 1fr;
