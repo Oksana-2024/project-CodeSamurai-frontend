@@ -10,6 +10,15 @@ import TransactionsItem from "../TransactionsItem/TransactionsItem";
 
 const columns = ["Date", "Type", "Category", "Comment", "Sum", "", ""];
 
+function EmptyStateMessage() {
+  return (
+    <>
+      <p className={s.emptyText}>No transaction yet.</p>
+      <p className={s.emptyText}>Let&apos;s add your first transaction!</p>
+    </>
+  );
+}
+
 function TransactionsList() {
   const reduxTransactions = useSelector(selectTransactions);
 
@@ -26,12 +35,16 @@ function TransactionsList() {
     return (
       <div className={s.mobileContainer}>
         <div className={`${s.mobileScrollList} ${s.scroll}`}>
-          {reduxTransactions.map((item) => (
-            <TransactionsItem
-              key={item._id}
-              transaction={item}
-            />
-          ))}
+          {reduxTransactions.length ? (
+            reduxTransactions.map((item) => (
+              <TransactionsItem
+                key={item._id}
+                transaction={item}
+              />
+            ))
+          ) : (
+            <EmptyStateMessage />
+          )}
         </div>
       </div>
     );
@@ -51,12 +64,16 @@ function TransactionsList() {
       <div className={`${s.scrollBody} ${s.scroll}`}>
         <table className={s.table}>
           <tbody>
-            {reduxTransactions.map((item) => (
-              <TransactionsItem
-                key={item._id}
-                transaction={item}
-              />
-            ))}
+            {reduxTransactions.length ? (
+              reduxTransactions.map((item) => (
+                <TransactionsItem
+                  key={item._id}
+                  transaction={item}
+                />
+              ))
+            ) : (
+              <EmptyStateMessage />
+            )}
           </tbody>
         </table>
       </div>

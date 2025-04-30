@@ -114,6 +114,12 @@
   width: 170px;
 }
 
+.emptyText {
+  margin-top: 20px;
+  font-size: large;
+  text-align: center;
+}
+
 @media screen and (min-width: 1280px) {
   .tableContainer {
     padding-top: 46px;
