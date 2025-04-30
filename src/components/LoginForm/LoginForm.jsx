@@ -24,7 +24,6 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(validationSchemaLogin),
@@ -49,12 +48,7 @@ const LoginForm = () => {
     try {
       await dispatch(loginThunk(data)).unwrap();
       navigate("/dashboard");
-    } catch {
-      setError("email", {
-        type: "server",
-        message: "Invalid email or password.",
-      });
-    }
+    } catch (error) {}
   };
 
   return (

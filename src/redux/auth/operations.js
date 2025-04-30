@@ -40,7 +40,7 @@ export const loginThunk = createAsyncThunk(
       return data;
     } catch (error) {
       const status = error.response?.status;
-      const backendMessage = error.response?.data?.data?.message;
+      const backendMessage = error.response?.data?.message;
 
       let message = "Something went wrong. Please try again later.";
 

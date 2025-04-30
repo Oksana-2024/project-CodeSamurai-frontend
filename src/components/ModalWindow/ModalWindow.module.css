@@ -1,6 +1,6 @@
 .modalBox {
   width: 320px;
-  background: #6b5794;
+  background: var(--bg-modal);
   background-image: url("../../assets/img/ellipse_19.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -10,8 +10,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 0;
-  position: relative;
+  padding: 20px 20px 40px;
+}
+
+@media screen and (min-resolution: 192dpi),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 2dppx) {
+  .modalBox {
+    background-image: url("../../assets/img/ellipse_19@2x.png");
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -25,23 +32,16 @@
   font-weight: 400;
   font-size: 30px;
   text-align: center;
-
 }
 
 .closeIcon {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  visibility: visible;
+  margin-left: auto;
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .title {
     font-size: 24px;
   }
 
-  .closeIcon {
-    visibility: hidden;
-  }
 }

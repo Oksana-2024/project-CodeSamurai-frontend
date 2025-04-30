@@ -4,14 +4,14 @@ import { Doughnut } from "react-chartjs-2";
 import s from "./StatisticsChart.module.css";
 import { colors } from "../../helpers/statistics";
 import {
+  selectExpense,
   selectStatisticsCategories,
-  selectStatisticsTransactions,
 } from "../../redux/statistics/selectors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const StatisticsChart = () => {
-  const transactions = useSelector(selectStatisticsTransactions);
+  const expense = useSelector(selectExpense);
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -51,7 +51,7 @@ const StatisticsChart = () => {
           fontSize: "18px",
         }}
       >
-        <p className={s.balance}>₴ {transactions.toFixed(2)}</p>
+        <p className={s.balance}>₴ {expense.toFixed(2)}</p>
       </div>
     </div>
   );
