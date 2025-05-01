@@ -16,7 +16,7 @@
 @media screen and (min-resolution: 192dpi),
   (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 2dppx) {
-  .login {
+  .loginPage {
     background-image: url("../../assets/img/mobile@2x.png");
   }
 }
