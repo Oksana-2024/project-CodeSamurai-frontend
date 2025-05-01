@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { currentUser } from "../redux/auth/operations.js";
 import ModalEditTransaction from "./ModalEditTransaction/ModalEditTransaction.jsx";
 import UserModal from "./UserModal/UserModal.jsx";
+import { useAuth } from "../redux/auth/slice.js";
 
 const Login = lazy(() => import("../pages/LoginPage/LoginPage"));
 const Dashboard = lazy(() => import("../pages/DashboardPage/DashboardPage"));
@@ -27,9 +28,11 @@ const CurrencyTab = lazy(() =>
 );
 
 function App() {
+  const { isLoggedIn } = useAuth();
   const isSmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
   const dispatch = useDispatch();
   useEffect(() => {
+    if (!isLoggedIn) return;
     dispatch(currentUser());
   }, [dispatch]);
   return (

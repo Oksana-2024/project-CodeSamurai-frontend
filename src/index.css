@@ -1,5 +1,4 @@
 :root {
-  /* main background */
   --main-bg: linear-gradient(45deg, #2e225f, #411e93, #2e225f);
   --bg-mobile: linear-gradient(90deg, #442378 0%, #2d1a71 50%, #1a1447 100%);
   --bg-safari: -webkit-linear-gradient(
@@ -17,34 +16,34 @@
   --bg-transaction: rgba(82, 59, 126, 0.6);
   --bg-avatar: #6c3db5;
   --bg-option: rgba(133, 93, 175, 0.7);
-  /* background for modal*/
+
   --bg-modal: rgba(255, 255, 255, 0.1);
-  /* background under modal*/
+
   --bg-blur: rgba(34, 13, 91, 0.23);
-  /* backgroud header */
+
   --bg-header-gradient: linear-gradient(276deg, #2e1746 3.19%, #2e225f 100%);
   --green: #02863b;
   --red: #ca0642;
-  /* main color by text */
+
   --main-color: #fbfbfb;
-  /* color info user: name + exit/icon */
+
   --user-color: rgba(255, 255, 255, 0.6);
-  /* placeholder + icon for input */
+
   --form-color: rgba(255, 255, 255, 0.6);
-  /* color for light button */
+
   --dark-color: #623f8b;
   --expense-color: #ff868d;
   --income-color: #ffb627;
-  /* gradient all orange button */
+
   --main-btn-gradient: linear-gradient(
     167deg,
     #ffc727 0%,
     #9e40ba 61.46%,
     #7000ff 90.54%
   );
-  /* shadow for all button */
+
   --btn-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
-  /* shadow for all modal (example Register, AddTransaction etc.) */
+
   --modal-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
   --header-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25),
     inset 0 -3px 2px 0 rgba(0, 0, 0, 0.1);
@@ -52,7 +51,7 @@
   --main-font: "Poppins", sans-serif;
   --main-transform: ease;
   --second-transform: ease-in-out;
-  /* color for icon (mobile navigation, calendar */
+
   --icon-violet: #734aef;
   --icon-hover: rgba(255, 255, 255, 0.4);
 }

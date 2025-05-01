@@ -32,6 +32,7 @@ const DashboardPage = () => {
               <div className={s.currency}>
                 <Currency />
               </div>
+              <div className={s.decorLine}></div>
             </div>
           )}
           {isSmallScreen && (

@@ -87,17 +87,18 @@
     height: 380px;
   }
 
-  /* .content {
-    grid-row: span 3;
-    grid-column: span 1;
-  } */
   .dashboard {
     padding: 0 16px;
     gap: 0 53px;
     grid-template-columns: 480px 715px;
-    /* grid-template-areas:
-      "nav content"
-      "balance "
-      "currency "; */
+  }
+  .decorLine::after {
+    content: "";
+    border-left: 1px solid var(--user-color);
+    width: 0px;
+    height: calc(100vh - 68px);
+    position: absolute;
+    top: 0px;
+    left: 494px;
   }
 }

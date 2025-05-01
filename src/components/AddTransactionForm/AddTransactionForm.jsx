@@ -8,7 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { IoIosArrowDown } from "react-icons/io";
 import { BiCalendar } from "react-icons/bi";
-import { selectCategories } from "../../redux/transactions/selectors";
+import {
+  selectCategories,
+  selectPage,
+} from "../../redux/transactions/selectors";
 import {
   addTransactions,
   getTransactions,
@@ -22,7 +25,7 @@ import Button from "../Button/Button";
 
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const [isChecked, setIsChecked] = useState(true); 
+  const [isChecked, setIsChecked] = useState(true);
   const categories = useSelector(selectCategories);
   const incomeCategory = categories.find(
     (category) => category.name === "Income"
@@ -30,6 +33,7 @@ const AddTransactionForm = ({ closeModal }) => {
   const expenceCategories = categories.filter(
     (category) => category.name !== "Income"
   );
+  const page = useSelector(selectPage);
 
   const dispatch = useDispatch();
 
@@ -42,12 +46,12 @@ const AddTransactionForm = ({ closeModal }) => {
   } = useForm({
     resolver: yupResolver(AddTransactionSchema),
     defaultValues: { sum: "", comment: "", date: new Date() },
-    context: { isChecked }, 
+    context: { isChecked },
   });
 
   const onSubmit = async (data) => {
     const newTransaction = {
-      type: !isChecked ? "income" : "expense", 
+      type: !isChecked ? "income" : "expense",
       categoryId: !isChecked ? incomeCategory._id : data.category,
       sum: data.sum,
       date: data.date,
@@ -58,8 +62,8 @@ const AddTransactionForm = ({ closeModal }) => {
       .unwrap()
       .then(() => {
         toast.success("Transaction added successfully!");
-        dispatch(getTransactions());
-        reset(); 
+        dispatch(getTransactions(page + 1));
+        reset();
         closeModal(() => dispatch(setAddTransaction(false)));
       })
       .catch((error) => {

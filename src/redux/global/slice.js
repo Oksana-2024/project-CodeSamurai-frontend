@@ -11,6 +11,7 @@ import {
   deleteTransactions,
   addTransactions,
   getCategories,
+  updateTransaction,
 } from "../transactions/operations";
 import { fetchStatistics } from "../statistics/operations";
 
@@ -26,7 +27,6 @@ const handleFulfilled = (state) => {
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
-  // todo: зробити обробку помилок?
   state.isError = action.payload.data?.message || "Something went wrong";
 };
 
@@ -51,6 +51,7 @@ const globalSlice = createSlice({
           getTransactions.pending,
           deleteTransactions.pending,
           addTransactions.pending,
+          updateTransaction.pending,
           fetchStatistics.pending
         ),
         handlePending
@@ -66,6 +67,7 @@ const globalSlice = createSlice({
           getTransactions.rejected,
           deleteTransactions.rejected,
           addTransactions.rejected,
+          updateTransaction.rejected,
           fetchStatistics.rejected
         ),
         handleRejected
@@ -81,6 +83,7 @@ const globalSlice = createSlice({
           getTransactions.fulfilled,
           deleteTransactions.fulfilled,
           addTransactions.fulfilled,
+          updateTransaction.fulfilled,
           fetchStatistics.fulfilled
         ),
         handleFulfilled

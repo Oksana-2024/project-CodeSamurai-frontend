@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getTransactions,
   deleteTransactions,
-  addTransactions,
   getCategories,
   updateTransaction,
 } from "./operations";
@@ -47,15 +46,13 @@ const transactionsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addTransactions.fulfilled, (state, { payload }) => {
-        state.items = [...state.items, payload.transaction].sort(
-          (b, a) => new Date(a.date).getTime() - new Date(b.date).getTime()
-        );
-      })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
         state.items = payload.transactions;
         state.perPage = payload.pagination.perPage;
         state.totalPages = payload.pagination.totalPages;
+        if (payload.pagination.totalPages < state.page + 1) {
+          state.page = 0;
+        }
       })
       .addCase(deleteTransactions.fulfilled, (state, { payload }) => {
         state.items = state.items.filter(

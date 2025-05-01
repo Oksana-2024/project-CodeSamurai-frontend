@@ -4,8 +4,8 @@ import { fetchCurrency } from "./operations.js";
 import { selectRates, selectUpdatedAt } from "./selectors.js";
 
 const currency = {
-  updatedAt: null, // коли востаннє були отримані дані
-  rates: [], // список курсів валют
+  updatedAt: null, 
+  rates: [], 
   isLoading: false,
   isError: false,
 };
