@@ -21,19 +21,17 @@
 .loginContainer {
   border-radius: 8px;
   background-image: url("../../assets/img/ellipse_19.png");
-  background-position: 0px 0px;
-  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   background-color: var(--bg-modal);
+  box-shadow: var(--modal-shadow);
 }
 
 @media screen and (min-resolution: 192dpi),
   (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 2dppx) {
   .loginContainer {
-    background-color: var(--bg-modal);
-    backdrop-filter: blur(100px);
-    box-shadow: var(--modal-shadow);
     background-image: url("../../assets/img/ellipse_19@2x.png");
   }
 }
@@ -68,8 +66,6 @@
   pointer-events: none;
 }
 
-/* 
-Прибирає біле поле при автозаповненні та чорні букви при переході на наступне поле */
 .regInput:-webkit-autofill,
 .regInput:-webkit-autofill:hover,
 .regInput:-webkit-autofill:focus,
@@ -201,21 +197,18 @@
 
   .loginContainer {
     background-image: url("../../assets/img/ellipse_19.png"),
-      url("../../assets/img/log_form_t.png");
+      url("../../assets/img/reg_form_t.png");
     background-repeat: no-repeat, no-repeat;
-    background-size: 539px 569px, 800px 700px;
+    background-size: 557px 626px, 800px 900px;
     background-position: center;
-    overflow: hidden;
-    backdrop-filter: blur(100px);
-    box-shadow: var(--modal-shadow);
   }
 
   @media screen and (min-resolution: 192dpi),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 2dppx) {
     .loginContainer {
-      background-image: url("../../assets/img/log_form_t@2x.png"),
-        url("../../assets/img/ellipse_19@2x.png");
+      background-image: url("../../assets/img/ellipse_19@2x.png"),
+      url("../../assets/img/reg_form_t@2x.png");
     }
   }
 }

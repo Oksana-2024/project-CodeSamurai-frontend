@@ -45,7 +45,7 @@
     width: 336px;
     grid-column: 1;
     grid-row: 2;
-    /* transform: translateY(21px); */
+    border-radius: 8px;
   }
 
   .currency {

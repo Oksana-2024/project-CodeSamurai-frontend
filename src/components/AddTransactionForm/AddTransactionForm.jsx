@@ -22,7 +22,7 @@ import Button from "../Button/Button";
 
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const [isChecked, setIsChecked] = useState(true); // Стан для перемикача
+  const [isChecked, setIsChecked] = useState(true); 
   const categories = useSelector(selectCategories);
   const incomeCategory = categories.find(
     (category) => category.name === "Income"
@@ -42,12 +42,12 @@ const AddTransactionForm = ({ closeModal }) => {
   } = useForm({
     resolver: yupResolver(AddTransactionSchema),
     defaultValues: { sum: "", comment: "", date: new Date() },
-    context: { isChecked }, // <-- передаємо в контекст
+    context: { isChecked }, 
   });
 
   const onSubmit = async (data) => {
     const newTransaction = {
-      type: !isChecked ? "income" : "expense", // використовуємо isChecked
+      type: !isChecked ? "income" : "expense", 
       categoryId: !isChecked ? incomeCategory._id : data.category,
       sum: data.sum,
       date: data.date,
@@ -59,9 +59,8 @@ const AddTransactionForm = ({ closeModal }) => {
       .then(() => {
         toast.success("Transaction added successfully!");
         dispatch(getTransactions());
-        reset(); // очищаємо форму
+        reset(); 
         closeModal(() => dispatch(setAddTransaction(false)));
-        // закриваємо модальне вікно, якщо передано функцію
       })
       .catch((error) => {
         console.error(`Failed to add transaction: ${error.message}`);

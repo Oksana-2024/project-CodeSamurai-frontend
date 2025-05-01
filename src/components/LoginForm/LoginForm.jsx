@@ -58,7 +58,6 @@ const LoginForm = () => {
           <Logo className={s.iconLogo} />
         </div>
         <div className={s.loginBoxLabel}>
-          {/* Email */}
           <label className={s.label}>
             <div className={s.inputContainerLogo}>
               <MdEmail size={24} className={s.icon} />
@@ -76,7 +75,6 @@ const LoginForm = () => {
             </div>
           </label>
 
-          {/* Password */}
           <label className={s.label}>
             <div className={s.inputContainerLogo}>
               <PiLockFill size={24} className={s.icon} />

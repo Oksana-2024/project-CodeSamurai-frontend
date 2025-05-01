@@ -2,8 +2,8 @@
   background-color: var(--bg-page);
   background-image: url("../../assets/img/mobile.png");
   background-repeat: no-repeat;
-  background-position: 0px 0px;
   background-size: 100vw 100vh;
+  background-position: 0px 0px;
 }
 .login {
   display: flex;

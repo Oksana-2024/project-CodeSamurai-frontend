@@ -26,10 +26,9 @@ ChartJS.register(
 const CurrencyChart = () => {
   const rates = useSelector(selectRates);
 
-  // Якщо ще немає курсів — не рендеримо графік
+
   if (rates.length === 0) return null;
 
-  // Вигадані курси
   const fakeRates = [
     { currency: "", purchase: 38.49, sale: 38.99 },
     { currency: "", purchase: 40.09, sale: 40.59 },
@@ -37,7 +36,7 @@ const CurrencyChart = () => {
     { currency: "", purchase: 44.09, sale: 44.49 },
   ];
 
-  // Вставити реальні USD та EUR разом із фейками
+  
   const finalRates = [
     fakeRates[0],
     rates.find((r) => r.currency === "USD"),
@@ -45,7 +44,7 @@ const CurrencyChart = () => {
     fakeRates[2],
     rates.find((r) => r.currency === "EUR"),
     fakeRates[3],
-  ].filter(Boolean); // Якщо якась валюта не прийшла — пропустити
+  ].filter(Boolean); 
 
   const labels = finalRates.map((r) => r.currency);
   const purchase = finalRates.map((r) => r.purchase);
@@ -67,7 +66,7 @@ const CurrencyChart = () => {
       const { ctx } = chart;
 
       if (window.innerWidth < 1280) {
-        return; // не рендеримо підписи на маленьких екранах
+        return; 
       }
 
       chart.data.datasets.forEach((dataset, datasetIndex) => {
@@ -79,7 +78,7 @@ const CurrencyChart = () => {
               ctx.fillStyle = "#ff868d";
               ctx.font = "bold 12px sans-serif";
               ctx.textAlign = "center";
-              ctx.fillText(currency, point.x - 1, point.y - 5); // над точкою
+              ctx.fillText(currency, point.x - 1, point.y - 5); 
               ctx.restore();
             }
           });

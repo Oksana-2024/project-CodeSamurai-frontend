@@ -31,7 +31,7 @@
 .selectStatistic option {
   outline: none;
   background-color: var(--bg-option);
-  backdrop-filter: blur(100px);
+  border-radius: 8px;
   box-shadow: var(--modal-shadow);
   color: var(--main-color);
   border: none;
@@ -58,63 +58,3 @@
     width: 160px;
   }
 }
-
-/* .dashboardWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  margin-bottom: 40px;
-}
-
-.selectGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 280px;
-}
-
-.selectLabel {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  color: #000000;
-  margin-bottom: 4px;
-}
-
-.select {
-  height: 50px;
-  padding: 0 20px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  border-radius: 30px;
-  border: none;
-  background-color: #ffffff;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-  appearance: none;
-  position: relative;
-  background-image: url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%2324CCA7' stroke-width='2'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 20px center;
-  background-size: 14px 8px;
-  cursor: pointer;
-}
-
-.select:focus {
-  outline: none;
-  box-shadow: 0px 0px 0px 2px rgba(36, 204, 167, 0.4);
-}
-
-@media screen and (min-width: 768px) {
-  .dashboardWrapper {
-    flex-direction: row;
-    justify-content: center;
-    gap: 32px;
-    margin-bottom: 50px;
-  }
-
-  .selectGroup {
-    width: 160px;
-  }
-} */

@@ -173,8 +173,6 @@
   margin: 0 auto;
 }
 
-/* 
-Прибирає біле поле при автозаповненні та чорні букви при переході на наступне поле */
 .sum:-webkit-autofill,
 .sum:-webkit-autofill:hover,
 .sum:-webkit-autofill:focus,

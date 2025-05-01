@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
+import { yupResolver } from "@hookform/resolvers/yup";
 import ModalWindow from "../ModalWindow/ModalWindow";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import s from "./UserModal.module.css";
 import { setOpenUserProfile, useAuth } from "../../redux/auth/slice";
 import { selectUserProfile } from "../../redux/auth/selectors";
-import { useRef, useState } from "react";
 import Button from "../Button/Button";
 import Avatar from "../Avatar/Avatar";
 import { updateUser } from "../../redux/auth/operations";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchemaUserUpdate } from "../../helpers/userSchema";
 import useMedia from "../../helpers/useMedia";
 
@@ -35,11 +35,13 @@ const UserModal = () => {
   const handlePhotoChange = (event) => {
     setFile(event.target.files[0]);
   };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
+    mode: "all",
     defaultValues: {
       name: user.name,
     },
@@ -73,18 +75,12 @@ const UserModal = () => {
             className={s.file}
           />
           <input
-            className={s.textEdit}
+            className={`${s.textEdit} ${errors.name && s.invalid}`}
             placeholder="Name"
             type="text"
             {...register("name", { required: true })}
-            onChange={(event) => {
-              const target = event.target;
-
-              if (typeof target.value === "string" && target.value) {
-                target.value = target.value.trim();
-              }
-            }}
           />
+
           <div className={s.error}>
             {errors.name && <p>{errors.name.message}</p>}
           </div>

@@ -4,9 +4,6 @@ import { BiSolidHome } from "react-icons/bi";
 import { MdOutlineTimeline } from "react-icons/md";
 import { FaDollarSign } from "react-icons/fa";
 import s from "./Navigation.module.css";
-import Container from "../Container/Container";
-import HomeTab from "../../pages/DashboardPage/HomeTab/HomeTab";
-import StatisticsTab from "../../pages/DashboardPage/StatisticsTab/StatisticsTab";
 
 const Navigation = () => {
   const activeStyle = ({ isActive }) => (isActive ? s.active : s.link);

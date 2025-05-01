@@ -5,7 +5,6 @@ import clsx from "clsx";
 const Switch = ({ onChange, defaultValue = false }) => {
   const [isOn, setIsOn] = useState(defaultValue);
 
-  // Коли пропс `onChange` змінюється, синхронізуємо стан
   useEffect(() => {
     onChange(isOn);
   }, [isOn, onChange]);
@@ -18,7 +17,13 @@ const Switch = ({ onChange, defaultValue = false }) => {
       <p className={isOn ? s.income : s.incomeActive}>Income</p>
       <div className={s.switch}>
         <label htmlFor="switch" className={s.switchInput}>
-          <input type="checkbox" name="switch" id="switch" checked={isOn} onChange={handleToggle} />
+          <input
+            type="checkbox"
+            name="switch"
+            id="switch"
+            checked={isOn}
+            onChange={handleToggle}
+          />
           <span className={clsx(s.slider, s.round)}></span>
         </label>
       </div>

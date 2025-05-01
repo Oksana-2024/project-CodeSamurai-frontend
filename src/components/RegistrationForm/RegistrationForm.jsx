@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -10,14 +9,14 @@ import s from "./RegistrationForm.module.css";
 
 import Logo from "../../components/Logo/Logo.jsx";
 import { validationSchemaRegister } from "../../helpers/registrationSchema.js";
+import ProgressBar from "../ProgressBar/ProgressBar.jsx";
 
 import Button from "../Button/Button.jsx";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
 import { BiSolidUser } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import { PiLockFill } from "react-icons/pi";
-import ProgressBar from "../ProgressBar/ProgressBar.jsx";
+
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -82,7 +81,7 @@ const RegistrationForm = () => {
           <Logo className={s.iconLogo} />
         </div>
         <div className={s.boxLabel}>
-          {/* Username */}
+          
           <label className={s.label}>
             <div className={s.inputContainerLogo}>
               <BiSolidUser size={24} className={s.icon} />
@@ -100,7 +99,6 @@ const RegistrationForm = () => {
             </div>
           </label>
 
-          {/* Email */}
           <label className={s.label}>
             <div className={s.inputContainerLogo}>
               <MdEmail size={24} className={s.icon} />
@@ -119,7 +117,6 @@ const RegistrationForm = () => {
             </div>
           </label>
 
-          {/* Password */}
           <label className={s.label}>
             <div className={s.inputContainerLogo}>
               <PiLockFill size={24} className={s.icon} />
@@ -152,7 +149,6 @@ const RegistrationForm = () => {
             </div>
           </label>
 
-          {/* Confirm Password */}
           <label className={s.label}>
             <div className={s.inputContainerLogo}>
               <PiLockFill size={24} className={s.icon} />
@@ -185,7 +181,7 @@ const RegistrationForm = () => {
               )}
             </div>
 
-            {/* Password Strength Indicator */}
+          
             <ProgressBar
               password={password}
               confirmPassword={confirmPasswordValue}
