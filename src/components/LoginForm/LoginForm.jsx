@@ -3,20 +3,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-
-import { loginThunk } from "../../redux/auth/operations.js";
-import s from "./LoginForm.module.css";
-
-import Logo from "../../components/Logo/Logo.jsx";
-import { validationSchemaLogin } from "../../helpers/loginSchema.js";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../Button/Button.jsx";
+import Logo from "../../components/Logo/Logo.jsx";
+import { loginThunk } from "../../redux/auth/operations.js";
+import { validationSchemaLogin } from "../../helpers/loginSchema.js";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
 import { MdEmail } from "react-icons/md";
 import { PiLockFill } from "react-icons/pi";
-
-import { useNavigate } from "react-router-dom";
+import s from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -48,7 +44,9 @@ const LoginForm = () => {
     try {
       await dispatch(loginThunk(data)).unwrap();
       navigate("/dashboard");
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

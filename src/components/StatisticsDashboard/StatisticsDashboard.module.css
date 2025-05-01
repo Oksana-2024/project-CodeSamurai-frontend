@@ -7,15 +7,12 @@
   appearance: none;
   outline: none;
   width: 100%;
-  z-index: 1;
   height: 50px;
   border: 1px solid var(--form-color);
   border-radius: 8px;
   background: var(--bg-chart2);
-  font-weight: 400;
-  font-size: 16px;
   color: var(--main-color);
-  padding: 12px 20px 14px;
+  padding: 14px 20px 12px;
 }
 .label {
   position: relative;
@@ -33,6 +30,8 @@
   background-color: var(--bg-option);
   border-radius: 8px;
   box-shadow: var(--modal-shadow);
+  font-weight: 400;
+  font-size: 16px;
   color: var(--main-color);
   border: none;
   appearance: none;

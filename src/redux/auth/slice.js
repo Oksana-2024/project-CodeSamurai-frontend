@@ -64,7 +64,7 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(logoutUser.rejected, (state, action) => {
-        // payload is HTTP status code
+       
         if (action.payload === 401) {
           state.user = { name: null, email: null };
           state.token = null;
