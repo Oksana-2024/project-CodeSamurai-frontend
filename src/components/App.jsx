@@ -34,7 +34,7 @@ function App() {
   useEffect(() => {
     if (!isLoggedIn) return;
     dispatch(currentUser());
-  }, [dispatch]);
+  }, [dispatch, isLoggedIn]);
   return (
     <>
       <Suspense fallback={null}>
