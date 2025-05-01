@@ -11,8 +11,11 @@
 .save {
   width: 280px;
   height: 50px;
-  opacity: 0.5;
   margin-top: 60px;
+}
+
+.opacity {
+  opacity: 0.5;
 }
 
 .file {
@@ -23,7 +26,6 @@
   height: 20px;
   color: var(--red);
 }
-
 
 .textEdit {
   width: 280px;

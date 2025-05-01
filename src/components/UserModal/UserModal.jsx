@@ -11,6 +11,7 @@ import Avatar from "../Avatar/Avatar";
 import { updateUser } from "../../redux/auth/operations";
 import { validationSchemaUserUpdate } from "../../helpers/userSchema";
 import useMedia from "../../helpers/useMedia";
+import clsx from "clsx";
 
 const UserModal = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const UserModal = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useForm({
     mode: "all",
     defaultValues: {
@@ -75,16 +76,22 @@ const UserModal = () => {
             className={s.file}
           />
           <input
-            className={`${s.textEdit} ${errors.name && s.invalid}`}
+            className={clsx(s.textEdit, errors.name && s.invalid)}
             placeholder="Name"
             type="text"
             {...register("name", { required: true })}
           />
-
           <div className={s.error}>
             {errors.name && <p>{errors.name.message}</p>}
           </div>
-          <Button text="save" className={s.save} />
+          <Button
+            text="save"
+            disabled={errors.name || !dirtyFields.name}
+            className={clsx(
+              s.save,
+              (errors.name || !dirtyFields.name) && s.opacity
+            )}
+          />
         </form>
       </div>
     </ModalWindow>
