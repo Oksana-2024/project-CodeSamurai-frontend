@@ -103,14 +103,18 @@
   color: var(--user-color);
 }
 
-@media screen and (min-width: 1280px) {
-  .tableContainer {
-    padding-top: 46px;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .pageContainer {
     padding: 5px 55px;
+  }
+  .tableContainer {
+    padding-top: 6px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .tableContainer {
+    padding-top: 46px;
   }
 }

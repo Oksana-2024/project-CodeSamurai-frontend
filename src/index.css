@@ -47,6 +47,7 @@
   --modal-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
   --header-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25),
     inset 0 -3px 2px 0 rgba(0, 0, 0, 0.1);
+  --line-shadow: 1px 4px 1px 0 rgba(0, 0, 0, 0.25);
 
   --main-font: "Poppins", sans-serif;
   --main-transform: ease;

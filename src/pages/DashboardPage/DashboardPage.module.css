@@ -24,13 +24,13 @@
     padding: 0 32px;
     display: grid;
     grid-template-rows: 234px 1fr;
-    gap: 20px 0px;
     height: calc(100vh - 80px);
   }
 
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
     gap: 0px 32px;
   }
 
@@ -95,6 +95,7 @@
   .decorLine::after {
     content: "";
     border-left: 1px solid var(--user-color);
+    box-shadow: var(--line-shadow);
     width: 0px;
     height: calc(100vh - 68px);
     position: absolute;
