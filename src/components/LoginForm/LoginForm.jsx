@@ -23,7 +23,7 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(validationSchemaLogin),
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -80,8 +80,11 @@ const LoginForm = () => {
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 className={s.regInput}
-                {...register("password")}
-                onChange={handlePasswordChange}
+                {...register("password", {
+                  onChange: (e) => {
+                    handlePasswordChange(e);
+                  },
+                })}
               />
               {isPasswordFilled && (
                 <button

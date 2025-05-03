@@ -17,7 +17,6 @@ import { BiSolidUser } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import { PiLockFill } from "react-icons/pi";
 
-
 const RegistrationForm = () => {
   const dispatch = useDispatch();
 
@@ -29,7 +28,7 @@ const RegistrationForm = () => {
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(validationSchemaRegister),
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
@@ -81,7 +80,6 @@ const RegistrationForm = () => {
           <Logo className={s.iconLogo} />
         </div>
         <div className={s.boxLabel}>
-          
           <label className={s.label}>
             <div className={s.inputContainerLogo}>
               <BiSolidUser size={24} className={s.icon} />
@@ -125,8 +123,11 @@ const RegistrationForm = () => {
                 placeholder="Password"
                 autoComplete="new-password"
                 className={s.regInput}
-                {...register("password")}
-                onChange={handlePasswordChange}
+                {...register("password", {
+                  onChange: (e) => {
+                    handlePasswordChange(e);
+                  },
+                })}
               />
               {isPasswordFilled && (
                 <button
@@ -157,8 +158,11 @@ const RegistrationForm = () => {
                 placeholder="Confirm Password"
                 autoComplete="new-password"
                 className={s.regInput}
-                {...register("confirmPassword")}
-                onChange={handleConfirmPasswordChange}
+                {...register("confirmPassword", {
+                  onChange: (e) => {
+                    handleConfirmPasswordChange(e);
+                  },
+                })}
                 value={confirmPasswordValue}
               />
               {isConfirmPasswordFilled && (
@@ -181,7 +185,6 @@ const RegistrationForm = () => {
               )}
             </div>
 
-          
             <ProgressBar
               password={password}
               confirmPassword={confirmPasswordValue}
